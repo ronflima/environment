@@ -1,0 +1,21 @@
+# Compiled
+*.elc
+
+# Packaging
+.cask
+
+# Backup files
+*~
+
+# Undo-tree save-files
+*.~undo-tree
+
+auto-save-list/
+elpa
+
+# Tramp history
+tramp
+ido.last
+./
+.python-environments
+ac-comphist.dat
