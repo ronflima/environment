@@ -28,6 +28,8 @@
 
 BASH_FILES="bashrc bash_profile bash_aliases bash_logout"
 BASEDIR="$(cd "$(dirname "$0")"; pwd -P)"
+INSTALLER_DIR="$BASEDIR/installer"
+INSTALLERS="$(ls $INSTALLER_DIR/*.sh)"
 
 function create_backup_dir {
     BACKUPDIR=$HOME/.environment_backup
@@ -38,48 +40,9 @@ function create_backup_dir {
     fi
 }
 
-#
-# Bash stuff
-#
-for bash_file in $BASH_FILES
+for installer in $INSTALLERS
 do
-    TARGET=$HOME/.$bash_file 
-    if [[ -f $TARGET || -L $TARGET ]]
-    then
-        if [ -f $TARGET ]
-        then
-            echo "Backing up .$bash_file..."
-            create_backup_dir
-            mv $TARGET $BACKUPDIR
-        else
-            echo "Removing .$bash_file link..."
-            \rm -f $TARGET
-        fi
-    fi
-    echo "Installing new .$bash_file..."
-    ln -s $BASEDIR/bash/$bash_file $TARGET 
+    echo "Installing $(echo $installer | sed -E 's/[a-z./]+install_([a-z]+)\.sh/\1/g')..."
+    source $installer
 done
 
-#
-# Emacs stuff
-#
-EMACS_HOME=$HOME/.emacs.d
-
-echo "Installing emacs goodies..."
-if [ -d $EMACS_HOME ]
-then
-    echo "Backing up emacs..."
-    create_backup_dir
-    mv $EMACS_HOME $BACKUPDIR
-fi
-ln -s $BASEDIR/emacs.d $EMACS_HOME 
-
-#
-# WSL Settings
-#
-if [ -f /etc/wsl.conf ]
-then
-    create_backup_dir
-    sudo mv /etc/wsl.conf $BACKUPDIR
-    sudo cp $BASEDIR/wsl.conf /etc/wsl.conf
-fi
