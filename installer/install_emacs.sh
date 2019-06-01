@@ -38,3 +38,7 @@ then
     mv $EMACS_HOME $BACKUPDIR
 fi
 ln -s $BASEDIR/emacs.d $EMACS_HOME 
+
+# Try to install emacs packages
+echo "Will call emacs to automatically install stuff..."
+emacs --load $INSTALLER_DIR/packages.lisp
