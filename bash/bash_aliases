@@ -1,3 +1,14 @@
+# -*-shell-script-*-
+
+# Calls emacs under the hood
 function e() {
     emacs $* &
+}
+
+# Calls django manager, if available
+function mn(){
+    if [ -f manage.py ]
+    then
+        python manage.py $*
+    fi
 }
