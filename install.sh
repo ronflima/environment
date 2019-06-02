@@ -29,7 +29,7 @@
 BASH_FILES="bashrc bash_profile bash_aliases bash_logout"
 BASEDIR="$(cd "$(dirname "$0")"; pwd -P)"
 INSTALLER_DIR="$BASEDIR/installer"
-INSTALLERS="$(ls $INSTALLER_DIR/*.sh)"
+INSTALLERS="$(ls $INSTALLER_DIR/*.sh | sort)"
 
 function create_backup_dir {
     BACKUPDIR=$HOME/.environment_backup
@@ -42,7 +42,7 @@ function create_backup_dir {
 
 for installer in $INSTALLERS
 do
-    echo "Installing $(echo $installer | sed -E 's/[a-z./]+install_([a-z]+)\.sh/\1/g')..."
+    echo "Installing $(echo $installer | sed -E 's/[a-z./]+install_[0-9][0-9]_([a-z]+)\.sh/\1/g')..."
     source $installer
 done
 
