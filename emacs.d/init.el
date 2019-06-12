@@ -29,7 +29,7 @@
    "article\\|\\(sub\\)*section\\|chapter\\|div\\|appendix\\|part\\|preface\\|reference\\|simplesect\\|bibliography\\|bibliodiv\\|glossary\\|glossdiv\\|methodResponse")
  '(package-selected-packages
    (quote
-    (django-mode sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
+    (sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
     ((eval venv-workon "image-curator")
@@ -44,12 +44,12 @@
  '(user-mail-address "ronaldo@chicletemkt.com")
  '(visible-bell t))
 (put 'erase-buffer 'disabled nil)
-
+(setq diff-command "ediff")
 ;; No tabs!
 (setq-default indent-tabs-mode nil)
 
 ;; Time formts
-(setq display-time-format "%H:%M")
+(setq display-time-format "%H:%M %d/%m/%Y")
 (setq display-time-default-load-average nil)
 (display-time-mode 1)
 
@@ -142,6 +142,11 @@
 (global-set-key [f7] 'compile)
 (global-set-key [M-down] 'end-of-buffer)
 (global-set-key [M-up] 'beginning-of-buffer)
+
+;; VC Customizations
+(require 'vc-dir)
+(define-key vc-dir-mode-map (kbd "\C-cc") 'vc-find-conflicted-file)
+(setq smerge-command-prefix "\C-cm")
 
 ;; Match parenthesis function
 ;; Credit: Dirk Heumann routine, got in 2003
