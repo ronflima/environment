@@ -32,7 +32,11 @@
     (mmm-mode sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval venv-workon "groodme-graphics")
+    ((eval venv-workon "chiclein_service")
+     (eval venv-workon "chiclein-service")
+     (eval setenv "CHICLEIN_DEBUG" "TRUE")
+     (eval venv-workon "chiclein")
+     (eval venv-workon "groodme-graphics")
      (indent . 4)
      (eval venv-workon "concept-pub-builder")
      (eval venv-workon "image-curator")
