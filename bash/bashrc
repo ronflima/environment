@@ -137,7 +137,7 @@ function check_services() {
 if [ -v INSIDE_EMACS ]
 then
     echo -e "Starting shell from EMACS\n"
-elif [ -v IS_WSL ]
+elif [ -v WSL_DISTRO_NAME ]
 then
     # We are inside WSL. Start services automatically on login, if not
     # running.
