@@ -28,5 +28,6 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
+PACKAGES="make gcc g++ git emacs gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz"
 sudo apt-get update
-sudo apt-get install -y make gcc git emacs gnupg2 curl wget postgresql openssl zip unzip bzip2
+sudo apt-get install -y $PACKAGES
