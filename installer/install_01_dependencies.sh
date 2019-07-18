@@ -30,4 +30,4 @@
 
 INSTALL=`sudo apt install -y`
 sudo apt update
-$INSTALL make gcc git emacs
+$INSTALL make gcc git emacs gnupg2 curl wget postgresql 

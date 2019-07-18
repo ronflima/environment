@@ -31,7 +31,10 @@
 if [ ! -f $HOME/.pyenv ]
 then
     git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.bash_profile
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.bash_profile
-    eval "$($HOME/.pyenv/bin/pyenv init -)"
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$HOME/bin:$PATH"
+    if command -v pyenv 1>/dev/null 2>&1; then
+        eval "$(pyenv init -)"
+    fi
+    pyenv install 3.7.4
 fi
