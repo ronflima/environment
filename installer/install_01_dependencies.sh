@@ -28,6 +28,5 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-INSTALL=`sudo apt install -y`
-sudo apt update
-$INSTALL make gcc git emacs gnupg2 curl wget postgresql 
+sudo apt-get update
+sudo apt-get install -y make gcc git emacs gnupg2 curl wget postgresql openssl zip unzip bzip2
