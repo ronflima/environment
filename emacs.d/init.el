@@ -29,10 +29,13 @@
    "article\\|\\(sub\\)*section\\|chapter\\|div\\|appendix\\|part\\|preface\\|reference\\|simplesect\\|bibliography\\|bibliodiv\\|glossary\\|glossdiv\\|methodResponse")
  '(package-selected-packages
    (quote
-    (mmm-mode sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
+    (sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval venv-workon "chiclein_service")
+    ((eval setenv "GROODME_DEBUG" "FALSE")
+     (eval venv-workon "cp-facebook")
+     (eval venv-workon "concept-guide-gen")
+     (eval venv-workon "chiclein_service")
      (eval venv-workon "chiclein-service")
      (eval setenv "CHICLEIN_DEBUG" "TRUE")
      (eval venv-workon "chiclein")
@@ -51,7 +54,6 @@
  '(user-mail-address "ronaldo@chicletemkt.com")
  '(visible-bell t))
 (put 'erase-buffer 'disabled nil)
-(setq diff-command "ediff")
 ;; No tabs!
 (setq-default indent-tabs-mode nil)
 
@@ -103,17 +105,6 @@
 (setq python-indent-offset 4)
 (require 'py-autopep8)
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-(require 'mmm-mode)
-(setq mmm-global-mode 'maybe)
-(mmm-add-classes
- '((python-rst
-    :submode rst-mode
-    :front "^ *[ru]?\"\"\"[^\"]*$"
-    :back "^ *\"\"\""
-    :include-front t
-    :include-back t
-    :end-not-begin t)))
-(mmm-add-mode-ext-class 'python-mode nil 'python-rst)
 
 ;; Modes
 (auto-fill-mode 1)
