@@ -29,7 +29,7 @@
    "article\\|\\(sub\\)*section\\|chapter\\|div\\|appendix\\|part\\|preface\\|reference\\|simplesect\\|bibliography\\|bibliodiv\\|glossary\\|glossdiv\\|methodResponse")
  '(package-selected-packages
    (quote
-    (sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
+    (pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
     ((eval setenv "GROODME_DEBUG" "FALSE")
@@ -120,7 +120,7 @@
   (set-face-attribute 'default nil :family "Menlo" :height 145 :weight 'normal)
   (setq mac-allow-anti-aliasing t))
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Noto Mono" :height 145 :weight 'regular))
+  (set-face-attribute 'default nil :family "Consolas" :height 145 :weight 'regular))
  )
 (set-face-foreground 'default "green")
 (set-face-background 'default "black")
