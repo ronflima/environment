@@ -28,12 +28,17 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-if [ -v WSL_DISTRO_NAME ]
-then
-    if [ -f /etc/wsl.conf ]
+function install_file() {
+   if [ -f /etc/$1 ]
     then
         create_backup_dir
-        sudo mv /etc/wsl.conf $BACKUPDIR
+        sudo mv /etc/$1 $BACKUPDIR
     fi
-    sudo cp $BASEDIR/wsl.conf /etc/wsl.conf
+    sudo cp $BASEDIR/$1 /etc/$1
+}
+
+if [ -v WSL_DISTRO_NAME ]
+then
+    install_file("wsl.conf")
+    install_file("fstab")
 fi 
