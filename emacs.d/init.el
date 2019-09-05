@@ -29,7 +29,7 @@
    "article\\|\\(sub\\)*section\\|chapter\\|div\\|appendix\\|part\\|preface\\|reference\\|simplesect\\|bibliography\\|bibliodiv\\|glossary\\|glossdiv\\|methodResponse")
  '(package-selected-packages
    (quote
-    (pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
+    (wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
     ((eval setenv "GROODME_DEBUG" "FALSE")
@@ -101,7 +101,10 @@
 (require 'virtualenvwrapper)
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
+
+(setq jedi:tooltip-method nil)
 (add-hook 'python-mode-hook 'jedi:setup)
+
 (setq python-indent-offset 4)
 (require 'py-autopep8)
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
@@ -152,6 +155,19 @@
 (global-set-key [f7] 'compile)
 (global-set-key [M-down] 'end-of-buffer)
 (global-set-key [M-up] 'beginning-of-buffer)
+
+;; Dired customizations
+(require 'dired-x)
+(setq dired-guess-shell-alist-user
+      '(("\\.py\\'" "python")))
+
+;; Kill whatever is running on exit.
+(require 'cl)
+
+(defadvice save-buffers-kill-emacs
+  (around no-query-kill-emacs activate)
+  "Prevent \"Active processes exist\" query on exit."
+  (cl-flet ((process-list ())) ad-do-it))
 
 ;; VC Customizations
 (require 'vc-dir)
@@ -214,6 +230,11 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode t)
+
+;; Fixmee
+(require 'button-lock)
+(require 'fixmee)
+(global-fixmee-mode 1)
 
 ;; Sudoku
 (add-to-list 'auto-mode-alist '("\\.sdk\\'" . sudoku-mode))
