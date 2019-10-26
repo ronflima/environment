@@ -32,7 +32,11 @@
     (wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval setenv "GROODME_DEBUG" "FALSE")
+    ((eval venv-workon "estudos")
+     (eval venv-workon "mailing")
+     (eval venv-workon "groodme-inetools")
+     (eval venv-workon "email-validator")
+     (eval setenv "GROODME_DEBUG" "FALSE")
      (eval venv-workon "cp-facebook")
      (eval venv-workon "concept-guide-gen")
      (eval venv-workon "chiclein_service")
@@ -148,11 +152,8 @@
 
 ;; Keymaps
 (global-set-key "%"  'match-paren)
-(global-set-key [f2] 'shell)
-(global-set-key [f3] 'hs-minor-mode)
-(global-set-key [f4] 'vc-dir)
-(global-set-key [f6] 'other-window)
-(global-set-key [f7] 'compile)
+(global-set-key [M-left] 'beginning-of-line)
+(global-set-key [M-right] 'end-of-line)
 (global-set-key [M-down] 'end-of-buffer)
 (global-set-key [M-up] 'beginning-of-buffer)
 
@@ -160,6 +161,9 @@
 (require 'dired-x)
 (setq dired-guess-shell-alist-user
       '(("\\.py\\'" "python")))
+
+;; Tramp mode
+(setq tramp-default-method "ssh")
 
 ;; Kill whatever is running on exit.
 (require 'cl)
