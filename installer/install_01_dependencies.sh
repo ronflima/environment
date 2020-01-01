@@ -30,7 +30,7 @@
 
 if [ "$OSTYPE" == "linux-gnu" ]
 then
-    PACKAGES="make gcc g++ git emacs gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz"
+    PACKAGES="make gcc g++ git emacs gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz zlibc"
     sudo apt-get update
     sudo apt-get install -y $PACKAGES
 fi
