@@ -22,15 +22,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-# Installer for my bash files. You should never run it alone. It depends on the
-# Install script
+# Installs software packages that I depend on. Do not run it alone.
 #
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
 if [ "$OSTYPE" == "linux-gnu" ]
 then
-    PACKAGES="make gcc g++ git emacs gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz zlibc libbz2-dev dbus-x11"
+    BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11"
+    PACKAGES="make gcc g++ git emacs emacs-common-non-dfsg gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz"
+    sudo apt-get update
+    sudo apt-get install -y $BASE_PACKAGES
+    sudo apt-add-repository non-free
     sudo apt-get update
     sudo apt-get install -y $PACKAGES
 fi
