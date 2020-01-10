@@ -29,7 +29,7 @@
 
 if [ "$OSTYPE" == "linux-gnu" ]
 then
-    BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11"
+    BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev"
     PACKAGES="make gcc g++ git emacs emacs-common-non-dfsg gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz"
     sudo apt-get update
     sudo apt-get install -y $BASE_PACKAGES
