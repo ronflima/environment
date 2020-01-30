@@ -9,6 +9,8 @@
   > "* This file purpose: " _ (skeleton-read "This file purpose: ") _ \n
   > "*/" _ \n
   > "digraph " _ (skeleton-read "Graph name: ") _ " {" \n
+  > "start [shape=circle, style=filled, fillcolor=black, label=\"\"];" _ \n
+  > "end [shape=doublecircle, style=filled, fillcolor=black, label=\"\"];" _ \n
   > \n
   > "}" \n
  )
