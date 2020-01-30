@@ -8,5 +8,8 @@
   > "*" \n
   > "* This file purpose: " _ (skeleton-read "This file purpose: ") _ \n
   > "*/" _ \n
+  > "digraph " _ (skeleton-read "Graph name: ") _ " {" \n
+  > \n
+  > "}" \n
  )
 
