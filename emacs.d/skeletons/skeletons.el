@@ -9,3 +9,4 @@
 (load-library "sql-skel.el")
 (load-library "html-skel.el")
 (load-library "python-skel.el")
+(load-library "dot-skel.el")
