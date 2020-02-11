@@ -3,7 +3,21 @@
 
 ;; MELPA support
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+  ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+  ;; and `package-pinned-packages`. Most users will not need or want to do this.
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  )
 (package-initialize)
 
 ;; Global variables
@@ -32,7 +46,14 @@
     (wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval venv-workon "fbreports")
+    ((eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "941bk04w6D4DqAL")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "fbreports@chltmkt-base-server")
+     (eval setenv "CHLTMKT_SECRET_KEY" "#-81yozq@b%q!gr6+8(c_b()-zfm*ceqx51^y6%*c(n20e6_xd")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_HOST" "chltmkt-base-server.postgres.database.azure.com")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "94bk04w6D4DqAL")
+     (eval setenv "CHLTMKT_SECRET_KEY"
+           (\, "#-81yozq@b%q!gr6+8(c_b()-zfm*ceqx51^y6%*c(n20e6_xd"))
+     (eval venv-workon "fbreports")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "au%Y2SPTph-3J1Q")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "fbreports")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "fbreportsdb")
