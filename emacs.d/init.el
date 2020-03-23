@@ -47,7 +47,19 @@ There are two things you can do about this warning:
     (wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "941bk04w6D4DqAL")
+    ((eval venv-workon "preenchedor")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "groodme_categorizer@chltmkt-base-server")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "pcJgQ6wSksRP8SnDVTSR")
+     (eval setenv "CHLTMKT_SECRET_KEY" "@!!4-nc=ai23a&w!+192#s$h(@(9xf_=s@30i%s+b1=o*7d%8%")
+     (eval setenv "CATEGORIZER_DEBUG" "TRUE")
+     (eval setenv "CHLTMKT_SECRET_KEY" "t210es(&-8ymrgg_8h#37btz^%4s%!@1t2=2j#mdjiw3uyh*q%")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "p5374p8ekN322mAP25Vt")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "groodme_categorizer_db")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_TEST_DB" "groodme_categorizer_test_db")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "groodme_categorizer")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "groodme_categorizerdb")
+     (eval venv-workon "groodme-categorizer")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "941bk04w6D4DqAL")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "fbreports@chltmkt-base-server")
      (eval setenv "CHLTMKT_SECRET_KEY" "#-81yozq@b%q!gr6+8(c_b()-zfm*ceqx51^y6%*c(n20e6_xd")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_HOST" "chltmkt-base-server.postgres.database.azure.com")
@@ -201,7 +213,8 @@ There are two things you can do about this warning:
 ;; Dired customizations
 (require 'dired-x)
 (setq dired-guess-shell-alist-user
-      '(("\\.py\\'" "python")))
+      '(("\\.py\\" "python")
+      ("\\requirements.txt\\" "pip install -r")))
 
 ;; Tramp mode
 (setq tramp-default-method "ssh")
