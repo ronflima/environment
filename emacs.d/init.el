@@ -213,8 +213,8 @@ There are two things you can do about this warning:
 ;; Dired customizations
 (require 'dired-x)
 (setq dired-guess-shell-alist-user
-      '(("\\.py\\" "python")
-      ("\\requirements.txt\\" "pip install -r")))
+      '(("\\.py$" "python")
+      ("^requirements.txt$" "pip install -r")))
 
 ;; Tramp mode
 (setq tramp-default-method "ssh")
