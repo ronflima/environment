@@ -231,6 +231,7 @@ There are two things you can do about this warning:
 (require 'vc-dir)
 (define-key vc-dir-mode-map (kbd "\C-cc") 'vc-find-conflicted-file)
 (setq smerge-command-prefix "\C-cm")
+(setq vc-suppress-confirm t)
 
 ;; Match parenthesis function
 ;; Credit: Dirk Heumann routine, got in 2003
