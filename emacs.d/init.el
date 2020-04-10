@@ -219,6 +219,13 @@ There are two things you can do about this warning:
 ;; Tramp mode
 (setq tramp-default-method "ssh")
 
+;; SSH customizations
+(add-hook 'ssh-mode-hook
+          (lambda()
+            (setq ssh-directory-tracking-mode t)
+            (shell-dirtrack-mode t)
+            (setq dirtrackp nil)))
+
 ;; Kill whatever is running on exit.
 (require 'cl)
 
