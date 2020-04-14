@@ -134,6 +134,13 @@ function check_services() {
     fi
 }
 
+function close_session() {
+    sudo service postgresql stop
+    sudo service dbus stop
+    exit
+}
+alias quit=close_session
+
 if [ -v INSIDE_EMACS ]
 then
     echo -e "Starting shell from EMACS\n"
