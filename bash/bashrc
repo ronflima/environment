@@ -118,37 +118,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
-function check_services() {
-    pgsql_running=`sudo service postgresql status | grep online`
-
-    if [ "X$pgsql_running" == "X" ]
-    then
-        sudo service postgresql start >/dev/null 2>&1 
-    fi 
-
-    dbus_running=`sudo service dbus status | grep "is running"`
-
-    if [ "X$dbus_running" == "X" ]
-    then
-        sudo service dbus start >/dev/null 2>&1 
-    fi
-}
-
-function close_session() {
-    sudo service postgresql stop
-    sudo service dbus stop
-    exit
-}
-alias quit=close_session
-
 if [ -v INSIDE_EMACS ]
 then
     echo -e "Starting shell from EMACS\n"
-elif [ -v WSL_DISTRO_NAME ]
-then
-    # We are inside WSL. Start services automatically on login, if not
-    # running.
-    check_services &
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -159,5 +131,5 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Avoids dbus errors
-export $(dbus-launch)
-export NSS_USE_SHARED_DB=ENABLED
+#export $(dbus-launch)
+#export NSS_USE_SHARED_DB=ENABLED

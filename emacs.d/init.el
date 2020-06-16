@@ -44,10 +44,33 @@ There are two things you can do about this warning:
    "article\\|\\(sub\\)*section\\|chapter\\|div\\|appendix\\|part\\|preface\\|reference\\|simplesect\\|bibliography\\|bibliodiv\\|glossary\\|glossdiv\\|methodResponse")
  '(package-selected-packages
    (quote
-    (django-mode django-snippets yasnippet wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
+    (org-mind-map django-mode django-snippets yasnippet wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval venv-workon "preenchedor")
+    ((eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "{{ project_name }}")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "{{ project_name }}_db")
+     (eval setenv "CHLTMKT_SECRET_KEY" "{{ secret_key }}")
+     (eval venv-workon "{{ project_name }}")
+     (eval setenv "PYTHONPATH" "/home/ronaldo/projetos/chicleteMkt/src/django-flexible-subscriptions")
+     (eval setenv "PYTHONPATH" "/home/ronaldo/projetos/chicleteMkt/src/django-flexible-subscriptions/subscriptions")
+     (eval setenv "PYTHON_PATH" "/home/ronaldo/projetos/chicleteMkt/src/django-flexible-subscriptions/subscriptions")
+     (eval setenv "PYTHON_PATH" "/home/ronaldo/projetos/chicleteMkt/src/django-flexible-subscriptions")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_HOST" "10.0.1.13")
+     (eval venv-workon "django-flexible-subscriptions")
+     (eval setenv "CHLTMKT_DEBUG" "FALSE")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "|u90J3T14*D]3/x")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "budget")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "budget_db")
+     (eval setenv "CHLTMKT_SECRET_KEY" "ven(zh@@(ubv0doy+tcd%5x!q3xgp(76^l0&-s(6lv4b6s%54w")
+     (eval setenv "CHLTMKT_SECRET_KEY" "jvy)0eaq^+vc(f=n^#^jld^msrg9)xq7($a@(*8)hpp_%&t9b@")
+     (encoding . utf-8)
+     (eval venv-workon "django-template")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "groodme_budget")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "groodme_budget_db")
+     (eval setenv "DEBUG" "TRUE")
+     (eval venv-workon "budget")
+     (eval venv-workon "preenchedor")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "groodme_categorizer@chltmkt-base-server")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "pcJgQ6wSksRP8SnDVTSR")
      (eval setenv "CHLTMKT_SECRET_KEY" "@!!4-nc=ai23a&w!+192#s$h(@(9xf_=s@30i%s+b1=o*7d%8%")
@@ -318,3 +341,14 @@ There are two things you can do about this warning:
                                 omit-day-of-week-p)))
 
 (global-set-key "\C-x\M-d" `insdate-insert-current-date)
+
+    (defun sort-words (reverse beg end)
+      "Sort words in region alphabetically, in REVERSE if negative.
+    Prefixed with negative \\[universal-argument], sorts in reverse.
+  
+    The variable `sort-fold-case' determines whether alphabetic case
+    affects the sort order.
+  
+    See `sort-regexp-fields'."
+      (interactive "*P\nr")
+      (sort-regexp-fields reverse "\\w+" "\\&" beg end))
