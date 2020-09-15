@@ -44,10 +44,23 @@ There are two things you can do about this warning:
    "article\\|\\(sub\\)*section\\|chapter\\|div\\|appendix\\|part\\|preface\\|reference\\|simplesect\\|bibliography\\|bibliodiv\\|glossary\\|glossdiv\\|methodResponse")
  '(package-selected-packages
    (quote
-    (org-mind-map django-mode django-snippets yasnippet wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
+    (highlight-indentation string-inflection restclient org-mind-map django-mode django-snippets yasnippet wiki-nav pomodoro fixmee pyimport sudoku py-autopep8 yaml-mode auto-complete-c-headers virtualenvwrapper pyenv-mode jedi projectile noxml-fold python markdown-mode+ markdown-mode csv-mode csv csv-nav ssh emacsql-sqlite emacsql-mysql emacsql-psql swift-mode lex json-mode graphviz-dot-mode web-mode scss-mode sass-mode rvm ruby-dev ruby-compilation realgud-rdb2 org omniref list-utils inf-mongo gitty git-command git gist)))
  '(safe-local-variable-values
    (quote
-    ((eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "")
+    ((eval setenv "GOOGLE_APPLICATION_CREDENTIALS" "chiclein/chiclein.json")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "j4Ga2.aoV48hUEY")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "groodme@chltmkt-base-server")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "groodmedb")
+     (eval setenv "AVOID_ERASING_FILES" "TRUE")
+     (eval setenv "CHLTMKT_VERIFY_TERMS_VALIDATION" "TRUE")
+     (eval setenv "CHLTMKT_PAYMENT_DRIVER" "CIELO")
+     (eval setenv "CHLTMKT_CIELO_MERCHANTKEY" "COLICWRZDSFYTACJAMYWFNMEAOVSKVVMDQZCEROL")
+     (eval setenv "CHLTMKT_CIELO_MERCHANTID" "91ad1666-f36a-4d1b-b628-8ca54393629e")
+     (eval venv-workon "groodme-ui")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_HOST" "/var/run/postgresql")
+     (eval venv-workon "palettes")
+     (eval venv-workon "concept-proof")
+     (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_PASSWORD" "")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB_USER" "{{ project_name }}")
      (eval setenv "POSTGRESQLCONNSTR_CHLTMKT_DB" "{{ project_name }}_db")
      (eval setenv "CHLTMKT_SECRET_KEY" "{{ secret_key }}")
@@ -146,14 +159,15 @@ There are two things you can do about this warning:
 (add-to-list 'load-path "~/.emacs.d/skeletons")
 (load-library "skeletons.el")
 (add-hook 'find-file-hook 'auto-insert)
-(setq auto-insert-alist '(("router.*\\.js$"    . node-router)
-                          ("\\.js$"    . node-new-file)
-						  ("\\.rb$"    . ruby-formaweb-file)
-                          ("\\.c$"     . c-mit-file)
-                          ("\\.h$"     . c-mit-file)
-                          ("\\.swift$" . swift-mit-file)
-                          ("\\.py$"    . python-chtmkt)
-                          ("\\.sql$"   . skel-sql-file)))
+(setq auto-insert-alist '(("router.*\\.js$". node-router)
+                          ("\\.js$"        . node-new-file)
+			  ("\\.rb$"        . ruby-formaweb-file)
+                          ("\\.c$"         . c-mit-file)
+                          ("\\.h$"         . c-mit-file)
+                          ("\\.swift$"     . swift-mit-file)
+                          ("setup.py"      . python-mit-setup)
+                          ("\\.py$"        . python-chtmkt)
+                          ("\\.sql$"       . skel-sql-file)))
 
 ;; Web Mode
 (require 'web-mode)
@@ -237,8 +251,10 @@ There are two things you can do about this warning:
 ;; Dired customizations
 (require 'dired-x)
 (setq dired-guess-shell-alist-user
-      '(("\\.py$" "python")
-      ("^requirements.txt$" "pip install -r")))
+      '(("^manage.py$" "python * runserver")
+        ("\\.py$" "python")
+        ("^requirements.txt$" "pip install -r")))
+(setq dired-listing-switches "-aBhl  --group-directories-first")
 
 ;; Tramp mode
 (setq tramp-default-method "ssh")
@@ -274,11 +290,22 @@ There are two things you can do about this warning:
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
 
+;; Highlight Indent
+(require 'highlight-indentation)
+(defun highlight-column-setup ()
+  (set-face-background 'highlight-indentation-face "#006028")
+  (set-face-background 'highlight-indentation-current-column-face "#00903c")
+  (highlight-indentation-mode)
+  (highlight-indentation-current-column-mode)
+)
+
 ;; Hooks
 ;; Make hideshow minor mode always active for all program modes
-(add-hook 'prog-mode-hook #'(lambda () (hs-minor-mode t)))
+(add-hook 'prog-mode-hook 'highlight-column-setup)
+(add-hook 'yaml-mode-hook 'highlight-column-setup)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
 
 ;; Support to inferior shell
 (setq shell-file-name "bash")

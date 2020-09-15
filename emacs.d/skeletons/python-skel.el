@@ -69,9 +69,9 @@
   > "#" \n
   > "# This file purpose: " _ (skeleton-read "This file purpose: ") \n \n
   > "with open(\"README.md\", \"r\") as fh:" ?\n
-  > "long_description = fh.read()" ?\n \n
-  > "setuptools.setup(" ?\n
-  > "name=" _ (skeleton-read "This package name: ") _"," ?\n
+  > "long_description = fh.read()" \n \n
+  "setuptools.setup(" \n
+  > "name=\"" _ (skeleton-read "This package name: ") _ "\"," ?\n
   > "version=\"0.0.1\"," ?\n
   > "author=\"" _ (user-full-name) _ "\"," ?\n
   > "author_email=\"" _ (skeleton-read "Your email address: ") _"\"," ?\n
