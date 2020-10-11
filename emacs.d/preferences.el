@@ -24,6 +24,8 @@ There are two things you can do about this warning:
 ;; No tabs!
 (setq-default indent-tabs-mode nil)
 
+;; No menu bar
+(menu-bar-mode -1)
 ;; Time formts
 (setq display-time-format "%H:%M %d/%m/%Y")
 (setq display-time-default-load-average nil)
