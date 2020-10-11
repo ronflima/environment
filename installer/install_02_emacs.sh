@@ -37,7 +37,9 @@ then
     create_backup_dir
     mv $EMACS_HOME $BACKUPDIR
 fi
-ln -s $BASEDIR/emacs.d $EMACS_HOME 
+ln -s $BASEDIR/emacs.d $EMACS_HOME
+
+cp $INSTALLER_DIR/init.el $EMACS_HOME
 
 # Try to install emacs packages
 echo "Will call emacs to automatically install stuff..."

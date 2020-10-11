@@ -21,3 +21,7 @@ ido.last
 ac-comphist.dat
 git-command
 \#ido.last\#
+
+# Emacs generated init.el
+
+emacs.d/init.el
