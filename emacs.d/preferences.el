@@ -166,19 +166,8 @@ There are two things you can do about this warning:
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
 
-;; Highlight Indent
-(require 'highlight-indentation)
-(defun highlight-column-setup ()
-  (set-face-background 'highlight-indentation-face "#006028")
-  (set-face-background 'highlight-indentation-current-column-face "#00903c")
-  (highlight-indentation-mode)
-  (highlight-indentation-current-column-mode)
-)
-
 ;; Hooks
 ;; Make hideshow minor mode always active for all program modes
-(add-hook 'prog-mode-hook 'highlight-column-setup)
-(add-hook 'yaml-mode-hook 'highlight-column-setup)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 

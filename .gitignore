@@ -23,7 +23,4 @@ ac-comphist.dat
 git-command
 \#ido.last\#
 network-security.data
-
-# Emacs generated init.el
-
-emacs.d/init.el
+emacs.d/customizations.el

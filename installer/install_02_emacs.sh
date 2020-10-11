@@ -39,8 +39,6 @@ then
 fi
 ln -s $BASEDIR/emacs.d $EMACS_HOME
 
-install_file "$EMACS_HOME" "init.el"
-
 # Try to install emacs packages
 echo "Will call emacs to automatically install stuff..."
 emacs --load $INSTALLER_DIR/packages.lisp
