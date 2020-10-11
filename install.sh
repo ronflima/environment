@@ -40,6 +40,16 @@ function create_backup_dir {
     fi
 }
 
+function install_file() {
+   if [ -f $1/$2 ]
+    then
+        create_backup_dir
+        sudo mv $1/$1 $BACKUPDIR
+    fi
+    sudo cp $BASEDIR/$2 $1/$2
+}
+
+
 for installer in $INSTALLERS
 do
     echo "Installing $(echo $installer | sed -E 's/[a-z./]+install_[0-9][0-9]_([a-z]+)\.sh/\1/g')..."

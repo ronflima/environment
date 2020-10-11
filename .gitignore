@@ -11,7 +11,8 @@
 *.~undo-tree
 
 auto-save-list/
-elpa
+elpa/
+var/
 
 # Tramp history
 tramp
@@ -21,6 +22,7 @@ ido.last
 ac-comphist.dat
 git-command
 \#ido.last\#
+network-security.data
 
 # Emacs generated init.el
 

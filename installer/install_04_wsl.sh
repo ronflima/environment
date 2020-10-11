@@ -28,17 +28,8 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-function install_file() {
-   if [ -f /etc/$1 ]
-    then
-        create_backup_dir
-        sudo mv /etc/$1 $BACKUPDIR
-    fi
-    sudo cp $BASEDIR/$1 /etc/$1
-}
-
 if [ -v WSL_DISTRO_NAME ]
 then
-    install_file("wsl.conf")
-    install_file("fstab")
+    install_file("/etc", "wsl.conf")
+    install_file("/etc", "fstab")
 fi 
