@@ -44,7 +44,7 @@ function install_file() {
    if [ -f $1/$2 ]
     then
         create_backup_dir
-        sudo mv $1/$1 $BACKUPDIR
+        sudo mv $1/$2 $BACKUPDIR
     fi
     sudo cp $BASEDIR/$2 $1/$2
 }
