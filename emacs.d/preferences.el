@@ -67,8 +67,9 @@ There are two things you can do about this warning:
 ;; Javascript preferences
 (setq js-indent-level 4)
 
-;; Python Preferences
+;; Python Virtual Env Preferences
 (require 'virtualenvwrapper)
+(setq venv-location "~/projetos/python/virtualenvs")
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
 
@@ -81,6 +82,8 @@ There are two things you can do about this warning:
 
 ;; Modes
 (auto-fill-mode 1)
+(setq column-number-mode t)
+(setq line-number-mode t)
 
 ;; Visuals
 (turn-on-font-lock)       
