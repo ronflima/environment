@@ -73,12 +73,14 @@ There are two things you can do about this warning:
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
 
+
 (setq jedi:tooltip-method nil)
 (add-hook 'python-mode-hook 'jedi:setup)
 
 (setq python-indent-offset 4)
 (require 'py-autopep8)
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+(add-hook 'python-mode-hook 'hs-minor-mode)
 
 ;; Modes
 (auto-fill-mode 1)
@@ -173,7 +175,6 @@ There are two things you can do about this warning:
 ;; Make hideshow minor mode always active for all program modes
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-
 
 ;; Support to inferior shell
 (setq shell-file-name "bash")
