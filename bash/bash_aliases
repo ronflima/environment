@@ -12,3 +12,5 @@ function mn(){
         python manage.py $*
     fi
 }
+
+alias chicle='cd /mnt/d/projetos/chicleteMkt/src'
