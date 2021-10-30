@@ -36,4 +36,4 @@ installer created and putting back your files.
 >
 > It is important to mention, also, that I built it to run under WSL on
 > Windows. But it should work on virtually any popular linux distro out there
-> since I have uses only linux standard stuff.
+> since I have used only linux standard stuff.
