@@ -131,4 +131,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Adjust X11 KBD map for brazilian keyboards. Useful for WSL2
-setxkbmap br 
+if [ -v WSL_DISTRO_NAME ]
+then
+    setxkbmap br
+fi
