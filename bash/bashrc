@@ -133,5 +133,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Adjust X11 KBD map for brazilian keyboards. Useful for WSL2
 if [ -v WSL_DISTRO_NAME ]
 then
+    echo "Setting keyboard for X properly..."
     setxkbmap br
 fi

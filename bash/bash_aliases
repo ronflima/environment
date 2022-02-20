@@ -2,6 +2,7 @@
 
 # Calls emacs under the hood
 function e() {
+    setxkbmap br
     emacs $* &
 }
 

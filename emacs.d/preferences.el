@@ -73,6 +73,10 @@ There are two things you can do about this warning:
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
 
+;; Prolog support
+(autoload 'prolog-mode "prolog" "Major mode for prolog programs" t)
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
+
 
 (setq jedi:tooltip-method nil)
 (add-hook 'python-mode-hook 'jedi:setup)
