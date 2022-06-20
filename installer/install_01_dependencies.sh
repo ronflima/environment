@@ -26,7 +26,7 @@
 #
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
-BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev"
+BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev x11-xkb-utils"
 read -r -d '' PACKAGES<<PKG
 make gcc g++ git emacs   
 gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz
