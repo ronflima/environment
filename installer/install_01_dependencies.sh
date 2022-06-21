@@ -31,7 +31,7 @@ read -r -d '' PACKAGES<<PKG
 make gcc g++ git emacs   
 gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz
 openssl libffi-dev libssl-dev libreadline-dev libsqlite3-dev sqlite3
-libcairo2-dev ffmpeg libbluetooth-dev tk-dev uuid-dev
+libcairo2-dev ffmpeg libbluetooth-dev tk-dev uuid-dev lzma-dev
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
