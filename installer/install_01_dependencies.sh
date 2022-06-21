@@ -28,10 +28,10 @@
 #
 BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev x11-xkb-utils"
 read -r -d '' PACKAGES<<PKG
-make gcc g++ git emacs   
-gnupg2 curl wget postgresql openssl zip unzip bzip2 graphviz
-openssl libffi-dev libssl-dev libreadline-dev libsqlite3-dev sqlite3
-libcairo2-dev ffmpeg libbluetooth-dev tk-dev uuid-dev lzma-dev
+make gcc g++ git emacs gnupg2 curl wget postgresql openssl zip unzip
+bzip2 graphviz openssl libffi-dev libssl-dev libreadline-dev
+libsqlite3-dev sqlite3 libcairo2-dev ffmpeg libbluetooth-dev tk-dev
+uuid-dev lzma-dev liblzma-dev libbz2-dev
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
