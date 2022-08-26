@@ -16,3 +16,4 @@ function mn(){
 
 alias chicle='cd /mnt/d/projetos/chicleteMkt/src'
 alias myself='cd /mnt/d/projetos/pessoais'
+alias pipupg='pip install --upgrade pip && pip install wheel'
