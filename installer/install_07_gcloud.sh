@@ -35,4 +35,5 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 sudo apt-get install apt-transport-https ca-certificates gnupg
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo apt-get update && sudo apt-get install google-cloud-sdk
+sudo apt-get update && sudo apt-get install google-cloud-sdk -y
+sudo apt-get install -y google-cloud-sdk-pubsub-emulator
