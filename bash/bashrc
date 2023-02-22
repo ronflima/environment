@@ -128,7 +128,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin:$HOME/bin"
 
 if [ -v WSL_DISTRO_NAME ]
 then
@@ -137,12 +137,5 @@ then
     
     # Pulse audio in WSL2
     export PULSE_SERVER="/mnt/wslg/PulseServer"
+
 fi
-
-#
-# Google Cloud SDK settings
-#
-
-# Environment variables for pub/sub emulator
-$(gcloud beta emulators pubsub env-init)
-
