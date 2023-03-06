@@ -2,7 +2,7 @@
 #
 # MIT License
 #
-# Copyright (c) 2019 Ronaldo F. Lima
+# Copyright (c) 2023 Ronaldo F. Lima
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,23 +22,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #
-# Installs software packages that I depend on. Do not run it alone.
+# Installer for my bash files. You should never run it alone. It depends on the
+# Install script
 #
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
-BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev x11-xkb-utils lsb-release"
-read -r -d '' PACKAGES<<PKG
-make gcc g++ git emacs gnupg2 curl wget postgresql openssl zip unzip
-bzip2 graphviz openssl libffi-dev libssl-dev libreadline-dev
-libsqlite3-dev sqlite3 libcairo2-dev ffmpeg libbluetooth-dev tk-dev
-uuid-dev lzma-dev liblzma-dev libbz2-dev clang
-PKG
 
-if [ "$OSTYPE" == "linux-gnu" ]
-then
-    sudo apt-get update
-    sudo apt-get install -y $BASE_PACKAGES
-    sudo apt-add-repository non-free
-    sudo apt-get update
-    sudo apt-get install -y $PACKAGES
-fi
+#
+# Refer to
+# https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+# for more information
+#
+
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+    gpg --dearmor | \
+    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+    https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+    sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+sudo apt-get update && sudo apt-get install -y terraform
