@@ -14,4 +14,14 @@ function mn(){
     fi
 }
 
+# Checks if we are at a git controlled directory. If so, set my
+# personal user data.
+function cfgit() {
+    if [ -d .git ]
+    then
+        git config user.name "Ronaldo Faria Lima"
+        git config user.email ronaldo.faria.lima@criticalforce.fi
+    fi
+}
+
 alias pipupg='pip install --upgrade pip && pip install wheel'
