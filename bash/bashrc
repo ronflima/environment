@@ -132,10 +132,6 @@ export PATH="$PATH:$HOME/.rvm/bin:$HOME/bin"
 
 if [ -v WSL_DISTRO_NAME ]
 then
-    # Adjust X11 KBD map for brazilian keyboards. Useful for WSL2
-    setxkbmap br
-    
     # Pulse audio in WSL2
     export PULSE_SERVER="/mnt/wslg/PulseServer"
-
 fi
