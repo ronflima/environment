@@ -85,10 +85,10 @@
 (setq ring-bell-function 'ignore)
 (cond
  ((string-equal system-type "darwin")
-  (set-face-attribute 'default nil :family "Menlo" :height 145 :weight 'normal)
+  (set-face-attribute 'default nil :family "Menlo" :height 180 :weight 'normal)
   (setq mac-allow-anti-aliasing t))
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Consolas" :height 145 :weight 'regular))
+  (set-face-attribute 'default nil :family "Consolas" :height 180 :weight 'regular))
  )
 (set-face-foreground 'default "green")
 (set-face-background 'default "black")
