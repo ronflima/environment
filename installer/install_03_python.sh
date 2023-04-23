@@ -36,8 +36,8 @@ then
     if command -v pyenv 1>/dev/null 2>&1; then
         eval "$(pyenv init -)"
     fi
-    pyenv install 3.8.0
-    pyenv global 3.8.0
+    pyenv install 3.11.3
+    pyenv global 3.11.3
     pip install --upgrade pip
     pip install virtualenv
 fi
