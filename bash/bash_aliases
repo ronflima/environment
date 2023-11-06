@@ -25,3 +25,4 @@ function cfgit() {
 }
 
 alias pipupg='pip install --upgrade pip && pip install wheel'
+alias kct=kubectl
