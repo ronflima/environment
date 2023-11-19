@@ -14,13 +14,14 @@ auto-save-list/
 elpa/
 var/
 
-# Tramp history
-tramp
-ido.last
+# Emacs stuff
 ./
 .python-environments
-ac-comphist.dat
-git-command
 \#ido.last\#
-network-security.data
+ac-comphist.dat
+eln-cache
 emacs.d/customizations.el
+git-command
+ido.last
+network-security.data
+tramp

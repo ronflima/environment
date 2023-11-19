@@ -31,5 +31,4 @@
 if [ -v WSL_DISTRO_NAME ]
 then
     install_file "/etc" "wsl.conf"
-    install_file "/etc" "fstab"
 fi 

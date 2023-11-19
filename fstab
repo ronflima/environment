@@ -1,1 +1,0 @@
-/mnt/d/WSL/debian/docker /var/lib/docker drvfs default,bind 0 0
