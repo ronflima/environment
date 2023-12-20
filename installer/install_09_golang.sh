@@ -28,8 +28,4 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-
-GO_VERSION=1.21.5
 sudo apt-get install golang -y
-go install golang.org/dl/go$GO_VERSION@latest
-$HOME/go/bin/go$GO_VERSION download

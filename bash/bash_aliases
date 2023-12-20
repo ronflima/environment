@@ -17,4 +17,3 @@ function mn(){
 alias pipupg='pip install --upgrade pip && pip install wheel'
 alias kct=kubectl
 alias gitcfg='git config user.name Ronaldo\ Faria\ Lima && git config user.email ronaldo@brazuca.dev'
-alias go='go1.21.5'
