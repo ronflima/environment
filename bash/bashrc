@@ -130,8 +130,13 @@ export NVM_DIR="$HOME/.nvm"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/bin"
 
+# Local go stuff
+export PATH="$PATH":$HOME/go/bin
+
 if [ -v WSL_DISTRO_NAME ]
 then
     # Pulse audio in WSL2
     export PULSE_SERVER="/mnt/wslg/PulseServer"
 fi
+
+
