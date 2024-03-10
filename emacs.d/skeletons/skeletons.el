@@ -11,3 +11,4 @@
 (load-library "python-skel.el")
 (load-library "dot-skel.el")
 (load-library "json-skel.el")
+(load-library "markdown.el")
