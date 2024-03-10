@@ -31,7 +31,7 @@
                        (start-process "default-app" nil "open" fn)))))))
  ;; Linux
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Consolas" :height 180 :weight 'regular)
+  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
   (setq venv-location "~/projetos/python/virtualenvs")
   ;; Support to inferior shell
   (setq shell-file-name "bash")
