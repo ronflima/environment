@@ -5,13 +5,50 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+(custom-set-variables
+ '(package-selected-packages
+   (quote
+    (auto-autopep8 complete fixmee-mode powershell py-virtualenvwrapper web))))
+
+;; Operating system dependent settings
+(cond
+ ;; Windows
+ ((string-equal system-type "windows-nt")
+  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
+  (setq venv-location "~/python/virtualenvs")
+  (global-set-key [f2] 'powershell)
+  )
+ ;; MacOS
+ ((string-equal system-type "darwin")
+  (set-face-attribute 'default nil :family "Menlo" :height 180 :weight 'normal)
+  (setq mac-allow-anti-aliasing t)
+  (eval-after-load "dired"
+    '(progn
+       (define-key dired-mode-map (kbd "z")
+                   (lambda () (interactive)
+                     (let ((fn (dired-get-file-for-visit)))
+                       (message "Opening `%s'" fn)
+                       (start-process "default-app" nil "open" fn)))))))
+ ;; Linux
+ ((string-equal system-type "gnu/linux")
+  (set-face-attribute 'default nil :family "Consolas" :height 180 :weight 'regular)
+  (setq venv-location "~/projetos/python/virtualenvs")
+  ;; Support to inferior shell
+  (setq shell-file-name "bash")
+  (setq explicit-bash-args '("--noediting" "--login" "-i"))
+  (setenv "SHELL" shell-file-name)
+  (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
+  (setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
+  (setq exec-path (append exec-path '("/usr/local/bin")))
+  (global-set-key [f2] 'shell)
+  )
+ )
 
 (put 'erase-buffer 'disabled nil)
+
 ;; No tabs!
 (setq-default indent-tabs-mode nil)
 
-;; No menu bar
-(menu-bar-mode -1)
 ;; Time formts
 (setq display-time-format "%H:%M %d/%m/%Y")
 (setq display-time-default-load-average nil)
@@ -28,7 +65,7 @@
                           ("\\.h$"         . c-mit-file)
                           ("\\.swift$"     . swift-mit-file)
                           ("setup.py"      . python-mit-setup)
-                          ("\\.py$"        . python-chtmkt)
+                          ("\\.py$"        . python-mit)
                           ("\\.sql$"       . skel-sql-file)))
 
 ;; Web Mode
@@ -41,6 +78,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
 (defun brazuca-mode-hook ()
   "Hooks for Web mode."
   (setq web-mode-markup-indent-offset 4)
@@ -53,24 +91,20 @@
 ;; Javascript preferences
 (setq js-indent-level 4)
 
-;; Python Virtual Env Preferences
+;; Python Preferences
 (require 'virtualenvwrapper)
-(setq venv-location "~/projetos/python/virtualenvs")
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
-
-;; Prolog support
-(autoload 'prolog-mode "prolog" "Major mode for prolog programs" t)
-(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
-
-
-(setq jedi:tooltip-method nil)
-(add-hook 'python-mode-hook 'jedi:setup)
-
 (setq python-indent-offset 4)
 (require 'py-autopep8)
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-hook 'python-mode-hook 'hs-minor-mode)
+(setq jedi:tooltip-method nil)
+(add-hook 'python-mode-hook 'jedi:setup)
+
+;; Prolog support
+(autoload 'prolog-mode "prolog" "Major mode for prolog programs" t)
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
 ;; Modes
 (auto-fill-mode 1)
@@ -83,19 +117,13 @@
 (global-auto-revert-mode 1)
 (setq visible-bell nil)
 (setq ring-bell-function 'ignore)
-(cond
- ((string-equal system-type "darwin")
-  (set-face-attribute 'default nil :family "Menlo" :height 180 :weight 'normal)
-  (setq mac-allow-anti-aliasing t))
- ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Consolas" :height 180 :weight 'regular))
- )
 (set-face-foreground 'default "green")
 (set-face-background 'default "black")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 120))
 (tool-bar-mode 0)
 (setq inhibit-startup-message t)
+(menu-bar-mode -1)
 
 ;; Encodings
 (prefer-coding-system       'utf-8)
@@ -113,7 +141,7 @@
 
 ;; Keymaps
 (global-set-key "%"  'match-paren)
-(global-set-key [f2] 'shell)
+
 (global-set-key [M-left] 'beginning-of-line)
 (global-set-key [M-right] 'end-of-line)
 (global-set-key [M-down] 'end-of-buffer)
@@ -125,7 +153,7 @@
       '(("^manage.py$" "python * runserver")
         ("\\.py$" "python")
         ("^requirements.txt$" "pip install -r")))
-(setq dired-listing-switches "-aBhl  --group-directories-first")
+(setq dired-listing-switches "-aBhl --group-directories-first")
 
 ;; Tramp mode
 (setq tramp-default-method "ssh")
@@ -157,27 +185,6 @@
 ;; Make hideshow minor mode always active for all program modes
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-
-;; Support to inferior shell
-(setq shell-file-name "bash")
-(setq explicit-bash-args '("--noediting" "--login" "-i"))
-(setenv "SHELL" shell-file-name)
-(add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
-(setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
-(setq exec-path (append exec-path '("/usr/local/bin")))
-
-;; macOS specific preferences
-(cond
- ((string-equal system-type "darwin")
-  (eval-after-load "dired"
-    '(progn
-     (define-key dired-mode-map (kbd "z")
-       (lambda () (interactive)
-         (let ((fn (dired-get-file-for-visit)))
-           (message "Opening `%s'" fn)
-           (start-process "default-app" nil "open" fn))))))
-  )
- )
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -217,16 +224,15 @@
   (interactive "P*")
   (insert (calendar-date-string (calendar-current-date) nil
                                 omit-day-of-week-p)))
-
 (global-set-key "\C-x\M-d" `insdate-insert-current-date)
 
-    (defun sort-words (reverse beg end)
-      "Sort words in region alphabetically, in REVERSE if negative.
+(defun sort-words (reverse beg end)
+  "Sort words in region alphabetically, in REVERSE if negative.
     Prefixed with negative \\[universal-argument], sorts in reverse.
   
     The variable `sort-fold-case' determines whether alphabetic case
     affects the sort order.
   
     See `sort-regexp-fields'."
-      (interactive "*P\nr")
-      (sort-regexp-fields reverse "\\w+" "\\&" beg end))
+  (interactive "*P\nr")
+  (sort-regexp-fields reverse "\\w+" "\\&" beg end))
