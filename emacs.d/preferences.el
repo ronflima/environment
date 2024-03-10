@@ -8,7 +8,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (auto-autopep8 complete fixmee-mode powershell py-virtualenvwrapper web))))
+    (auto-autopep8 complete fixmee-mode markdown-mode powershell py-virtualenvwrapper web))))
 
 ;; Operating system dependent settings
 (cond

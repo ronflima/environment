@@ -27,6 +27,9 @@ original `.bash_*` files into the `.environment_backup` directory under your
 HOME dir. So, you can undo the installation only by removing the links the
 installer created and putting back your files.
 
+This installation procedure was designed to be used with Bourne Again
+shell in Linux boxes. Don't use it in Darwin based boxes, like MacOS.
+
 > **Notice**
 >
 > This will try to download every single tool I use. Some of those tools are
