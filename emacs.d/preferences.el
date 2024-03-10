@@ -84,6 +84,7 @@
   (setq web-mode-markup-indent-offset 4)
 )
 (add-hook 'web-mode-hook  'brazuca-mode-hook)
+(setq epg-pinentry-mode 'loopback)
 
 ;; MongoDB
 (defcustom inf-mongo-command "mongo 127.0.0.1:27017" "Default MongoDB shell command used.")
