@@ -1,7 +1,7 @@
 ;; Emacs Customizations
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
-;; MELPA support
+;; MELPA support and package customizations
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -9,6 +9,7 @@
  '(package-selected-packages
    (quote
     (auto-autopep8 complete fixmee-mode markdown-mode powershell py-virtualenvwrapper web))))
+(setq package-install-upgrade-built-in t)
 
 ;; Operating system dependent settings
 (cond
