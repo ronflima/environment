@@ -139,4 +139,4 @@ then
     export PULSE_SERVER="/mnt/wslg/PulseServer"
 fi
 
-
+export GPG_TTY=$(tty)
