@@ -1,3 +1,4 @@
+
 ;; Emacs Customizations
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
@@ -8,21 +9,35 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (auto-autopep8 complete fixmee-mode markdown-mode powershell py-virtualenvwrapper web))))
+    (web-mode virtualenvwrapper py-autopep8 fixmee auto-complete yaml-mode markdown-mode))))
 (setq package-install-upgrade-built-in t)
 
 ;; Operating system dependent settings
 (cond
+ ;; -------
  ;; Windows
- ((string-equal system-type "windows-nt")
+  ((string-equal system-type "windows-nt")
   (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
   (setq venv-location "~/python/virtualenvs")
   (global-set-key [f2] 'powershell)
   )
+ 
+ ;; -----
  ;; MacOS
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :family "Menlo" :height 180 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
+  ;; Inferior shell
+  (setq explicit-shell-file-name "/usr/bin/zsh")
+  (setq shell-file-name "zsh")
+  (setq explicit-zsh-args '("--login" "--interactive"))
+  (defun zsh-shell-mode-setup ()
+    (setq-local comint-process-echoes t))
+  (add-hook 'shell-mode-hook #'zsh-shell-mode-setup)
+  (global-set-key [f2] 'shell)
+  ;; Dired Customizations
+  (setq dired-listing-switches "-al --group-directories-first")
+  (setq insert-directory-program "/opt/homebrew/bin/gls" dired-use-ls-dired t)
   (eval-after-load "dired"
     '(progn
        (define-key dired-mode-map (kbd "z")
@@ -30,10 +45,13 @@
                      (let ((fn (dired-get-file-for-visit)))
                        (message "Opening `%s'" fn)
                        (start-process "default-app" nil "open" fn)))))))
+
+ ;; -----
  ;; Linux
  ((string-equal system-type "gnu/linux")
   (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
   (setq venv-location "~/projetos/python/virtualenvs")
+  (setq dired-listing-switches "-aBhl --group-directories-first")
   ;; Support to inferior shell
   (setq shell-file-name "bash")
   (setq explicit-bash-args '("--noediting" "--login" "-i"))
@@ -155,7 +173,7 @@
       '(("^manage.py$" "python * runserver")
         ("\\.py$" "python")
         ("^requirements.txt$" "pip install -r")))
-(setq dired-listing-switches "-aBhl --group-directories-first")
+
 
 ;; Tramp mode
 (setq tramp-default-method "ssh")
