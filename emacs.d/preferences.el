@@ -28,7 +28,7 @@
   (set-face-attribute 'default nil :family "Menlo" :height 180 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
   ;; Inferior shell
-  (setq explicit-shell-file-name "/usr/bin/zsh")
+  (setq explicit-shell-file-name "/bin/zsh")
   (setq shell-file-name "zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
   (defun zsh-shell-mode-setup ()
