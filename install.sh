@@ -49,6 +49,17 @@ function install_file() {
     sudo cp $BASEDIR/$2 $1/$2
 }
 
+function is_debian() {
+    if [ -f /etc/os-release ]
+    then
+        if [ -n "$(grep Debian /etc/os-release)" ]
+        then
+            return 1
+        fi
+    fi
+    return 0
+}
+
 
 for installer in $INSTALLERS
 do
