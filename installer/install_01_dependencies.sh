@@ -28,14 +28,16 @@
 #
 BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev x11-xkb-utils lsb-release"
 read -r -d '' PACKAGES<<PKG
-make gcc g++ git emacs gnupg2 pinentry-gtk2 curl wget postgresql openssl zip unzip
-bzip2 graphviz openssl libffi-dev libssl-dev libreadline-dev
-libsqlite3-dev sqlite3 libcairo2-dev ffmpeg libbluetooth-dev tk-dev
-uuid-dev lzma-dev liblzma-dev libbz2-dev clang ca-certificates
+make gcc g++ git emacs emacs-common-non-dfsg gnupg2 pinentry-gtk2 curl
+wget postgresql openssl zip unzip bzip2 graphviz openssl libffi-dev
+libssl-dev libreadline-dev libsqlite3-dev sqlite3 libcairo2-dev ffmpeg
+libbluetooth-dev tk-dev uuid-dev lzma-dev liblzma-dev libbz2-dev clang
+ca-certificates
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
 then
+    sudo echo "deb http://http.us.debian.org/debian stable main non-free" >> /etc/apt/sources.list 
     sudo apt-get update
     sudo apt-get install -y $BASE_PACKAGES
     sudo apt-add-repository non-free
