@@ -49,7 +49,7 @@
  ;; -----
  ;; Linux
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
+  (set-face-attribute 'default nil :family "Consolas" :height 160 :weight 'regular)
   (setq venv-location "~/projetos/python/virtualenvs")
   (setq dired-listing-switches "-aBhl --group-directories-first")
   ;; Support to inferior shell
