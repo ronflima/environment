@@ -9,7 +9,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (web-mode virtualenvwrapper py-autopep8 fixmee auto-complete yaml-mode markdown-mode))))
+    (highlight-indentation web-mode virtualenvwrapper py-autopep8 fixmee auto-complete yaml-mode markdown-mode))))
 (setq package-install-upgrade-built-in t)
 
 ;; Operating system dependent settings
@@ -144,6 +144,8 @@
 (tool-bar-mode 0)
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
+(set-face-background 'highlight-indentation-face "#e3e3d3")
+(set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
 
 ;; Encodings
 (prefer-coding-system       'utf-8)
