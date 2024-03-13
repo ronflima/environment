@@ -2,8 +2,21 @@
 ;; Emacs Customizations
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
-;; MELPA support and package customizations
+(require 'auto-complete)
+(require 'auto-complete-config)
+(require 'button-lock)
+(require 'calendar)
+(require 'dired-x)
+(require 'fixmee)
+(require 'highlight-indentation)
+(require 'ido)
 (require 'package)
+(require 'py-autopep8)
+(require 'vc-dir)
+(require 'virtualenvwrapper)
+(require 'web-mode)
+
+;; MELPA support and package customizations
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 (custom-set-variables
@@ -88,7 +101,6 @@
                           ("\\.sql$"       . skel-sql-file)))
 
 ;; Web Mode
-(require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -112,19 +124,13 @@
 (setq js-indent-level 4)
 
 ;; Python Preferences
-(require 'virtualenvwrapper)
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
 (setq python-indent-offset 4)
-(require 'py-autopep8)
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (setq jedi:tooltip-method nil)
 (add-hook 'python-mode-hook 'jedi:setup)
-
-;; Prolog support
-(autoload 'prolog-mode "prolog" "Major mode for prolog programs" t)
-(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
 ;; Modes
 (auto-fill-mode 1)
@@ -163,19 +169,16 @@
 
 ;; Keymaps
 (global-set-key "%"  'match-paren)
-
 (global-set-key [M-left] 'beginning-of-line)
 (global-set-key [M-right] 'end-of-line)
 (global-set-key [M-down] 'end-of-buffer)
 (global-set-key [M-up] 'beginning-of-buffer)
 
 ;; Dired customizations
-(require 'dired-x)
 (setq dired-guess-shell-alist-user
       '(("^manage.py$" "python * runserver")
         ("\\.py$" "python")
         ("^requirements.txt$" "pip install -r")))
-
 
 ;; Tramp mode
 (setq tramp-default-method "ssh")
@@ -188,7 +191,6 @@
             (setq dirtrackp nil)))
 
 ;; VC Customizations
-(require 'vc-dir)
 (define-key vc-dir-mode-map (kbd "\C-cc") 'vc-find-conflicted-file)
 (setq smerge-command-prefix "\C-cm")
 (setq vc-suppress-confirm t)
@@ -203,8 +205,6 @@
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
         (t (self-insert-command (or arg 1)))))
 
-;; Hooks
-;; Make hideshow minor mode always active for all program modes
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
@@ -216,29 +216,23 @@
  )
 
 ;; auto complete
-(require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
 
 ;; ido mode
-(require 'ido)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode t)
 
 ;; Fixmee
-(require 'button-lock)
-(require 'fixmee)
 (global-fixmee-mode 1)
 
 ;; Sudoku
 (add-to-list 'auto-mode-alist '("\\.sdk\\'" . sudoku-mode))
 
-;; Insert current date function
+;; INSERT current date function
 ;; Reference: https://www.emacswiki.org/emacs/InsertingTodaysDate
-(require 'calendar)
 (defun insdate-insert-current-date (&optional omit-day-of-week-p)
   "Insert today's date using the current locale.
   With a prefix argument, the date is inserted without the day of
