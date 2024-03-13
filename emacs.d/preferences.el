@@ -80,6 +80,7 @@
 
 ;; No tabs!
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; Time formts
 (setq display-time-format "%H:%M %d/%m/%Y")
