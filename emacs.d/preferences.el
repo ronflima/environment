@@ -2,6 +2,16 @@
 ;; Emacs Customizations
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
+;; MELPA support and package customizations
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+(custom-set-variables
+ '(package-selected-packages
+   (quote
+    (auto-complete fixmee highlight-indentation markdown-mode py-autopep8 virtualenvwrapper web-mode))))
+
+(setq package-install-upgrade-built-in t)
+
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'button-lock)
@@ -15,15 +25,6 @@
 (require 'vc-dir)
 (require 'virtualenvwrapper)
 (require 'web-mode)
-
-;; MELPA support and package customizations
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-(custom-set-variables
- '(package-selected-packages
-   (quote
-    (highlight-indentation web-mode virtualenvwrapper py-autopep8 fixmee auto-complete yaml-mode markdown-mode))))
-(setq package-install-upgrade-built-in t)
 
 ;; Operating system dependent settings
 (cond
