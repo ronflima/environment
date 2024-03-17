@@ -7,7 +7,18 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (exec-path-from-shell pyenv-mode auto-complete fixmee highlight-indentation markdown-mode py-autopep8 virtualenvwrapper web-mode jedi))))
+    (
+     auto-complete
+     fixmee
+     go-model pyenv-mode
+     highlight-indentation
+     jedi
+     markdown-mode
+     py-autopep8
+     virtualenvwrapper
+     web-mode
+     exec-path-from-shell
+     ))))
 
 (setq package-install-upgrade-built-in t)
 (when (memq window-system '(mac ns x))
