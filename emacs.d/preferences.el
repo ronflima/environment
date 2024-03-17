@@ -2,6 +2,16 @@
 ;; Emacs Customizations
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
+;; MELPA support and package customizations
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+(custom-set-variables
+ '(package-selected-packages
+   (quote
+    (pyenv-mode auto-complete fixmee highlight-indentation markdown-mode py-autopep8 virtualenvwrapper web-mode jedi))))
+
+(setq package-install-upgrade-built-in t)
+
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'button-lock)
@@ -16,15 +26,6 @@
 (require 'virtualenvwrapper)
 (require 'web-mode)
 
-;; MELPA support and package customizations
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-(custom-set-variables
- '(package-selected-packages
-   (quote
-    (highlight-indentation web-mode virtualenvwrapper py-autopep8 fixmee auto-complete yaml-mode markdown-mode))))
-(setq package-install-upgrade-built-in t)
-
 ;; Operating system dependent settings
 (cond
  ;; -------
@@ -38,11 +39,12 @@
  ;; -----
  ;; MacOS
  ((string-equal system-type "darwin")
-  (set-face-attribute 'default nil :family "Menlo" :height 180 :weight 'normal)
+  (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq shell-file-name "zsh")
+  (setq exec-path (append exec-path '("/Users/ronaldo/.pyenv/shims/")))
   (setq explicit-zsh-args '("--login" "--interactive"))
   (defun zsh-shell-mode-setup ()
     (setq-local comint-process-echoes t))
@@ -80,6 +82,7 @@
 
 ;; No tabs!
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; Time formts
 (setq display-time-format "%H:%M %d/%m/%Y")
@@ -130,12 +133,14 @@
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (setq jedi:tooltip-method nil)
+(setq jedi:complete-on-dot t) 
 (add-hook 'python-mode-hook 'jedi:setup)
 
 ;; Modes
 (auto-fill-mode 1)
 (setq column-number-mode t)
 (setq line-number-mode t)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; Visuals
 (turn-on-font-lock)       
