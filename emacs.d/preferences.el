@@ -1,4 +1,3 @@
-
 ;; Emacs Customizations
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
@@ -8,9 +7,11 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (pyenv-mode auto-complete fixmee highlight-indentation markdown-mode py-autopep8 virtualenvwrapper web-mode jedi))))
+    (exec-path-from-shell pyenv-mode auto-complete fixmee highlight-indentation markdown-mode py-autopep8 virtualenvwrapper web-mode jedi))))
 
 (setq package-install-upgrade-built-in t)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (require 'auto-complete)
 (require 'auto-complete-config)
@@ -28,24 +29,23 @@
 
 ;; Operating system dependent settings
 (cond
- ;; -------
  ;; Windows
-  ((string-equal system-type "windows-nt")
+ ((string-equal system-type "windows-nt")
+  (global-set-key [f2] 'powershell)
   (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
   (setq venv-location "~/python/virtualenvs")
-  (global-set-key [f2] 'powershell)
   )
  
- ;; -----
  ;; MacOS
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
+  (setq venv-location "~/.virtualenvs"
   ;; Inferior shell
-  (setq explicit-shell-file-name "/bin/zsh")
-  (setq shell-file-name "zsh")
   (setq exec-path (append exec-path '("/Users/ronaldo/.pyenv/shims/")))
+  (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
+  (setq shell-file-name "zsh")
   (defun zsh-shell-mode-setup ()
     (setq-local comint-process-echoes t))
   (add-hook 'shell-mode-hook #'zsh-shell-mode-setup)
@@ -59,25 +59,25 @@
                    (lambda () (interactive)
                      (let ((fn (dired-get-file-for-visit)))
                        (message "Opening `%s'" fn)
-                       (start-process "default-app" nil "open" fn)))))))
+                       (start-process "default-app" nil "open" fn))))))))
 
- ;; -----
  ;; Linux
  ((string-equal system-type "gnu/linux")
   (set-face-attribute 'default nil :family "Consolas" :height 160 :weight 'regular)
-  (setq venv-location "~/projetos/python/virtualenvs")
   (setq dired-listing-switches "-aBhl --group-directories-first")
+  (setq venv-location "~/.virtualenvs")
   ;; Support to inferior shell
-  (setq shell-file-name "bash")
-  (setq explicit-bash-args '("--noediting" "--login" "-i"))
-  (setenv "SHELL" shell-file-name)
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
-  (setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
-  (setq exec-path (append exec-path '("/usr/local/bin")))
   (global-set-key [f2] 'shell)
+  (setenv "PATH" (concat "/usr/local/bin" ":" (getenv "PATH")))
+  (setenv "SHELL" shell-file-name)
+  (setq exec-path (append exec-path '("/usr/local/bin")))
+  (setq explicit-bash-args '("--noediting" "--login" "-i"))
+  (setq shell-file-name "bash")
   )
  )
-
+(if (not (file-directory-p venv-location))
+    (make-directory venv-location))
 (put 'erase-buffer 'disabled nil)
 
 ;; No tabs!
@@ -85,9 +85,9 @@
 (setq-default tab-width 4)
 
 ;; Time formts
-(setq display-time-format "%H:%M %d/%m/%Y")
-(setq display-time-default-load-average nil)
 (display-time-mode 1)
+(setq display-time-default-load-average nil)
+(setq display-time-format "%H:%M %d/%m/%Y")
 
 ;; Skelletons
 (add-to-list 'load-path "~/.emacs.d/skeletons")
@@ -137,32 +137,32 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 
 ;; Modes
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 (auto-fill-mode 1)
 (setq column-number-mode t)
 (setq line-number-mode t)
-(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ;; Visuals
-(turn-on-font-lock)       
-(setq make-backup-files nil) 
-(global-auto-revert-mode 1)
-(setq visible-bell nil)
-(setq ring-bell-function 'ignore)
-(set-face-foreground 'default "green")
-(set-face-background 'default "black")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 120))
-(tool-bar-mode 0)
-(setq inhibit-startup-message t)
+(global-auto-revert-mode 1)
 (menu-bar-mode -1)
-(set-face-background 'highlight-indentation-face "#e3e3d3")
+(set-face-background 'default "black")
 (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
+(set-face-background 'highlight-indentation-face "#e3e3d3")
+(set-face-foreground 'default "green")
+(setq inhibit-startup-message t)
+(setq make-backup-files nil) 
+(setq ring-bell-function 'ignore)
+(setq visible-bell nil)
+(tool-bar-mode 0)
+(turn-on-font-lock)       
 
 ;; Encodings
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8)
 
 ;; I prefer the scroll bar on the right side.
@@ -174,9 +174,9 @@
 
 ;; Keymaps
 (global-set-key "%"  'match-paren)
+(global-set-key [M-down] 'end-of-buffer)
 (global-set-key [M-left] 'beginning-of-line)
 (global-set-key [M-right] 'end-of-line)
-(global-set-key [M-down] 'end-of-buffer)
 (global-set-key [M-up] 'beginning-of-buffer)
 
 ;; Dired customizations
@@ -221,14 +221,14 @@
  )
 
 ;; auto complete
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (global-auto-complete-mode t)
 
 ;; ido mode
+(ido-mode t)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
-(ido-mode t)
 
 ;; Fixmee
 (global-fixmee-mode 1)
