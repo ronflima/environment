@@ -13,7 +13,6 @@
      load-env-vars
      markdown-mode
      py-autopep8
-     realgud
      virtualenvwrapper
      web-mode
      ))))
