@@ -17,6 +17,7 @@
      load-env-vars
      markdown-mode
      py-autopep8
+     realbug
      virtualenvwrapper
      web-mode
      ))))
@@ -38,6 +39,7 @@
 (require 'vc-dir)
 (require 'virtualenvwrapper)
 (require 'web-mode)
+(require 'realgud)
 
 ;; Operating system dependent settings
 (cond
