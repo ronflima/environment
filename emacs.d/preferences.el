@@ -9,15 +9,16 @@
    (quote
     (
      auto-complete
+     exec-path-from-shell
      fixmee
      go-model pyenv-mode
      highlight-indentation
      jedi
+     load-env-vars
      markdown-mode
      py-autopep8
      virtualenvwrapper
      web-mode
-     exec-path-from-shell
      ))))
 
 (setq package-install-upgrade-built-in t)
@@ -51,7 +52,7 @@
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
-  (setq venv-location "~/.virtualenvs"
+  (setq venv-location "~/.virtualenvs")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -69,7 +70,7 @@
                    (lambda () (interactive)
                      (let ((fn (dired-get-file-for-visit)))
                        (message "Opening `%s'" fn)
-                       (start-process "default-app" nil "open" fn))))))))
+                       (start-process "default-app" nil "open" fn)))))))
 
  ;; Linux
  ((string-equal system-type "gnu/linux")
