@@ -53,7 +53,6 @@
   (setq mac-allow-anti-aliasing t)
   (setq venv-location "~/.virtualenvs"
   ;; Inferior shell
-  (setq exec-path (append exec-path '("/Users/ronaldo/.pyenv/shims/")))
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
   (setq shell-file-name "zsh")
