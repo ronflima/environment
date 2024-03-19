@@ -189,6 +189,8 @@
 (global-set-key [M-left] 'beginning-of-line)
 (global-set-key [M-right] 'end-of-line)
 (global-set-key [M-up] 'beginning-of-buffer)
+(global-set-key [home] 'beginning-of-line)
+(global-set-key [end] 'end-of-line)
 
 ;; Dired customizations
 (setq dired-guess-shell-alist-user
