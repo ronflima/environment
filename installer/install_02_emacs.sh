@@ -49,4 +49,4 @@ ln -s $BASEDIR/emacs.d $EMACS_HOME
 
 # Try to install emacs packages
 echo "Will call emacs to automatically install stuff..."
-emacs --load $INSTALLER_DIR/packages.lisp
+emacs -nw --load $INSTALLER_DIR/packages.lisp

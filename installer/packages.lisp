@@ -13,6 +13,7 @@
      load-env-vars
      markdown-mode
      py-autopep8
+     sudoku
      virtualenvwrapper
      web-mode
      ))))

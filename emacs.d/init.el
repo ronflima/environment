@@ -7,4 +7,4 @@
        (load custom-file)
 )
 
-(load-library "~/.emacs.d/preferences.el")
+(load-library (expand-file-name "preferences.el" user-emacs-directory))

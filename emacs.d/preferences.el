@@ -17,6 +17,7 @@
      load-env-vars
      markdown-mode
      py-autopep8
+     sudoku
      virtualenvwrapper
      web-mode
      ))))
@@ -45,14 +46,12 @@
  ((string-equal system-type "windows-nt")
   (global-set-key [f2] 'powershell)
   (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
-  (setq venv-location "~/python/virtualenvs")
   )
  
  ;; MacOS
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
-  (setq venv-location "~/.virtualenvs")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -76,7 +75,6 @@
  ((string-equal system-type "gnu/linux")
   (set-face-attribute 'default nil :family "Consolas" :height 160 :weight 'regular)
   (setq dired-listing-switches "-aBhl --group-directories-first")
-  (setq venv-location "~/.virtualenvs")
   ;; Support to inferior shell
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
   (global-set-key [f2] 'shell)
@@ -87,8 +85,7 @@
   (setq shell-file-name "bash")
   )
  )
-(if (not (file-directory-p venv-location))
-    (make-directory venv-location))
+
 (put 'erase-buffer 'disabled nil)
 
 ;; No tabs!
@@ -101,12 +98,12 @@
 (setq display-time-format "%H:%M %d/%m/%Y")
 
 ;; Skelletons
-(add-to-list 'load-path "~/.emacs.d/skeletons")
+(add-to-list 'load-path (expand-file-name "skeletons" user-emacs-directory))
 (load-library "skeletons.el")
 (add-hook 'find-file-hook 'auto-insert)
 (setq auto-insert-alist '(("router.*\\.js$". node-router)
                           ("\\.js$"        . node-new-file)
-			  ("\\.rb$"        . ruby-formaweb-file)
+			              ("\\.rb$"        . ruby-formaweb-file)
                           ("\\.c$"         . c-mit-file)
                           ("\\.h$"         . c-mit-file)
                           ("\\.swift$"     . swift-mit-file)
@@ -138,6 +135,9 @@
 (setq js-indent-level 4)
 
 ;; Python Preferences
+(setq venv-location (expand-file-name "~/.virtualenvs"))
+(if (not (file-directory-p venv-location))
+    (make-directory venv-location))
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
 (setq python-indent-offset 4)
@@ -180,7 +180,7 @@
 (set-scroll-bar-mode 'right)
 
 ;; Abbrev settings
-(setq abbrev-file-name "~/.emacs.d/abbrevs.el")
+(setq abbrev-file-name (expand-file-name "abbrevs.el" user-emacs-directory))
 (setq abbrev-mode t)
 
 ;; Keymaps
@@ -224,16 +224,9 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 ;; auto complete
 (ac-config-default)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
 (global-auto-complete-mode t)
 
 ;; ido mode
