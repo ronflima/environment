@@ -141,11 +141,9 @@
 (venv-initialize-interactive-shells)
 (venv-initialize-eshell)
 (setq python-indent-offset 4)
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-hook 'python-mode-hook 'hs-minor-mode)
-(setq jedi:tooltip-method nil)
-(setq jedi:complete-on-dot t) 
 (add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 ;; Modes
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -189,6 +187,8 @@
 (global-set-key [M-left] 'beginning-of-line)
 (global-set-key [M-right] 'end-of-line)
 (global-set-key [M-up] 'beginning-of-buffer)
+(global-set-key [home] 'beginning-of-line)
+(global-set-key [end] 'end-of-line)
 
 ;; Dired customizations
 (setq dired-guess-shell-alist-user
