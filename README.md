@@ -29,8 +29,16 @@ original `.bash_*` files into the `.environment_backup` directory under your
 HOME dir. So, you can undo the installation only by removing the links the
 installer created and putting back your files.
 
-This installation procedure was designed to be used with Bourne Again
-shell in Linux boxes. Don't use it in Darwin based boxes, like MacOS.
+> **Notice**
+>
+> This will try to download every single tool I use. Some of those tools are
+> specific for my needs. You are free to fork this repo and add your own
+> customizations. I tried to make the install.sh as simple as possible so anyone
+> can customize it at will.
+>
+> It is important to mention, also, that I built it to run under WSL on
+> Windows. But it should work on virtually any popular linux distro out there
+> since I have used only linux standard stuff.
 
 ## macOS 
 
@@ -45,13 +53,3 @@ ln -s .environment/zsh/zshrc .zshrc
 
 Remember to remove any existing `.zshrc` before running this.
 
-> **Notice**
->
-> This will try to download every single tool I use. Some of those tools are
-> specific for my needs. You are free to fork this repo and add your own
-> customizations. I tried to make the install.sh as simple as possible so anyone
-> can customize it at will.
->
-> It is important to mention, also, that I built it to run under WSL on
-> Windows. But it should work on virtually any popular linux distro out there
-> since I have used only linux standard stuff.

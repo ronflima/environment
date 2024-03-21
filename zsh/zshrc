@@ -4,19 +4,6 @@ PROMPT='%/
 > '
 
 #
-# Fast CD for Syndio projects
-#
-function go_project() {
-    cd_dir=$PROJECTS_HOME/$*
-    if [ -d $cd_dir ]
-    then
-        cd $cd_dir 
-    else 
-        echo -e "\x1B[31;1mCannot open project $*\x1B[0m" 
-    fi
-}
-
-#
 # Search Python files and extract elements (classes or functions), and
 # generate a small report.
 #
@@ -46,42 +33,25 @@ function report_py_elems() {
 # Aliases
 alias ll='ls -lpF'
 alias l='ll -a'  
-alias gt='gotestsum -f=pkgname-and-test-fails -f testname -- $@'
-alias sctl=syndioctl 
-alias prj='go_project'
 alias emacs=Emacs
 alias gpycls='get_py_elem class'
 alias gpyfns='get_py_elem def'
 alias rptpy='report_py_elems'
 
-# Homebrew && pyenv integration
+# Homebrew & pyenv integration
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-
-# Path
-export PATH=/opt/homebrew/bin:/Applications/Emacs.app/Contents/MacOS:"$PATH"
-
-# Pyenv
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Syndioctl
-export PATH="${HOME}/.syndio/syndioctl/bin:$PATH"
+# Path
+export PATH=/opt/homebrew/bin:/Applications/Emacs.app/Contents/MacOS:"$PATH"
 
 # NVM stuff
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Syndio app dev environment
-export PATH=$(go env GOPATH)/bin:$PATH
-export PUBSUB_EMULATOR_HOST=localhost:8085
-export BACKEND_REPO_LOCATION=$HOME/Documents/Projects/backend
-export DOWNLOADS_PATH=$HOME/Downloads
-export OPENBLAS="$(brew --prefix openblas)"
-export PROJECTS_HOME=$HOME/Documents/Projects
-export LANG=en_US.UTF-8
 
 # GPG stuff
 export GPG_TTY=$(tty)
@@ -95,4 +65,9 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 if [ -f $VIRTUAL_ENV/bin/activate ]
 then
     . $VIRTUAL_ENV/bin/activate
+fi
+
+if [ -f ~/.zsh_customizations ]
+then
+    . ~/.zsh_customizations
 fi
