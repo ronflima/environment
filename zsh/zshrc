@@ -24,6 +24,25 @@ function get_py_elem() {
     cat $2 | grep -E "^$1 " | sed -E "s/^$1 ([_a-z|A-Z]+).*/\1/g" | sort
 }
 
+#
+# Search starting current directory and build up a report with
+# elements found
+#
+function report_py_elems() {
+    for elem in `find . -name "*.py" -print | sort`
+    do
+        echo "* $elem"
+        type_list=(class def)
+        for type in ${type_list[@]}
+        do
+            for found_element in `get_py_elem $type $elem`
+            do
+                echo -e "\t* $found_element"
+            done
+        done
+    done 
+}
+
 # Aliases
 alias ll='ls -lpF'
 alias l='ll -a'  
@@ -33,6 +52,7 @@ alias prj='go_project'
 alias emacs=Emacs
 alias gpycls='get_py_elem class'
 alias gpyfns='get_py_elem def'
+alias rptpy='report_py_elems'
 
 # Homebrew && pyenv integration
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
