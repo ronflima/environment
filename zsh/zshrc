@@ -31,8 +31,8 @@ alias gt='gotestsum -f=pkgname-and-test-fails -f testname -- $@'
 alias sctl=syndioctl 
 alias prj='go_project'
 alias emacs=Emacs
-alias getpyclass='get_py_elem class'
-alias getpydef='get_py_elem def'
+alias gpycls='get_py_elem class'
+alias gpyfns='get_py_elem def'
 
 # Homebrew && pyenv integration
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
