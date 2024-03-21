@@ -11,34 +11,31 @@
      auto-complete
      exec-path-from-shell
      fixmee
-     go-model pyenv-mode
-     highlight-indentation
+     go-mode
      jedi
      load-env-vars
      markdown-mode
-     py-autopep8
      sudoku
      virtualenvwrapper
      web-mode
      ))))
 
 (setq package-install-upgrade-built-in t)
+(package-install-selected-packages)
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-(require 'auto-complete)
-(require 'auto-complete-config)
-(require 'button-lock)
-(require 'calendar)
-(require 'dired-x)
-(require 'fixmee)
-(require 'highlight-indentation)
-(require 'ido)
-(require 'package)
-(require 'py-autopep8)
-(require 'vc-dir)
-(require 'virtualenvwrapper)
-(require 'web-mode)
+(load-library "auto-complete")
+(load-library "auto-complete-config")
+(load-library "button-lock")
+(load-library "calendar")
+(load-library "dired-x")
+(load-library "fixmee")
+(load-library "ido")
+(load-library "package")
+(load-library "vc-dir")
+(load-library "virtualenvwrapper")
+(load-library "web-mode")
 
 ;; Operating system dependent settings
 (cond
@@ -52,6 +49,7 @@
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
+  (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -157,8 +155,6 @@
 (global-auto-revert-mode 1)
 (menu-bar-mode -1)
 (set-face-background 'default "black")
-(set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
-(set-face-background 'highlight-indentation-face "#e3e3d3")
 (set-face-foreground 'default "green")
 (setq inhibit-startup-message t)
 (setq make-backup-files nil) 

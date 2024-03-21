@@ -11,6 +11,8 @@ Hope this can be useful somehow.
 
 # Installation
 
+## Linux
+
 Clone this repository on your home directory, under the `.environment` name. In
 fact, the directory name is up to you:
 
@@ -22,13 +24,10 @@ git clone git@github.com:ronflima/environment.git .environment
 git clone https://github.com/ronflima/environment.git .environment
 ```
 
-After that, run `.environment/install.sh` and you are done. It will save your
+After that, run `.environment/linux-install.sh` and you are done. It will save your
 original `.bash_*` files into the `.environment_backup` directory under your
 HOME dir. So, you can undo the installation only by removing the links the
 installer created and putting back your files.
-
-This installation procedure was designed to be used with Bourne Again
-shell in Linux boxes. Don't use it in Darwin based boxes, like MacOS.
 
 > **Notice**
 >
@@ -37,6 +36,24 @@ shell in Linux boxes. Don't use it in Darwin based boxes, like MacOS.
 > customizations. I tried to make the install.sh as simple as possible so anyone
 > can customize it at will.
 >
-> It is important to mention, also, that I built it to run under WSL on
-> Windows. But it should work on virtually any popular linux distro out there
-> since I have used only linux standard stuff.
+> It is important to mention, also, that I built it to run under WSL
+> on Windows. But it should work on virtually any popular apt-based
+> linux distro out there since I have used only linux standard stuff.
+
+## macOS 
+
+Currently, there is no installer for macOS. However, you may use the
+zshrc file that lies inside the zsh directory. In order to use it in
+your environment, as your `.zshrc`, just do this:
+
+```zsh
+cd ~/
+ln -s .environment/zsh/zshrc .zshrc
+```
+
+Remember to remove any existing `.zshrc` before running this.
+
+You may add your own customizations by creating a
+`.zsh_customizations` file under your HOME directory. My `zshrc`
+detect its presence and load it, so you don't need to modify my stuff
+if you need to add more things.
