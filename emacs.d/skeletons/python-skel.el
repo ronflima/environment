@@ -3,7 +3,7 @@
   \n
   > "# -*-mode:python;encoding:utf-8-*-" \n
   > "# The MIT License (MIT)" \n
-  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - Chicletemkt Tecnologia e Marketing Ltda" \n 
+  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - Ronaldo Faria Lima - All Rights Reserved" \n 
   > "#" \n
   > "# Permission is hereby granted, free of charge, to any person obtaining a copy" \n
   > "# of this software and associated documentation files (the \"Software\"), to deal" \n
@@ -33,7 +33,7 @@
     \n
   > "# -*-mode:python;encoding:utf-8-*-" \n
   > "# The MIT License (MIT)" \n
-  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - Chicletemkt Tecnologia e Marketing Ltda" \n 
+  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - Ronaldo Faria Lima - All Rights Reserved" \n 
   > "#" \n
   > "# Permission is hereby granted, free of charge, to any person obtaining a copy" \n
   > "# of this software and associated documentation files (the \"Software\"), to deal" \n
