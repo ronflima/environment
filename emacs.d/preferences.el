@@ -52,6 +52,7 @@
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
+  (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
