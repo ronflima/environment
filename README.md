@@ -36,9 +36,9 @@ installer created and putting back your files.
 > customizations. I tried to make the install.sh as simple as possible so anyone
 > can customize it at will.
 >
-> It is important to mention, also, that I built it to run under WSL on
-> Windows. But it should work on virtually any popular linux distro out there
-> since I have used only linux standard stuff.
+> It is important to mention, also, that I built it to run under WSL
+> on Windows. But it should work on virtually any popular apt-based
+> linux distro out there since I have used only linux standard stuff.
 
 ## macOS 
 
@@ -53,3 +53,7 @@ ln -s .environment/zsh/zshrc .zshrc
 
 Remember to remove any existing `.zshrc` before running this.
 
+You may add your own customizations by creating a
+`.zsh_customizations` file under your HOME directory. My `zshrc`
+detect its presence and load it, so you don't need to modify my stuff
+if you need to add more things.
