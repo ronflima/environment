@@ -140,3 +140,9 @@ then
 fi
 
 export GPG_TTY=$(tty)
+
+# Virtual Env
+if [ -f $VIRTUAL_ENV/bin/activate ]
+then
+    . $VIRTUAL_ENV/bin/activate
+fi
