@@ -132,6 +132,8 @@ export PATH="$PATH:$HOME/.rvm/bin:$HOME/bin"
 
 # GO multiple version install
 export PATH="$PATH:$HOME/go/bin"
+export GOROOT="$(go1.22.1 env GOROOT)"
+alias go=go1.22.1
 
 if [ -v WSL_DISTRO_NAME ]
 then
