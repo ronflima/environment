@@ -147,6 +147,7 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (auto-fill-mode 1)
 (setq column-number-mode t)
+(setq fill-column 132)
 (setq line-number-mode t)
 
 ;; Visuals
