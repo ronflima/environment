@@ -15,15 +15,12 @@
      jedi
      load-env-vars
      markdown-mode
-     sudoku
      virtualenvwrapper
      web-mode
      ))))
 
 (setq package-install-upgrade-built-in t)
 (package-install-selected-packages)
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 
 (load-library "auto-complete")
 (load-library "auto-complete-config")
@@ -50,6 +47,7 @@
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
+  (exec-path-from-shell-initialize)
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -81,6 +79,7 @@
   (setq exec-path (append exec-path '("/usr/local/bin")))
   (setq explicit-bash-args '("--noediting" "--login" "-i"))
   (setq shell-file-name "bash")
+  (exec-path-from-shell-initialize)
   )
  )
 

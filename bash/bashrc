@@ -112,8 +112,10 @@ fi
 umask 022
 export LIBGL_ALWAYS_INDIRECT=1
 export DISPLAY=:0
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/bin:$PATH"
+
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
