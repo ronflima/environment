@@ -15,6 +15,7 @@
      jedi
      load-env-vars
      markdown-mode
+     py-isort
      virtualenvwrapper
      web-mode
      ))))
@@ -30,6 +31,7 @@
 (load-library "fixmee")
 (load-library "ido")
 (load-library "package")
+(load-library "py-isort")
 (load-library "vc-dir")
 (load-library "virtualenvwrapper")
 (load-library "web-mode")
@@ -140,6 +142,7 @@
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'before-save-hook 'py-isort-before-save)
 (setq jedi:complete-on-dot t)
 
 ;; Modes
