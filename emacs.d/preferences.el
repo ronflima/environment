@@ -50,6 +50,7 @@
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   (exec-path-from-shell-initialize)
+  (setq system-time-locale "pt_BR.UTF-8")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -260,3 +261,10 @@
     See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
+
+;; Function to insert current date/time/time zone into the text
+(defun insert-current-date-time ()
+  (interactive)
+  (insert (format-time-string "%R %x GMT%Z" (current-time)))
+  )
+(global-set-key "\C-x\M-t" `insert-current-date-time)
