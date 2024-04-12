@@ -39,5 +39,5 @@ then
     pyenv install 3.11.3
     pyenv global 3.11.3
     pip install --upgrade pip
-    pip install virtualenv
+    pip install virtualenv isort
 fi

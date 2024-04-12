@@ -15,6 +15,7 @@
      jedi
      load-env-vars
      markdown-mode
+     py-isort
      virtualenvwrapper
      web-mode
      ))))
@@ -30,6 +31,7 @@
 (load-library "fixmee")
 (load-library "ido")
 (load-library "package")
+(load-library "py-isort")
 (load-library "vc-dir")
 (load-library "virtualenvwrapper")
 (load-library "web-mode")
@@ -48,6 +50,7 @@
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   (exec-path-from-shell-initialize)
+  (setq system-time-locale "pt_BR.UTF-8")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -140,6 +143,7 @@
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'before-save-hook 'py-isort-before-save)
 (setq jedi:complete-on-dot t)
 
 ;; Modes

@@ -33,7 +33,7 @@ function report_py_elems() {
 # Aliases
 alias ll='ls -lpF'
 alias l='ll -a'  
-alias emacs=Emacs
+alias emacs='Emacs -nw'
 alias gpycls='get_py_elem class'
 alias gpyfns='get_py_elem def'
 alias rptpy='report_py_elems'
