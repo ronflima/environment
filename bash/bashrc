@@ -115,6 +115,7 @@ export DISPLAY=:0
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/bin:$PATH"
+export EDITOR=emacs
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
@@ -147,7 +148,8 @@ fi
 
 export GPG_TTY=$(tty)
 
-# Virtual Env
+# Virtual Env. VIRTUAL_ENV is set by emacs if a virtual environment
+# was set
 if [ -f $VIRTUAL_ENV/bin/activate ]
 then
     . $VIRTUAL_ENV/bin/activate
