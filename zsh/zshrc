@@ -71,3 +71,10 @@ if [ -f ~/.zsh_customizations ]
 then
     . ~/.zsh_customizations
 fi
+
+if [ -v INSIDE_EMACS ]
+then
+    echo -e "Starting shell from EMACS\n"
+    export EDITOR="emacsclient"
+    alias emacs=emacsclient
+fi

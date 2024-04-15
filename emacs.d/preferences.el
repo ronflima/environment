@@ -261,3 +261,6 @@
     See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
+
+;; Start emacs server
+(server-start)
