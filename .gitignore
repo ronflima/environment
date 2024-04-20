@@ -26,3 +26,5 @@ ido.last
 network-security.data
 tramp
 bookmarks
+abbrevs.el
+emacs.d/projects
