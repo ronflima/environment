@@ -50,7 +50,7 @@
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   (exec-path-from-shell-initialize)
-  (setq system-time-locale "pt_BR.UTF-8")
+  (setq system-time-locale "en_US.UTF-8")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
   (setq explicit-zsh-args '("--login" "--interactive"))
@@ -261,6 +261,10 @@
     See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
+
+;; Org-mode customizations
+(setq org-todo-keywords
+      '((sequence "TODO" "DOING" "|" "DONE")))
 
 ;; Start emacs server
 (server-start)
