@@ -2,8 +2,11 @@
 ;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
 
 ;; MELPA support and package customizations
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
+;; Installs all needed packages, if some are not present
 (custom-set-variables
  '(package-selected-packages
    (quote
@@ -13,6 +16,7 @@
      fixmee
      go-mode
      jedi
+     kanban 
      load-env-vars
      markdown-mode
      py-isort
@@ -23,18 +27,18 @@
 (setq package-install-upgrade-built-in t)
 (package-install-selected-packages)
 
-(load-library "auto-complete")
-(load-library "auto-complete-config")
-(load-library "button-lock")
-(load-library "calendar")
-(load-library "dired-x")
-(load-library "fixmee")
-(load-library "ido")
-(load-library "package")
-(load-library "py-isort")
-(load-library "vc-dir")
-(load-library "virtualenvwrapper")
-(load-library "web-mode")
+(require 'kanban)
+(require 'auto-complete)
+(require 'auto-complete-config)
+(require 'button-lock)
+(require 'calendar)
+(require 'dired-x)
+(require 'fixmee)
+(require 'ido)
+(require 'py-isort)
+(require 'vc-dir)
+(require 'virtualenvwrapper)
+(require 'web-mode)
 
 ;; Operating system dependent settings
 (cond
@@ -236,9 +240,6 @@
 
 ;; Fixmee
 (global-fixmee-mode 1)
-
-;; Sudoku
-(add-to-list 'auto-mode-alist '("\\.sdk\\'" . sudoku-mode))
 
 ;; INSERT current date function
 ;; Reference: https://www.emacswiki.org/emacs/InsertingTodaysDate
