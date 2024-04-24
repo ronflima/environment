@@ -24,7 +24,7 @@ function report_py_elems() {
         do
             for found_element in `get_py_elem $type $elem`
             do
-                echo -e "\t* $found_element"
+                echo -e "\t* $type::$found_element"
             done
         done
     done 
