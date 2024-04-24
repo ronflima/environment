@@ -22,15 +22,15 @@ function report_py_elems() {
         type_list=(class def)
         for type in ${type_list[@]}
         do
-            nelems=`get_py_elem $type $elem | wc -l | sed -E 's/.*([0-9]+)/\1/g'`
+            nelems=`get_py_elem $type $elem | wc -l`
             if [ $nelems -gt 0 ]
             then
-                echo -e "\t$type:"
+                echo -e "\t+ $type:"
                 for found_element in `get_py_elem $type $elem`
                 do
-                    echo -e "\t\t|- $found_element"
+                    echo -e "\t|- $found_element"
                 done
-                echo -e "\t\t\- Total: $nelems"
+                echo -e "\t\- Total: $nelems"
             fi
         done
     done 
