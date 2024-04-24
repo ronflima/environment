@@ -160,10 +160,12 @@
 ;; Visuals
 (defun brazuca-dark-mode()
   "Sets emacs into a \"dark mode\""
+  (interactive)
   (set-face-background 'default "black")
   (set-face-foreground 'default "green"))
 (defun brazuca-light-mode()
   "Sets emacs into a light mode"
+  (interactive)
   (set-face-background 'default "white")
   (set-face-foreground 'default "black"))
 (setq brazuca-theme-file (expand-file-name "brazuca-theme.el" user-emacs-directory))
