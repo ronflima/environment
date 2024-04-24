@@ -8,7 +8,7 @@ PROMPT='%/
 # generate a small report.
 #
 function get_py_elem() {
-    cat $2 | grep -E "^$1 " | sed -E "s/^$1 ([_a-z|A-Z]+).*/\1/g" | sort
+    cat $2 | grep -E "$1 " | sed -E "s/$1 ([_a-z|A-Z]+).*/\1/g" | sort
 }
 
 #
@@ -19,16 +19,18 @@ function report_py_elems() {
     for elem in `find . -name "*.py" -print | sort`
     do
         echo "* $elem"
-        type_list=(class def)
-        for type in ${type_list[@]}
+        regexps=("^class" "^def" "^ +def")
+        descs=("Classes" "Functions" "Methods")
+        keywords=("class" "function" "method")
+        for i in {1..3}
         do
-            nelems=`get_py_elem $type $elem | wc -l`
+            nelems=`get_py_elem $regexps[$i] $elem | wc -l`
             if [ $nelems -gt 0 ]
             then
-                echo -e "\t+ $type:"
-                for found_element in `get_py_elem $type $elem`
+                echo -e "\t+ $descs[$i]:"
+                for found_element in `get_py_elem $regexps[$i] $elem`
                 do
-                    echo -e "\t|- $found_element"
+                    echo -e "\t|- $keywords[$i] $found_element"
                 done
                 echo -e "\t\- Total: $nelems"
             fi
@@ -40,8 +42,8 @@ function report_py_elems() {
 alias ll='ls -lpF'
 alias l='ll -a'  
 alias emacs='Emacs -nw'
-alias gpycls='get_py_elem class'
-alias gpyfns='get_py_elem def'
+alias gpycls='get_py_elem ^class'
+alias gpyfns='get_py_elem ^def'
 alias rptpy='report_py_elems'
 alias dkc='docker compose'
 
