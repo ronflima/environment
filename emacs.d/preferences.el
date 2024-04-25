@@ -168,13 +168,9 @@
   (interactive)
   (set-face-background 'default "white")
   (set-face-foreground 'default "black"))
-(setq brazuca-theme-file (expand-file-name "brazuca-theme.el" user-emacs-directory))
-(if 
-    (file-exists-p brazuca-theme-file)
-    (load brazuca-theme-file)
-  ;; If no theme available, prefer dark mode
-  (brazuca-dark-mode)
-)
+;; Prefer the dark theme. But this can get customized at
+;; customizations.el
+(brazuca-dark-mode)
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 120))
 (global-auto-revert-mode 1)
