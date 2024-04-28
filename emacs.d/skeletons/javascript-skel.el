@@ -4,12 +4,12 @@
   "New node javascript file"
   > "/* -*-javascript-*- */" \n
   > "//" \n
-  > "// Copyright (c) " (format-time-string "%Y") " - Chicletemkt Tecnologia e Marketing Ltda - All rights Reserved" \n
+  > "// Copyright (c) " (format-time-string "%Y") " - Brazuca Studio - All rights Reserved" \n
   > "//" \n
   > "// *DISCLAIMER*" \n
   > "//" \n
   > "// This is copyrighted material. This is not free or open software. This" \n
-  > "// source-code is private and property of Chicletemkt Tecnologia e Marketing Ltda." \n
+  > "// source-code is private and property of Brazuca Studio." \n
   > "//" \n
   > "// Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
   > "//" \n
@@ -25,12 +25,12 @@
   "Node controller"
   > "/* -*-javascript-*- */" \n
   > "//" \n
-  > "// Copyright (c) " (format-time-string "%Y") " - Chicletemkt Tecnologia e Marketing Ltda - All rights Reserved" \n
+  > "// Copyright (c) " (format-time-string "%Y") " - Brazuca Studio - All rights Reserved" \n
   > "//" \n
   > "// *DISCLAIMER*" \n
   > "//" \n
   > "// This is copyrighted material. This is not free or open software. This" \n
-  > "// source-code is private and property of Chicletemkt Tecnologia e Marketing Ltda" \n
+  > "// source-code is private and property of Brazuca Studio" \n
   > "//" \n
   > "// Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
   > "//" \n
