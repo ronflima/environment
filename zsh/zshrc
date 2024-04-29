@@ -86,4 +86,5 @@ then
     echo -e "Starting shell from EMACS\n"
     export EDITOR="emacsclient"
     alias emacs=emacsclient
+    alias git='git --no-pager'
 fi
