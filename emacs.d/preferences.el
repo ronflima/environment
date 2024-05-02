@@ -20,6 +20,7 @@
      load-env-vars
      markdown-mode
      py-isort
+     ssh
      virtualenvwrapper
      web-mode
      ))))
@@ -27,7 +28,6 @@
 (setq package-install-upgrade-built-in t)
 (package-install-selected-packages)
 
-(require 'kanban)
 (require 'auto-complete)
 (require 'auto-complete-config)
 (require 'button-lock)
@@ -35,7 +35,9 @@
 (require 'dired-x)
 (require 'fixmee)
 (require 'ido)
+(require 'kanban)
 (require 'py-isort)
+(require 'ssh)
 (require 'vc-dir)
 (require 'virtualenvwrapper)
 (require 'web-mode)
