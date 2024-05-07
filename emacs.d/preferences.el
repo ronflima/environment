@@ -1,54 +1,79 @@
 ;; Emacs Customizations
-;; Author: Ronaldo F. Lima <ronaldo@brazuca.dev>
+;; MIT License
+;;
+;; Copyright (c) 2019 Ronaldo F. Lima <ronaldo@brazuca.dev>
+;;
+;; Permission is hereby granted, free of charge, to any person
+;; obtaining a copy of this software and associated documentation
+;; files (the "Software"), to deal in the Software without
+;; restriction, including without limitation the rights to use, copy,
+;; modify, merge, publish, distribute, sublicense, and/or sell copies
+;; of the Software, and to permit persons to whom the Software is
+;; furnished to do so, subject to the following conditions:
+;;
+;; The above copyright notice and this permission notice shall be
+;; included in all copies or substantial portions of the Software.
+;;
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+;; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+;; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+;; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+;; BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+;; ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+;; SOFTWARE.
+;;
+;; Note: This requires emacs 29 or newer.
 
+;;
 ;; MELPA support and package customizations
+;;
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+(use-package auto-complete
+  :ensure t
+  :config
+  (ac-config-default)
+  (add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
+  (global-auto-complete-mode t))
+(use-package auto-complete-config :ensure t)
+(use-package button-lock :ensure t)
+(use-package calendar)
+(use-package dired-x)
+(use-package fixmee :ensure t :config (global-fixmee-mode 1))
+(use-package ido
+  :ensure t
+  :config
+  (ido-mode t)
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t))
+(use-package kanban :ensure t)
+(use-package ssh)
+(use-package vc-dir)
+(use-package virtualenvwrapper :ensure t)
+(use-package web-mode :ensure t :config
+  (defun brazuca-mode-hook ()
+    "Hooks for Web mode."
+    (setq web-mode-markup-indent-offset 4))
+  (add-hook 'web-mode-hook  'brazuca-mode-hook)
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
 
-;; Installs all needed packages, if some are not present
-(custom-set-variables
- '(package-selected-packages
-   (quote
-    (
-     auto-complete
-     exec-path-from-shell
-     fixmee
-     go-mode
-     jedi
-     kanban 
-     load-env-vars
-     markdown-mode
-     py-isort
-     ssh
-     virtualenvwrapper
-     web-mode
-     ))))
-
-(setq package-install-upgrade-built-in t)
-(package-install-selected-packages)
-
-(require 'auto-complete)
-(require 'auto-complete-config)
-(require 'button-lock)
-(require 'calendar)
-(require 'dired-x)
-(require 'fixmee)
-(require 'ido)
-(require 'kanban)
-(require 'py-isort)
-(require 'ssh)
-(require 'vc-dir)
-(require 'virtualenvwrapper)
-(require 'web-mode)
-
+;;
 ;; Operating system dependent settings
+;;
 (cond
  ;; Windows
  ((string-equal system-type "windows-nt")
   (global-set-key [f2] 'powershell)
-  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
-  )
+  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular))
  
  ;; MacOS
  ((string-equal system-type "darwin")
@@ -88,22 +113,11 @@
   (setenv "SHELL" shell-file-name)
   (setq exec-path (append exec-path '("/usr/local/bin")))
   (setq explicit-bash-args '("--noediting" "--login" "-i"))
-  (exec-path-from-shell-initialize)
-  )
- )
+  (exec-path-from-shell-initialize)))
 
-(put 'erase-buffer 'disabled nil)
-
-;; No tabs!
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-
-;; Time formts
-(display-time-mode 1)
-(setq display-time-default-load-average nil)
-(setq display-time-format "%H:%M %d/%m/%Y")
-
+;;
 ;; Skelletons
+;;
 (add-to-list 'load-path (expand-file-name "skeletons" user-emacs-directory))
 (load-library "skeletons.el")
 (add-hook 'find-file-hook 'auto-insert)
@@ -117,30 +131,15 @@
                           ("\\.py$"        . python-mit)
                           ("\\.sql$"       . skel-sql-file)))
 
-;; Web Mode
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-
-(defun brazuca-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 4)
-)
-(add-hook 'web-mode-hook  'brazuca-mode-hook)
-(setq epg-pinentry-mode 'loopback)
-
-;; MongoDB
-(defcustom inf-mongo-command "mongo 127.0.0.1:27017" "Default MongoDB shell command used.")
-
+;;
 ;; Javascript preferences
+;;
 (setq js-indent-level 4)
 
+;;
 ;; Python Preferences
+;;
+(use-package py-isort :ensure t :config (add-hook 'before-save-hook 'py-isort-before-save))
 (setq venv-location (expand-file-name "~/.virtualenvs"))
 (if (not (file-directory-p venv-location))
     (make-directory venv-location))
@@ -149,17 +148,27 @@
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'before-save-hook 'py-isort-before-save)
 (setq jedi:complete-on-dot t)
 
+;;
 ;; Modes
+;;
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (auto-fill-mode 1)
+(display-time-mode 1)
+(put 'erase-buffer 'disabled nil)
 (setq column-number-mode t)
+(setq display-time-default-load-average nil)
+(setq display-time-format "%H:%M %d/%m/%Y")
+(setq epg-pinentry-mode 'loopback)
 (setq fill-column 132)
 (setq line-number-mode t)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
+;;
 ;; Visuals
+;;
 (defun brazuca-dark-mode()
   "Sets emacs into a \"dark mode\""
   (interactive)
@@ -170,9 +179,8 @@
   (interactive)
   (set-face-background 'default "white")
   (set-face-foreground 'default "black"))
-;; Prefer the dark theme. But this can get customized at
-;; customizations.el
-(brazuca-dark-mode)
+(brazuca-dark-mode) ;; Prefer the dark theme. But this can get
+                    ;; customized at customizations.el
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 120))
 (global-auto-revert-mode 1)
@@ -183,51 +191,61 @@
 (setq visible-bell nil)
 (tool-bar-mode 0)
 (turn-on-font-lock)
+(set-scroll-bar-mode 'right)
 
-
+;;
 ;; Encodings
+;;
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8)
 
-;; I prefer the scroll bar on the right side.
-(set-scroll-bar-mode 'right)
-
-;; Abbrev settings
+;;
+;; Abbrevs
+;;
 (setq abbrev-file-name (expand-file-name "abbrevs.el" user-emacs-directory))
 (setq abbrev-mode t)
 
-;; Keymaps
-(global-set-key "%"  'match-paren)
-(global-set-key [M-down] 'end-of-buffer)
-(global-set-key [M-left] 'beginning-of-line)
-(global-set-key [M-right] 'end-of-line)
-(global-set-key [M-up] 'beginning-of-buffer)
-(global-set-key [home] 'beginning-of-line)
-(global-set-key [end] 'end-of-line)
-
+;;
 ;; Dired customizations
+;;
 (setq dired-guess-shell-alist-user
       '(("^manage.py$" "python * runserver")
         ("\\.py$" "python")
         ("^requirements.txt$" "pip install -r")))
 
+;;
 ;; Tramp mode
+;;
 (setq tramp-default-method "ssh")
 
+;;
 ;; SSH customizations
+;;
 (add-hook 'ssh-mode-hook
           (lambda()
             (setq ssh-directory-tracking-mode t)
             (shell-dirtrack-mode t)
             (setq dirtrackp nil)))
 
+;;
 ;; VC Customizations
+;;
 (define-key vc-dir-mode-map (kbd "\C-cc") 'vc-find-conflicted-file)
 (setq smerge-command-prefix "\C-cm")
 (setq vc-suppress-confirm t)
+
+;;
+;; Org-mode
+;;
+(setq org-todo-keywords
+      '((sequence "TODO" "DOING" "|" "DONE")))
+
+;;
+;; Useful functions
+;;
 
 ;; Match parenthesis function
 ;; Credit: Dirk Heumann routine, got in 2003
@@ -242,21 +260,10 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-;; auto complete
-(ac-config-default)
-(add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
-(global-auto-complete-mode t)
-
-;; ido mode
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-
-;; Fixmee
-(global-fixmee-mode 1)
-
+;;
 ;; INSERT current date function
 ;; Reference: https://www.emacswiki.org/emacs/InsertingTodaysDate
+;;
 (defun insdate-insert-current-date (&optional omit-day-of-week-p)
   "Insert today's date using the current locale.
   With a prefix argument, the date is inserted without the day of
@@ -264,8 +271,10 @@
   (interactive "P*")
   (insert (calendar-date-string (calendar-current-date) nil
                                 omit-day-of-week-p)))
-(global-set-key "\C-x\M-d" `insdate-insert-current-date)
 
+;;
+;; Sort words in place
+;;
 (defun sort-words (reverse beg end)
   "Sort words in region alphabetically, in REVERSE if negative.
     Prefixed with negative \\[universal-argument], sorts in reverse.
@@ -277,9 +286,16 @@
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
 
-;; Org-mode customizations
-(setq org-todo-keywords
-      '((sequence "TODO" "DOING" "|" "DONE")))
+;;
+;; Keymaps
+;;
+(global-set-key "%"  'match-paren)
+(global-set-key "\C-x\M-d" 'insdate-insert-current-date)
+(global-set-key [M-down] 'end-of-buffer)
+(global-set-key [M-left] 'beginning-of-line)
+(global-set-key [M-right] 'end-of-line)
+(global-set-key [M-up] 'beginning-of-buffer)
+(global-set-key [end] 'end-of-line)
+(global-set-key [home] 'beginning-of-line)
 
-;; Start emacs server
 (server-start)

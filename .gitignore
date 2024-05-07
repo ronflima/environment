@@ -18,13 +18,13 @@ var/
 ./
 .python-environments
 \#ido.last\#
+abbrevs.el
 ac-comphist.dat
+bookmarks
 eln-cache
 emacs.d/customizations.el
+emacs.d/projects
 git-command
 ido.last
 network-security.data
 tramp
-bookmarks
-abbrevs.el
-emacs.d/projects
