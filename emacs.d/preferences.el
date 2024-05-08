@@ -65,6 +65,10 @@
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
+
+;;
+;; LSP and Pyright modes
+;;
 (use-package lsp-mode
   :ensure t
   :hook ((python-mode . lsp)
@@ -90,6 +94,12 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
+
+;;
+;; Flymake Settings
+;;
+(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
 ;;
 ;; Operating system dependent settings
