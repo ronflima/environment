@@ -94,7 +94,13 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
-
+(use-package company-jedi
+  :after company
+  :ensure t
+  :config
+  (defun brazuca-company-jedi-python-hook ()
+    (add-to-list 'company-backends 'company-jedi))
+  (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
 ;;
 ;; Flymake Settings
 ;;
