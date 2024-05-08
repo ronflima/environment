@@ -35,7 +35,7 @@
 (require 'calendar)
 (require 'dired-x)
 (require 'vc-dir)
-
+(use-package load-env-vars :ensure t)
 (use-package ido
   :ensure t
   :config
