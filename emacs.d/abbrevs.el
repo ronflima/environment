@@ -6,8 +6,8 @@
 
 (define-abbrev-table 'python-mode-abbrev-table
   '(
-    ("breakpoint" "# DEBUG
-    import pdb; pdb.set_trace()" nil :count 4)
+    ("brk" "# DEBUG
+    import pdb; pdb.set_trace()" nil :count 5)
     ("ctxget" "    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
