@@ -28,3 +28,4 @@ git-command
 ido.last
 network-security.data
 tramp
+.lsp-session*

@@ -31,17 +31,11 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
-(use-package auto-complete
-  :ensure t
-  :config
-  (ac-config-default)
-  (add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
-  (global-auto-complete-mode t))
-(use-package auto-complete-config :ensure t)
-(use-package button-lock :ensure t)
-(use-package calendar)
-(use-package dired-x)
-(use-package fixmee :ensure t :config (global-fixmee-mode 1))
+
+(require 'calendar)
+(require 'dired-x)
+(require 'vc-dir)
+(use-package load-env-vars :ensure t)
 (use-package ido
   :ensure t
   :config
@@ -49,9 +43,15 @@
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t))
 (use-package kanban :ensure t)
-(use-package ssh)
-(use-package vc-dir)
-(use-package virtualenvwrapper :ensure t)
+(use-package ssh :ensure t)
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (setq venv-location (expand-file-name "~/.virtualenvs"))
+  (if (not (file-directory-p venv-location))
+      (make-directory venv-location))
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
 (use-package web-mode :ensure t :config
   (defun brazuca-mode-hook ()
     "Hooks for Web mode."
@@ -67,6 +67,48 @@
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
 
 ;;
+;; LSP and Pyright modes
+;;
+(use-package lsp-mode
+  :ensure t
+  :hook ((python-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands (lsp))
+(use-package lsp-pyright
+  :after lsp-mode
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))
+(use-package company
+  :after lsp-pyright
+  :ensure t
+  :hook (prog-mode . company-mode)
+  :bind
+  (:map company-active-map
+        ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+        ("<tab>" . company-indent-or-complete-common))
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)        
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+(use-package company-jedi
+  :after company
+  :ensure t
+  :config
+  (defun brazuca-company-jedi-python-hook ()
+    (add-to-list 'company-backends 'company-jedi))
+  (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
+;;
+;; Flymake Settings
+;;
+(require 'flymake)
+(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+
+;;
 ;; Operating system dependent settings
 ;;
 (cond
@@ -80,7 +122,7 @@
   (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
-  (exec-path-from-shell-initialize)
+  (use-package exec-path-from-shell :ensure t :config (exec-path-from-shell-initialize))
   (setq system-time-locale "en_US.UTF-8")
   ;; Inferior shell
   (setq explicit-shell-file-name "/bin/zsh")
@@ -140,15 +182,8 @@
 ;; Python Preferences
 ;;
 (use-package py-isort :ensure t :config (add-hook 'before-save-hook 'py-isort-before-save))
-(setq venv-location (expand-file-name "~/.virtualenvs"))
-(if (not (file-directory-p venv-location))
-    (make-directory venv-location))
-(venv-initialize-interactive-shells)
-(venv-initialize-eshell)
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
 
 ;;
 ;; Modes
