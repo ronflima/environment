@@ -44,6 +44,7 @@
   (setq ido-everywhere t))
 (use-package kanban :ensure t)
 (use-package ssh :ensure t)
+(use-package graphviz-dot-mode :ensure t)
 (use-package virtualenvwrapper
   :ensure t
   :config
