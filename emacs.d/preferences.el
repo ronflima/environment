@@ -44,6 +44,7 @@
   (setq ido-everywhere t))
 (use-package ssh :ensure t)
 (use-package graphviz-dot-mode :ensure t)
+(use-package markdown-mode :ensure t)
 (use-package virtualenvwrapper
   :ensure t
   :config
