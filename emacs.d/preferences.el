@@ -277,6 +277,7 @@
 ;;
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
+(setq org-log-done 'time)
 
 ;;
 ;; Useful functions
