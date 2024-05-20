@@ -44,6 +44,7 @@
   (setq ido-everywhere t))
 (use-package ssh :ensure t)
 (use-package graphviz-dot-mode :ensure t)
+(use-package markdown-mode :ensure t)
 (use-package virtualenvwrapper
   :ensure t
   :config
@@ -171,6 +172,7 @@
                           ("\\.swift$"     . swift-mit-file)
                           ("setup.py"      . python-mit-setup)
                           ("\\.py$"        . python-mit)
+                          ("\\.py$"        . brazuca-python-module)
                           ("\\.sql$"       . skel-sql-file)))
 
 ;;
