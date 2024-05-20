@@ -76,3 +76,14 @@
   > "python_requires='>=3.6'," ?\n
   > ")" ?\n
   )
+(define-skeleton brazuca-python-module
+  "Copyrighted Brazuca python module"
+    \n
+    > "# -*-mode:python;encoding:utf-8-*-" \n
+    > "\"\"\"" \n
+    > "(c) " _ (format-time-string "%Y" (current-time)) _ " - Brazuca Studio - All rights reserved" \n
+    > "Created at " _ (format-time-string "%Y-%m-%d" (current-time)) \n
+    > "Author: " _ (user-full-name) \n
+    > "Purpose: " _ (skeleton-read "This file purpose: ") \n
+    > "\"\"\"" \n
+ )

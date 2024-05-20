@@ -172,6 +172,7 @@
                           ("\\.swift$"     . swift-mit-file)
                           ("setup.py"      . python-mit-setup)
                           ("\\.py$"        . python-mit)
+                          ("\\.py$"        . brazuca-python-module)
                           ("\\.sql$"       . skel-sql-file)))
 
 ;;
