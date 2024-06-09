@@ -190,7 +190,7 @@
 ;;
 ;; C preferences
 ;;
-(setq c-default-style "bsd")
+(setq c-default-style "gnu")
 
 ;;
 ;; Modes
