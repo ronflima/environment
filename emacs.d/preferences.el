@@ -188,6 +188,11 @@
 (add-hook 'python-mode-hook 'hs-minor-mode)
 
 ;;
+;; C preferences
+;;
+(setq c-default-style "bsd")
+
+;;
 ;; Modes
 ;;
 (add-hook 'prog-mode-hook 'hs-minor-mode)
