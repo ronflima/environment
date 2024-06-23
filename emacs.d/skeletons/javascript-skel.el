@@ -4,14 +4,14 @@
   "New node javascript file"
   > "/* -*-javascript-*- */" \n
   > "//" \n
-  > "// Copyright (c) " (format-time-string "%Y") " - Brazuca Studio - All rights Reserved" \n
+  > "// Copyright (c) " (format-time-string "%Y") " - " _ user-company-name _ " - All rights Reserved" \n
   > "//" \n
   > "// *DISCLAIMER*" \n
   > "//" \n
   > "// This is copyrighted material. This is not free or open software. This" \n
   > "// source-code is private and property of Brazuca Studio." \n
   > "//" \n
-  > "// Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
+  > "// Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "//" \n
   \n
   > "//" \n
@@ -25,14 +25,14 @@
   "Node controller"
   > "/* -*-javascript-*- */" \n
   > "//" \n
-  > "// Copyright (c) " (format-time-string "%Y") " - Brazuca Studio - All rights Reserved" \n
+  > "// Copyright (c) " _ (format-time-string "%Y") _ " - " _ user-company_name _ " - All rights Reserved" \n
   > "//" \n
   > "// *DISCLAIMER*" \n
   > "//" \n
   > "// This is copyrighted material. This is not free or open software. This" \n
   > "// source-code is private and property of Brazuca Studio" \n
   > "//" \n
-  > "// Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
+  > "// Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "//" \n
   \n
   > "//" \n
@@ -70,7 +70,7 @@
   > "//" \n
   > "// MIT License" \n
   > "//" \n
-  > "// Copyright (c) " (format-time-string "%Y") " Chiclete Marketing" \n
+  > "// Copyright (c) " (format-time-string "%Y") _ "- " _ user-company-name _ " - All rights reserved." _ \n
   > "//" \n
   > "// Permission is hereby granted, free of charge, to any person obtaining a copy" \n
   > "// of this software and associated documentation files (the \"Software\"), to deal" \n

@@ -162,7 +162,7 @@
 ;; Skelletons
 ;;
 (add-to-list 'load-path (expand-file-name "skeletons" user-emacs-directory))
-(load-library "skeletons.el")
+(load-library (expand-file-name "init.el" (expand-file-name "skeletons" user-emacs-directory)))
 (add-hook 'find-file-hook 'auto-insert)
 (setq auto-insert-alist '(("router.*\\.js$". node-router)
                           ("\\.js$"        . node-new-file)
@@ -328,8 +328,14 @@
     See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
-
 ;;
+;; User related customizations
+;;
+(defcustom user-company-name (user-full-name)
+  "User company name for copyright statements. Defaults to user-full-name"
+  :type 'string
+  :group 'user)
+
 ;; Keymaps
 ;;
 (global-set-key "%"  'match-paren)
