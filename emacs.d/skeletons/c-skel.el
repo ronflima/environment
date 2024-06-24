@@ -4,7 +4,7 @@
   > "/* -*-c-*-" \n
   > "The MIT License (MIT)" \n
   >  \n
-  > "Copyright (c) 2016 - Ronaldo Faria Lima" \n 
+  > "Copyright (c) " _ (format-time-string "%Y" (current-time)) _ " - " user-company-name  \n 
   >  \n
   > "Permission is hereby granted, free of charge, to any person obtaining a copy" \n
   > "of this software and associated documentation files (the \"Software\"), to deal" \n
@@ -24,8 +24,10 @@
   > "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE" \n
   > "SOFTWARE." \n
   > \n
-  > "Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
+  > "Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ " <" _ user-mail-address _ ">" _ \n
   > \n
-  > " This file purpose: " (skeleton-read "This file purpose: ") \n
+  > "This file purpose: " (skeleton-read "This file purpose: ") \n
   > "*/" \n \n
 )
+
+

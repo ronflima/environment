@@ -3,7 +3,7 @@
   \n
   > "# -*-mode:python;encoding:utf-8-*-" \n
   > "# The MIT License (MIT)" \n
-  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - Ronaldo Faria Lima - All Rights Reserved" \n 
+  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All Rights Reserved" \n 
   > "#" \n
   > "# Permission is hereby granted, free of charge, to any person obtaining a copy" \n
   > "# of this software and associated documentation files (the \"Software\"), to deal" \n
@@ -23,7 +23,7 @@
   > "# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE" \n
   > "# SOFTWARE." \n
   > "#" \n
-  > "# Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
+  > "# Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "#" \n
   > "# This file purpose: " (skeleton-read "This file purpose: ") \n \n
  )
@@ -33,7 +33,7 @@
     \n
   > "# -*-mode:python;encoding:utf-8-*-" \n
   > "# The MIT License (MIT)" \n
-  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - Ronaldo Faria Lima - All Rights Reserved" \n 
+  > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All Rights Reserved" \n 
   > "#" \n
   > "# Permission is hereby granted, free of charge, to any person obtaining a copy" \n
   > "# of this software and associated documentation files (the \"Software\"), to deal" \n
@@ -53,7 +53,7 @@
   > "# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE" \n
   > "# SOFTWARE." \n
   > "#" \n
-  > "# Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ \n
+  > "# Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "#" \n
   > "# This file purpose: " _ (skeleton-read "This file purpose: ") \n \n
   > "with open(\"README.md\", \"r\") as fh:" ?\n
@@ -81,9 +81,9 @@
     \n
     > "# -*-mode:python;encoding:utf-8-*-" \n
     > "\"\"\"" \n
-    > "(c) " _ (format-time-string "%Y" (current-time)) _ " - Brazuca Studio - All rights reserved" \n
+    > "(c) " _ (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All rights reserved" \n
     > "Created at " _ (format-time-string "%Y-%m-%d" (current-time)) \n
-    > "Author: " _ (user-full-name) \n
+    > "Author: " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
     > "Purpose: " _ (skeleton-read "This file purpose: ") \n
     > "\"\"\"" \n
  )
