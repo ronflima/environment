@@ -58,14 +58,14 @@
     "Hooks for Web mode."
     (setq web-mode-markup-indent-offset 4))
   (add-hook 'web-mode-hook  'brazuca-mode-hook)
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'"     . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode)))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'"   . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'"   . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'"       . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'"  . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'"    . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html\\'"      . web-mode)))
 
 ;;
 ;; LSP and Pyright modes
@@ -120,7 +120,7 @@
  
  ;; MacOS
  ((string-equal system-type "darwin")
-  (set-face-attribute 'default nil :family "Menlo" :height 160 :weight 'normal)
+  (set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   (use-package exec-path-from-shell :ensure t :config (exec-path-from-shell-initialize))
@@ -146,7 +146,7 @@
 
  ;; Linux
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Consolas" :height 160 :weight 'regular)
+  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
   (setq dired-listing-switches "-aBhl --group-directories-first")
   ;; Support to inferior shell
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
@@ -171,7 +171,6 @@
                           ("\\.h$"         . c-mit-file)
                           ("\\.swift$"     . swift-mit-file)
                           ("setup.py"      . python-mit-setup)
-                          ("\\.py$"        . python-mit)
                           ("\\.py$"        . brazuca-python-module)
                           ("\\.sql$"       . skel-sql-file)))
 
