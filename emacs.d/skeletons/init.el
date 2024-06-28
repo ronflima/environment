@@ -8,5 +8,6 @@
 (load-library "javascript-skel.el")
 (load-library "json-skel.el")
 (load-library "markdown.el")
+(load-library "org-skel.el")
 (load-library "python-skel.el")
 (load-library "sql-skel.el")

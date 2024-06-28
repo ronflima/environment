@@ -172,7 +172,8 @@
                           ("\\.swift$"     . swift-mit-file)
                           ("setup.py"      . python-mit-setup)
                           ("\\.py$"        . brazuca-python-module)
-                          ("\\.sql$"       . skel-sql-file)))
+                          ("\\.sql$"       . skel-sql-file)
+                          ("\\.org$"       . brazuca-org-file)))
 
 ;;
 ;; Javascript preferences
@@ -280,13 +281,16 @@
 (setq vc-suppress-confirm t)
 
 ;;
-;; Org-mode
+;; Org Mode
 ;;
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
 (setq org-log-done 'time)
-
-;;
+(defun org-confirm-babel-evaluate-dot-code (lang body)
+  (not (string= lang "dot")))
+(setq org-confirm-babel-evaluate #'org-confirm-babel-evaluate-dot-code)
+              
+ ;;
 ;; Useful functions
 ;;
 
