@@ -1,7 +1,7 @@
 (define-skeleton brazuca-org-file
   "Org File Brazuca way"
     \n
-    > "# -*-mode:org;encoding:utf-8-*-" \n
+    > "# -*-mode:org-*-" \n
     > "#" \n
     > "# (c)" _ (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All rights reserved" \n
     > "# Created at " _ (format-time-string "%Y-%m-%d" (current-time)) \n
