@@ -289,8 +289,10 @@
 (defun org-confirm-babel-evaluate-dot-code (lang body)
   (not (string= lang "dot")))
 (setq org-confirm-babel-evaluate #'org-confirm-babel-evaluate-dot-code)
-              
- ;;
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+
+;;
 ;; Useful functions
 ;;
 
