@@ -116,7 +116,7 @@
  ;; Windows
  ((string-equal system-type "windows-nt")
   (global-set-key [f2] 'powershell)
-  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular))
+  (set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'regular))
  
  ;; MacOS
  ((string-equal system-type "darwin")
@@ -146,7 +146,7 @@
 
  ;; Linux
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Consolas" :height 140 :weight 'regular)
+  (set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'regular)
   (setq dired-listing-switches "-aBhl --group-directories-first")
   ;; Support to inferior shell
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
