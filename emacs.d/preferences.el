@@ -342,6 +342,18 @@
   :type 'string
   :group 'user)
 
+;;
+;; ispell
+;;
+(setq ispell-local-dictionary-alist
+      '(("brazilian"
+         "[A-ZÁÉÍÓÚÀÈÌÒÙÃÕÇÜÂÊÔa-záéíóúàèìòùãõçüâêôö]"
+         "[^A-ZÁÉÍÓÚÀÈÌÒÙÃÕÇÜÂÊÔa-záéíóúàèìòùãõçüâêôö]"
+         "['-]"
+         nil
+         ("-d" "brazilian")
+         nil
+         utf-8)))
 ;; Keymaps
 ;;
 (global-set-key "%"  'match-paren)
