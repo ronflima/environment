@@ -110,6 +110,16 @@
 (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
 ;;
+;; Golang support
+;;
+(use-package go-mode
+  :after company
+  :ensure t)
+(use-package company-go
+  :after go-mode
+  :ensure t)
+
+;;
 ;; Operating system dependent settings
 ;;
 (cond
@@ -173,7 +183,8 @@
                           ("setup.py"      . python-mit-setup)
                           ("\\.py$"        . brazuca-python-module)
                           ("\\.sql$"       . skel-sql-file)
-                          ("\\.org$"       . brazuca-org-file)))
+                          ("\\.org$"       . brazuca-org-file)
+                          ("\\.go\\'" . go-mode)))
 
 ;;
 ;; Javascript preferences
@@ -192,6 +203,11 @@
 ;; C preferences
 ;;
 (setq c-default-style "gnu")
+
+;;
+;; Go preferences
+;;
+(add-hook 'go-mode-hook 'lsp-deferred)
 
 ;;
 ;; Modes
