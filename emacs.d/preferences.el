@@ -81,6 +81,10 @@
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))
+(use-package flycheck
+  :after lsp-mode
+  :ensure t
+  :config (global-flycheck-mode))
 (use-package company
   :after lsp-pyright
   :ensure t
@@ -91,7 +95,7 @@
   (:map lsp-mode-map
         ("<tab>" . company-indent-or-complete-common))
   :config
-  (add-hook 'after-init-hook 'global-company-mode)        
+  (add-hook 'after-init-hook 'global-company-mode)
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -100,14 +104,9 @@
   :ensure t
   :config
   (defun brazuca-company-jedi-python-hook ()
-    (add-to-list 'company-backends 'company-jedi))
+    (add-to-list 'company-backends 'company-jedi)
+    (setq fill-column 132))
   (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
-;;
-;; Flymake Settings
-;;
-(require 'flymake)
-(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
 
 ;;
 ;; Golang support
@@ -118,6 +117,11 @@
 (use-package company-go
   :after go-mode
   :ensure t)
+(use-package dap-mode
+  :after company-go
+  :ensure t)
+(dap-mode 1)
+(require 'dap-dlv-go)
 
 ;;
 ;; Operating system dependent settings
@@ -198,7 +202,7 @@
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
-
+(setq python-fill-docstring-style 'django)
 ;;
 ;; C preferences
 ;;
