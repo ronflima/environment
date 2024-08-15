@@ -29,6 +29,8 @@
 ;; MELPA support and package customizations
 ;;
 (require 'package)
+
+;;; Code:
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
@@ -70,11 +72,10 @@
 ;;
 ;; LSP and Pyright modes
 ;;
-(use-package lsp-mode
+(use-package lsp-mode :ensure t)
+(use-package lsp-ui
   :ensure t
-  :hook ((python-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp))
+  :after lsp-mode)
 (use-package lsp-pyright
   :after lsp-mode
   :ensure t
@@ -107,22 +108,8 @@
     (add-to-list 'company-backends 'company-jedi)
     (setq fill-column 132))
   (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
-
-;;
-;; Golang support
-;;
-(use-package go-mode
-  :after company
-  :ensure t)
-(use-package company-go
-  :after go-mode
-  :ensure t)
-(use-package dap-mode
-  :after company-go
-  :ensure t)
-(dap-mode 1)
-(require 'dap-dlv-go)
-
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 ;;
 ;; Operating system dependent settings
 ;;
@@ -203,15 +190,25 @@
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 (setq python-fill-docstring-style 'django)
+(add-hook 'python-mode-hook #'lsp-deferred)
+
 ;;
 ;; C preferences
 ;;
 (setq c-default-style "gnu")
 
 ;;
-;; Go preferences
+;; Golang preferences
 ;;
-(add-hook 'go-mode-hook 'lsp-deferred)
+(use-package lsp-go :after lsp-mode)
+(use-package go-mode
+  :after lsp-mode
+  :ensure t)
+(add-hook 'go-mode-hook #'lsp-deferred)
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;;
 ;; Modes
