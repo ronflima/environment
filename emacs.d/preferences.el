@@ -72,7 +72,7 @@
 ;;
 ;; LSP and Pyright modes
 ;;
-(use-package lsp-mode :ensure t)
+(use-package lsp-mode :ensure t :config (setq warning-minimum-level ':error))
 (use-package lsp-ui
   :ensure t
   :after lsp-mode)
