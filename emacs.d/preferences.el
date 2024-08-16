@@ -29,6 +29,8 @@
 ;; MELPA support and package customizations
 ;;
 (require 'package)
+
+;;; Code:
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
@@ -70,17 +72,20 @@
 ;;
 ;; LSP and Pyright modes
 ;;
-(use-package lsp-mode
+(use-package lsp-mode :ensure t :config (setq warning-minimum-level ':error))
+(use-package lsp-ui
   :ensure t
-  :hook ((python-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp))
+  :after lsp-mode)
 (use-package lsp-pyright
   :after lsp-mode
   :ensure t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))
+(use-package flycheck
+  :after lsp-mode
+  :ensure t
+  :config (global-flycheck-mode))
 (use-package company
   :after lsp-pyright
   :ensure t
@@ -91,7 +96,7 @@
   (:map lsp-mode-map
         ("<tab>" . company-indent-or-complete-common))
   :config
-  (add-hook 'after-init-hook 'global-company-mode)        
+  (add-hook 'after-init-hook 'global-company-mode)
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -100,25 +105,11 @@
   :ensure t
   :config
   (defun brazuca-company-jedi-python-hook ()
-    (add-to-list 'company-backends 'company-jedi))
+    (add-to-list 'company-backends 'company-jedi)
+    (setq fill-column 132))
   (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
-;;
-;; Flymake Settings
-;;
-(require 'flymake)
-(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
-
-;;
-;; Golang support
-;;
-(use-package go-mode
-  :after company
-  :ensure t)
-(use-package company-go
-  :after go-mode
-  :ensure t)
-
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 ;;
 ;; Operating system dependent settings
 ;;
@@ -198,6 +189,8 @@
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
+(setq python-fill-docstring-style 'django)
+(add-hook 'python-mode-hook #'lsp-deferred)
 
 ;;
 ;; C preferences
@@ -205,9 +198,17 @@
 (setq c-default-style "gnu")
 
 ;;
-;; Go preferences
+;; Golang preferences
 ;;
-(add-hook 'go-mode-hook 'lsp-deferred)
+(use-package lsp-go :after lsp-mode)
+(use-package go-mode
+  :after lsp-mode
+  :ensure t)
+(add-hook 'go-mode-hook #'lsp-deferred)
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;;
 ;; Modes
