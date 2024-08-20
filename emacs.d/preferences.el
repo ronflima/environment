@@ -78,10 +78,7 @@
   :after lsp-mode)
 (use-package lsp-pyright
   :after lsp-mode
-  :ensure t
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))
+  :ensure t)
 (use-package flycheck
   :after lsp-mode
   :ensure t
@@ -190,7 +187,7 @@
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 (setq python-fill-docstring-style 'django)
-(add-hook 'python-mode-hook #'lsp-deferred)
+(add-hook 'python-mode-hook #'lsp)
 
 ;;
 ;; C preferences
@@ -203,6 +200,9 @@
 (use-package lsp-go :after lsp-mode)
 (use-package go-mode
   :after lsp-mode
+  :ensure t)
+(use-package go-dlv
+  :after go-mode
   :ensure t)
 (add-hook 'go-mode-hook #'lsp-deferred)
 (defun lsp-go-install-save-hooks ()
@@ -300,6 +300,7 @@
 ;;
 ;; Org Mode
 ;;
+(setq org-support-shift-select t)
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
 (setq org-log-done 'time)
