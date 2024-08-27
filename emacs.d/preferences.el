@@ -300,7 +300,7 @@
 ;;
 ;; Org Mode
 ;;
-(setq org-support-shift-select t)
+(setq org-duration-format 'h:mm)
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
 (setq org-log-done 'time)
