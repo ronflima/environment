@@ -78,10 +78,7 @@
   :after lsp-mode)
 (use-package lsp-pyright
   :after lsp-mode
-  :ensure t
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))
+  :ensure t)
 (use-package flycheck
   :after lsp-mode
   :ensure t
@@ -110,6 +107,13 @@
   (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
+;;
+;; SQL Indentation
+;;
+(use-package sql-indent
+  :ensure t)
+(setq sql-mode-hook 'sqlind-minor-mode)
 ;;
 ;; Operating system dependent settings
 ;;
@@ -190,7 +194,7 @@
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 (setq python-fill-docstring-style 'django)
-(add-hook 'python-mode-hook #'lsp-deferred)
+(add-hook 'python-mode-hook #'lsp)
 
 ;;
 ;; C preferences
@@ -204,12 +208,15 @@
 (use-package go-mode
   :after lsp-mode
   :ensure t)
+(use-package go-dlv
+  :after go-mode
+  :ensure t)
 (add-hook 'go-mode-hook #'lsp-deferred)
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-
+(add-hook 'go-mode-hook 'display-line-numbers-mode)
 ;;
 ;; Modes
 ;;
@@ -300,6 +307,7 @@
 ;;
 ;; Org Mode
 ;;
+(setq org-duration-format 'h:mm)
 (setq org-todo-keywords
       '((sequence "TODO" "DOING" "|" "DONE")))
 (setq org-log-done 'time)
