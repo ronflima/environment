@@ -11,3 +11,4 @@
 (load-library "org-skel.el")
 (load-library "python-skel.el")
 (load-library "sql-skel.el")
+(load-library "go-skel.el")
