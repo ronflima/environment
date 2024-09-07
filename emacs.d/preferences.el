@@ -179,7 +179,7 @@
                           ("\\.py$"        . brazuca-python-module)
                           ("\\.sql$"       . skel-sql-file)
                           ("\\.org$"       . brazuca-org-file)
-                          ("\\.go\\'" . go-mode)))
+                          ("\\.go\\'"      . brazuca-golang-skeleton)))
 
 ;;
 ;; Javascript preferences
