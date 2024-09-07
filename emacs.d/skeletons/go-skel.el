@@ -29,7 +29,7 @@
   "Golang skeleton"
   \n
   > "// -*-mode:go;encoding:utf-8-*-" \n
-  > "// Copyright (c)" (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All Rights Reserved" \n 
+  > "// Copyright (c) " (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All Rights Reserved" \n 
   > "//" \n
   > "// Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "//" \n

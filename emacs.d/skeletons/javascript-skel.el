@@ -3,7 +3,6 @@
 (define-skeleton node-new-file
   "New node javascript file"
   > "/* -*-javascript-*- */" \n
-  > "//" \n
   > "// Copyright (c) " (format-time-string "%Y") " - " _ user-company-name _ " - All rights Reserved" \n
   > "//" \n
   > "// *DISCLAIMER*" \n
@@ -24,7 +23,6 @@
 (define-skeleton node-router
   "Node controller"
   > "/* -*-javascript-*- */" \n
-  > "//" \n
   > "// Copyright (c) " _ (format-time-string "%Y") _ " - " _ user-company_name _ " - All rights Reserved" \n
   > "//" \n
   > "// *DISCLAIMER*" \n
@@ -67,7 +65,6 @@
 (define-skeleton js-mit
   "Open-source javascript file"
   > "// -*-javascript-*-" \n
-  > "//" \n
   > "// MIT License" \n
   > "//" \n
   > "// Copyright (c) " (format-time-string "%Y") _ "- " _ user-company-name _ " - All rights reserved." _ \n
