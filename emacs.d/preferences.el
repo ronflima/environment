@@ -37,6 +37,7 @@
 (require 'calendar)
 (require 'dired-x)
 (require 'vc-dir)
+(use-package direnv :ensure t :config (direnv-mode))
 (use-package load-env-vars :ensure t)
 (use-package ido
   :ensure t
