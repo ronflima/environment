@@ -45,6 +45,7 @@ alias emacs='Emacs -nw'
 alias gpycls='get_py_elem ^class'
 alias gpyfns='get_py_elem ^def'
 alias rptpy='report_py_elems'
+alias dk=docker
 alias dkc='docker compose'
 
 # Homebrew & pyenv integration
