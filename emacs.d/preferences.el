@@ -38,7 +38,6 @@
 (require 'dired-x)
 (require 'vc-dir)
 (use-package direnv :ensure t :config (direnv-mode))
-(use-package load-env-vars :ensure t)
 (use-package ido
   :ensure t
   :config
@@ -48,14 +47,6 @@
 (use-package ssh :ensure t)
 (use-package graphviz-dot-mode :ensure t)
 (use-package markdown-mode :ensure t)
-(use-package virtualenvwrapper
-  :ensure t
-  :config
-  (setq venv-location (expand-file-name "~/.virtualenvs"))
-  (if (not (file-directory-p venv-location))
-      (make-directory venv-location))
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
 (use-package web-mode :ensure t :config
   (defun brazuca-mode-hook ()
     "Hooks for Web mode."
@@ -218,6 +209,9 @@
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 (add-hook 'go-mode-hook 'display-line-numbers-mode)
+(defun brazuca-go-prefs()
+  (setq fill-column 132))
+(add-hook 'go-mode-hook 'brazuca-go-prefs)
 ;;
 ;; Modes
 ;;
@@ -229,10 +223,13 @@
 (setq display-time-default-load-average nil)
 (setq display-time-format "%H:%M %d/%m/%Y")
 (setq epg-pinentry-mode 'loopback)
-(setq fill-column 132)
 (setq line-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+
+(defun brazuca-text-mode-hook()
+  (setq fill-column 132))
+(add-hook 'text-mode-hook 'brazuca-text-mode-hook)
 
 ;;
 ;; Visuals
@@ -317,7 +314,9 @@
 (setq org-confirm-babel-evaluate #'org-confirm-babel-evaluate-dot-code)
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
-
+(defun brazuca-org-mode-hook()
+  (setq fill-column 132))
+(add-hook 'org-mode-hook 'brazuca-org-mode-hook)
 ;;
 ;; Useful functions
 ;;

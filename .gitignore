@@ -15,7 +15,10 @@ elpa/
 var/
 
 # Emacs stuff
-./
+.cache
+.emacs.desktop
+.emacs.desktop.lock 
+.lsp-session*
 .python-environments
 \#ido.last\#
 abbrevs.el
@@ -24,9 +27,8 @@ bookmarks
 eln-cache
 emacs.d/customizations.el
 emacs.d/projects
+emacs.d/url
 git-command
 ido.last
 network-security.data
 tramp
-.lsp-session*
-.cache
