@@ -379,6 +379,7 @@
          ("-d" "brazilian")
          nil
          utf-8)))
+;;
 ;; Keymaps
 ;;
 (global-set-key "%"  'match-paren)
@@ -391,3 +392,5 @@
 (global-set-key [home] 'beginning-of-line)
 
 (server-start)
+
+

@@ -2,7 +2,7 @@
 #
 # MIT License
 #
-# Copyright (c) 2019 Ronaldo F. Lima
+# Copyright (c) 2025 Ronaldo F. Lima
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,4 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-if [ ! -f $HOME/.rvm ]
-then
-    gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    \curl -sSL https://get.rvm.io | bash -s stable --ruby
-fi
+curl -fsSL https://get.jetify.com/devbox | bash
