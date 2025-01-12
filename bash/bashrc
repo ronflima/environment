@@ -141,10 +141,3 @@ then
 fi
 
 export GPG_TTY=$(tty)
-
-# Virtual Env. VIRTUAL_ENV is set by emacs if a virtual environment
-# was set
-if [ -f $VIRTUAL_ENV/bin/activate ]
-then
-    . $VIRTUAL_ENV/bin/activate
-fi
