@@ -32,7 +32,7 @@ make gcc g++ git gnupg2 pinentry-gtk2 curl
 wget postgresql openssl zip unzip bzip2 graphviz openssl libffi-dev
 libssl-dev libreadline-dev libsqlite3-dev sqlite3 libcairo2-dev ffmpeg
 libbluetooth-dev tk-dev uuid-dev lzma-dev liblzma-dev libbz2-dev clang
-ca-certificates ispell iamerican ienglish-common ibrazilian
+ca-certificates ispell iamerican ienglish-common ibrazilian direnv
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
