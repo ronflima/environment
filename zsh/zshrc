@@ -51,7 +51,7 @@ function rmdki() {
 # Aliases
 alias ll='ls -lpF'
 alias l='ll -a'
-alias lsdki="docker image ls --format '{{ .ID }}'"
+alias lsdki="docker image ls --format '{{ .Repository }}@{{ .Tag }}'"
 alias emacs='Emacs -nw'
 alias gpycls='get_py_elem ^class'
 alias gpyfns='get_py_elem ^def'
