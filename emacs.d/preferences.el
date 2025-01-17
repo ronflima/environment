@@ -60,11 +60,13 @@
   (add-to-list 'auto-mode-alist '("\\.mustache\\'"  . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'"    . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'"      . web-mode)))
-
+(use-package csv-mode :ensure t)
 ;;
 ;; LSP and Pyright modes
 ;;
 (use-package lsp-mode :ensure t :config (setq warning-minimum-level ':error))
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.venv\\'"))
 (use-package lsp-ui
   :ensure t
   :after lsp-mode)
@@ -84,8 +86,6 @@
         ("<tab>" . company-complete-selection))
   (:map lsp-mode-map
         ("<tab>" . company-indent-or-complete-common))
-  :config
-  (add-hook 'after-init-hook 'global-company-mode)
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))

@@ -38,9 +38,20 @@ function report_py_elems() {
     done 
 }
 
+#
+# Remove all docker images
+#
+function rmdki() {
+    for a in `docker image ls --format '{{ .ID }}'`
+    do
+        docker rmi $a
+    done
+}
+
 # Aliases
 alias ll='ls -lpF'
-alias l='ll -a'  
+alias l='ll -a'
+alias lsdki="docker image ls --format '{{ .Repository }}@{{ .Tag }}'"
 alias emacs='Emacs -nw'
 alias gpycls='get_py_elem ^class'
 alias gpyfns='get_py_elem ^def'
@@ -48,12 +59,8 @@ alias rptpy='report_py_elems'
 alias dk=docker
 alias dkc='docker compose'
 
-# Homebrew & pyenv integration
+# Homebrew 
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # Path
 export PATH=/opt/homebrew/bin:/Applications/Emacs.app/Contents/MacOS:"$PATH"
@@ -70,12 +77,6 @@ export GPG_TTY=$(tty)
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-# Virtual Env
-if [ -f $VIRTUAL_ENV/bin/activate ]
-then
-    . $VIRTUAL_ENV/bin/activate
-fi
 
 if [ -f ~/.zsh_customizations ]
 then
