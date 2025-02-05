@@ -11,3 +11,19 @@
   "{% endcomment %}" \n \n
   "{% load i18n %}" \n
  )
+(define-skeleton django-html-form
+  "Django HTML form for Django templates"
+  \n
+  > "<form method=\"post\" class=\"w-25 mx-auto border border-primary-subtle rounded p-4 shadow\">" \n
+  > "{% csrf_token %}" \n
+  > "<div class=\"container-fluid\">" \n
+  > "{% include \"form.html\" %}" \n
+  > "</div>" \n
+  > "<div class=\"container-fluid mt-2 text-center\">" \n
+  > "<button class=\"btn btn-primary\" type=\"submit\">{% translate \"Entrar\" %}</button>" \n
+  > "</div>" \n
+  > "<div class=\"container-fluid mt-2\">"
+  > "<a href=\"{% url 'password_reset' %}\" class=\"link-secondary\">{% translate \"Esqueci minha senha\" %}</a>" \n
+  > "</div>" \n
+  > "</form>" \n
+  )
