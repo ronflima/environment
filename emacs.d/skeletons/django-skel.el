@@ -20,10 +20,7 @@
   > "{% include \"form.html\" %}" \n
   > "</div>" \n
   > "<div class=\"container-fluid mt-2 text-center\">" \n
-  > "<button class=\"btn btn-primary\" type=\"submit\">{% translate \"Entrar\" %}</button>" \n
-  > "</div>" \n
-  > "<div class=\"container-fluid mt-2\">"
-  > "<a href=\"{% url 'password_reset' %}\" class=\"link-secondary\">{% translate \"Esqueci minha senha\" %}</a>" \n
+  > "<button class=\"btn btn-primary\" type=\"submit\">{% translate \"" (skeleton read "Button label: ") "\" %}</button>" \n
   > "</div>" \n
   > "</form>" \n
   )
