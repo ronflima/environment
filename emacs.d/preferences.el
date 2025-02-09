@@ -99,7 +99,7 @@
   (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
+(use-package lorem-ipsum :ensure t)
 ;;
 ;; SQL Indentation
 ;;
