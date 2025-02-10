@@ -181,6 +181,7 @@
 ;;
 ;; Python Preferences
 ;;
+(use-package py-autopep8 :ensure t :hook ((python-mode) . py-autopep8-mode))
 (use-package py-isort :ensure t :config (add-hook 'before-save-hook 'py-isort-before-save))
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
@@ -317,6 +318,9 @@
 (defun brazuca-org-mode-hook()
   (setq fill-column 132))
 (add-hook 'org-mode-hook 'brazuca-org-mode-hook)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)))
 ;;
 ;; Useful functions
 ;;
