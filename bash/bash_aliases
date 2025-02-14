@@ -19,6 +19,8 @@ alias kct=kubectl
 alias gitcfg='git config user.name Ronaldo\ Faria\ Lima && git config user.email ronaldo@brazuca.dev'
 alias ll='ls -lpF'
 alias l='ls -CFa'
+alias dkc='docker compose'
+alias dk='docker'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
