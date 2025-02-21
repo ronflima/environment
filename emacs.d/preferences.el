@@ -61,6 +61,7 @@
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'"    . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'"      . web-mode)))
 (use-package csv-mode :ensure t)
+
 ;;
 ;; LSP and Pyright modes
 ;;
@@ -91,21 +92,18 @@
   (company-idle-delay 0.0))
 (use-package company-jedi
   :after company
-  :ensure t
-  :config
-  (defun brazuca-company-jedi-python-hook ()
-    (add-to-list 'company-backends 'company-jedi)
-    (setq fill-column 132))
-  (add-hook 'python-mode-hook 'brazuca-company-jedi-python-hook))
+  :ensure t)
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 (use-package lorem-ipsum :ensure t)
+
 ;;
 ;; SQL Indentation
 ;;
 (use-package sql-indent
   :ensure t)
 (setq sql-mode-hook 'sqlind-minor-mode)
+
 ;;
 ;; Operating system dependent settings
 ;;
@@ -188,7 +186,11 @@
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 (setq python-fill-docstring-style 'django)
 (add-hook 'python-mode-hook #'lsp)
-
+(defcustom brazuca-python-fill-column 132 "Fill column for Python" :type 'integer :require 'python-mode :group 'python)
+(defun brazuca-python-hook ()
+  (add-to-list 'company-backends 'company-jedi)
+  (setq fill-column brazuca-python-fill-column))
+(add-hook 'python-mode-hook 'brazuca-python-hook)
 ;;
 ;; C preferences
 ;;
