@@ -186,11 +186,7 @@
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 (setq python-fill-docstring-style 'django)
 (add-hook 'python-mode-hook #'lsp)
-(defcustom brazuca-python-fill-column 132 "Fill column for Python" :type 'integer :require 'python-mode :group 'python)
-(defun brazuca-python-hook ()
-  (add-to-list 'company-backends 'company-jedi)
-  (setq fill-column brazuca-python-fill-column))
-(add-hook 'python-mode-hook 'brazuca-python-hook)
+
 ;;
 ;; C preferences
 ;;
