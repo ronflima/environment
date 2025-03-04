@@ -48,6 +48,7 @@
 (use-package graphviz-dot-mode :ensure t)
 (use-package markdown-mode :ensure t)
 (use-package mermaid-mode :ensure t)
+(use-package ob-mermaid :ensure t :after mermaid-mode)
 (use-package web-mode :ensure t :config
   (defun brazuca-mode-hook ()
     "Hooks for Web mode."
@@ -319,7 +320,9 @@
 (add-hook 'org-mode-hook 'brazuca-org-mode-hook)
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((dot . t)))
+ '((dot . t)
+   (mermaid . t)
+   (scheme . t)))
 ;;
 ;; Useful functions
 ;;
