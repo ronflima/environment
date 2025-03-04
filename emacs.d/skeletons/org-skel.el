@@ -41,6 +41,6 @@
   "|Working Time||" \n
   "|-" \n
   "| Total||" \n
-  "#+TBLFM: @2$2=reference(clocktable,@2$2);T" \n
+  "#+TBLFM: @2$2=remote(clocktable,@2$2);T" \n
   "* Detailed Week Work" \n \n
   > (brazuca-workdays) \n)
