@@ -47,6 +47,7 @@
 (use-package ssh :ensure t)
 (use-package graphviz-dot-mode :ensure t)
 (use-package markdown-mode :ensure t)
+(use-package mermaid-mode :ensure t)
 (use-package web-mode :ensure t :config
   (defun brazuca-mode-hook ()
     "Hooks for Web mode."
