@@ -28,4 +28,4 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-curl -fsSL https://get.jetify.com/devbox | sudo bash
+sudo curl -fsSL https://get.jetify.com/devbox | bash
