@@ -24,6 +24,7 @@
   "# Purpose: " _ (skeleton-read "This file purpose: ") \n
   "#+OPTIONS: toc:nil" \n \n
   "* Time Report" \n \n
+  "Client: " (skeleton-read "Client: ") \n
   "This time report is for the following period:" \n \n
   "- Starting at " \n
   > "- Ending at " \n \n
