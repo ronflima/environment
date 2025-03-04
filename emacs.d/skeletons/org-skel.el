@@ -26,13 +26,13 @@
   "* Time Report" \n \n
   "This time report is for the following period:" \n \n
   "- Starting at " \n
-  "- Ending at " \n \n
+  > "- Ending at " \n \n
   "The following table summarizes the worked hours." \n
-  "#+BEGIN: clocktable :scope file :maxlevel 2 :header \"+NAME: clocktable\\n\"" \n
+  "#+BEGIN: clocktable :scope file :maxlevel 2 :header \"#+NAME: clocktable\\n\"" \n
   "#+CAPTION: Time Summary" \n
   "#+END:" \n
   \n \n
-  "** Billable hours" \n
+  "** Billable hours" \n \n
   "#+TBLNAME:billablehours" \n
   "|-" \n
   "|Description|Time|" \n
@@ -40,6 +40,6 @@
   "|Working Time||" \n
   "|-" \n
   "| Total||" \n
-  "#+TBLFM: @2$2=@2$2-@3$2;T" \n
-  "* Detailed Week Work" \n
+  "#+TBLFM: @2$2=reference(clocktable,@2$2);T" \n
+  "* Detailed Week Work" \n \n
   > (brazuca-workdays) \n)
