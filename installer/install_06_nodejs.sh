@@ -29,4 +29,4 @@
 #
 
 sudo apt-get install nodejs npm
-npm install -g @mermaid-js/mermaid-cli
+sudo npm install -g @mermaid-js/mermaid-cli
