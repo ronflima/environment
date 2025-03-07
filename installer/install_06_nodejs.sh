@@ -28,5 +28,5 @@
 # Author: <Ronaldo Faria Lima> ronaldo@brazuca.dev
 #
 
-sudo apt-get install nodejs npm
+sudo apt-get install nodejs npm -y
 sudo npm install -g @mermaid-js/mermaid-cli
