@@ -34,7 +34,7 @@ echo "Installing emacs..."
 is_debian 
 if [ $? -eq 1 ]
 then 
-    sudo echo "deb http://http.us.debian.org/debian stable main non-free" >> /etc/apt/sources.list
+    echo "deb http://http.us.debian.org/debian stable main non-free" | sudo tee -a /etc/apt/sources.list.d/emacs.sources  > /dev/null
 fi
 sudo apt-get install -y emacs emacs-common-non-dfsg
 
