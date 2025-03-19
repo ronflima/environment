@@ -365,13 +365,6 @@
     See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
-;;
-;; User related customizations
-;;
-(defcustom user-company-name (user-full-name)
-  "User company name for copyright statements. Defaults to user-full-name"
-  :type 'string
-  :group 'user)
 
 ;;
 ;; ispell
