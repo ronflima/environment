@@ -397,6 +397,18 @@
 (global-set-key [end] 'end-of-line)
 (global-set-key [home] 'beginning-of-line)
 
-(server-start)
-
+;; Customizable variables
+(defgroup brazuca-customizations nil "Brazuca customizations group")
+(defcustom user-full-name "Ronaldo Faria Lima"
+  "User full name, used in some skeletons"
+  :type 'string
+  :group 'brazuca-customizations)
+(defcustom user-company-name "Brazuca Studio"
+  "User company name"
+  :type 'string
+  :group 'brazuca-customizations)
+(defcustom user-mail-address "ronaldo@brazuca.dev"
+  "User main email address"
+  :type 'string
+  :group 'brazuca-customizations)
 
