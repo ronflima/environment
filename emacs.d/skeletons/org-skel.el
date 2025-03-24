@@ -27,7 +27,7 @@
   "Client: " (skeleton-read "Client: ") \n
   "This time report is for the following period:" \n \n
   "- Starting at " \n
-  > "- Ending at " \n \n
+  "- Ending at " \n \n
   "The following table summarizes the worked hours." \n
   "#+BEGIN: clocktable :scope file :maxlevel 2 :header \"#+NAME: clocktable\\n\"" \n
   "#+CAPTION: Time Summary" \n
@@ -41,6 +41,6 @@
   "|Working Time||" \n
   "|-" \n
   "| Total||" \n
-  "#+TBLFM: @2$2=remote(clocktable,@2$2);T" \n
+  "#+TBLFM: @2$2=remote(clocktable,@2$2);T::@3$2=@2$2;T" \n
   "* Detailed Week Work" \n \n
   > (brazuca-workdays) \n)
