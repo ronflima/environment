@@ -30,7 +30,6 @@
 ;;
 (require 'package)
 
-;;; Code:
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
@@ -63,6 +62,12 @@
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'"    . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'"      . web-mode)))
 (use-package csv-mode :ensure t)
+
+;;
+;; HTTP related tools
+;;
+(use-package verb :ensure t)
+(define-key org-mode-map (kbd "C-c C-r") verb-command-map)
 
 ;;
 ;; LSP and Pyright modes
