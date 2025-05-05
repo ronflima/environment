@@ -13,3 +13,5 @@
 (load-library "org-skel.el")
 (load-library "python-skel.el")
 (load-library "sql-skel.el")
+(load-library "terraform.el")
+(load-library "yaml.el")

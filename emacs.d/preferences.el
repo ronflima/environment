@@ -187,7 +187,8 @@
 ;; Python Preferences
 ;;
 (use-package py-autopep8 :ensure t :hook ((python-mode) . py-autopep8-mode))
-(use-package py-isort :ensure t :config (add-hook 'before-save-hook 'py-isort-before-save))
+(use-package py-isort :ensure t)
+(add-hook 'before-save-hook 'py-isort-before-save)
 (setq python-indent-offset 4)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
