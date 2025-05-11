@@ -4,6 +4,7 @@
 ;; 
 (load-library "c-skel.el")
 (load-library "django-skel.el")
+(load-library "dockerfile.el")
 (load-library "dot-skel.el")
 (load-library "go-skel.el")
 (load-library "html-skel.el")

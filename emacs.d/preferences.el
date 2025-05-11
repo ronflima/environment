@@ -62,7 +62,7 @@
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'"    . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'"      . web-mode)))
 (use-package csv-mode :ensure t)
-
+(use-package dockerfile-mode :ensure t)
 ;;
 ;; HTTP related tools
 ;;
@@ -184,18 +184,6 @@
 (setq js-indent-level 4)
 
 ;;
-;; Python Preferences
-;;
-(use-package py-autopep8 :ensure t :hook ((python-mode) . py-autopep8-mode))
-(use-package py-isort :ensure t)
-(add-hook 'before-save-hook 'py-isort-before-save)
-(setq python-indent-offset 4)
-(add-hook 'python-mode-hook 'hs-minor-mode)
-(add-hook 'python-mode-hook 'display-line-numbers-mode)
-(setq python-fill-docstring-style 'django)
-(add-hook 'python-mode-hook #'lsp)
-
-;;
 ;; C preferences
 ;;
 (setq c-default-style "gnu")
@@ -279,14 +267,6 @@
 ;;
 (setq abbrev-file-name (expand-file-name "abbrevs.el" user-emacs-directory))
 (setq abbrev-mode t)
-
-;;
-;; Dired customizations
-;;
-(setq dired-guess-shell-alist-user
-      '(("^manage.py$" "python * runserver")
-        ("\\.py$" "python")
-        ("^requirements.txt$" "pip install -r")))
 
 ;;
 ;; Tramp mode
@@ -411,3 +391,7 @@
   :type 'string
   :group 'brazuca-customizations)
 
+;; Local Libraries
+
+(add-to-list 'load-path (expand-file-name "customizations" user-emacs-directory))
+(load-library "python.el")
