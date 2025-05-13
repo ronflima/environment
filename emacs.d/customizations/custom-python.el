@@ -58,14 +58,12 @@
 (with-eval-after-load 'flycheck
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
-(use-package py-autopep8 :ensure t)
 (use-package py-isort :ensure t)
 (use-package pyvenv-auto :ensure t :hook ((python-mode . pyvenv-auto-run)))
 
 (add-hook 'python-mode-hook 'lsp)
 (add-hook 'python-mode-hook 'hs-minor-mode)
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
-(add-hook 'python-mode-hook 'py-autopep8-mode)
 (add-hook 'before-save-hook 'py-isort-before-save)
 
 (setq py-autopep8-options '("--max-line-length=132"))
