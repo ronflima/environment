@@ -63,46 +63,13 @@
   (add-to-list 'auto-mode-alist '("\\.html\\'"      . web-mode)))
 (use-package csv-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
+(use-package lorem-ipsum :ensure t)
+
 ;;
 ;; HTTP related tools
 ;;
 (use-package verb :ensure t)
 (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
-
-;;
-;; LSP and Pyright modes
-;;
-(use-package lsp-mode :ensure t :config (setq warning-minimum-level ':error))
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.venv\\'"))
-(use-package lsp-ui
-  :ensure t
-  :after lsp-mode)
-(use-package lsp-pyright
-  :after lsp-mode
-  :ensure t)
-(use-package flycheck
-  :after lsp-mode
-  :ensure t
-  :config (global-flycheck-mode))
-(use-package company
-  :after lsp-pyright
-  :ensure t
-  :hook (prog-mode . company-mode)
-  :bind
-  (:map company-active-map
-        ("<tab>" . company-complete-selection))
-  (:map lsp-mode-map
-        ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
-(use-package company-jedi
-  :after company
-  :ensure t)
-(with-eval-after-load 'flycheck
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-(use-package lorem-ipsum :ensure t)
 
 ;;
 ;; SQL Indentation
@@ -394,4 +361,5 @@
 ;; Local Libraries
 
 (add-to-list 'load-path (expand-file-name "customizations" user-emacs-directory))
-(load-library "python.el")
+(load-library (expand-file-name "init.el" (expand-file-name "customizations" user-emacs-directory)))
+
