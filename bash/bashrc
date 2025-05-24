@@ -105,6 +105,3 @@ then
 fi
 
 export GPG_TTY=$(tty)
-
-# Pins up devbox version (0.14.0 is crap)
-export DEVBOX_USE_VERSION=0.13.7
