@@ -88,15 +88,7 @@ fi
 umask 022
 export LIBGL_ALWAYS_INDIRECT=1
 export DISPLAY=:0
-export EDITOR=emacs
-
-if [ -v INSIDE_EMACS ]
-then
-    echo -e "Starting shell from EMACS\n"
-    export EDITOR=emacsclient
-    alias emacs=emacsclient
-    alias git='git --no-pager'
-fi
+export EDITOR=cursor
 
 if [ -v WSL_DISTRO_NAME ]
 then
@@ -105,3 +97,8 @@ then
 fi
 
 export GPG_TTY=$(tty)
+eval "$(devbox global shellenv)"
+
+if [ -f ~/.bashrc.local ]; then
+    . ~/.bashrc.local
+fi
