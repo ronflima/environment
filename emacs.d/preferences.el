@@ -124,8 +124,7 @@
   (setq shell-file-name "bash")
   (setenv "SHELL" shell-file-name)
   (setq exec-path (append exec-path '("/usr/local/bin")))
-  (setq explicit-bash-args '("--noediting" "--login" "-i"))
-  (exec-path-from-shell-initialize)))
+  (setq explicit-bash-args '("--noediting" "--login" "-i"))))
 
 ;;
 ;; Skelletons
