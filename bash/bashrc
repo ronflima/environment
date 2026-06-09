@@ -97,7 +97,6 @@ then
 fi
 
 export GPG_TTY=$(tty)
-eval "$(devbox global shellenv)"
 
 if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
