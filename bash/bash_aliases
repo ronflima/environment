@@ -14,11 +14,13 @@ function mn(){
     fi
 }
 
-function raids() {
-    if [ -d ~/projetos/raids ]
-    then
-        cd ~/projetos/raids
-    fi
+# Stops all running docker containers
+function dkstop() {
+    for a in `docker ps --format '{{ .ID }}'`
+    do
+        docker stop $a
+        echo "Container $a stopped"
+    done
 }
 
 alias pipupg='pip install --upgrade pip && pip install wheel'
@@ -39,3 +41,4 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
