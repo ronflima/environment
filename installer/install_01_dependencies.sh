@@ -26,20 +26,15 @@
 #
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
-BASE_PACKAGES="software-properties-common zlibc libbz2-dev dbus-x11 tk-dev x11-xkb-utils lsb-release"
 read -r -d '' PACKAGES<<PKG
-make gcc g++ git gnupg2 pinentry-gtk2 curl
-wget postgresql libpq-dev openssl zip unzip bzip2 graphviz openssl libffi-dev
-libssl-dev libreadline-dev libsqlite3-dev sqlite3 libcairo2-dev ffmpeg
-libbluetooth-dev tk-dev uuid-dev lzma-dev liblzma-dev libbz2-dev clang
-ca-certificates ispell iamerican ienglish-common ibrazilian direnv
+make gcc g++ git gnupg2 curl
+wget zip unzip bzip2 graphviz openssl 
+libssl-dev libreadline-dev libsqlite3-dev sqlite3
+ca-certificates direnv
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
 then
-    sudo apt-get update
-    sudo apt-get install -y $BASE_PACKAGES
-    sudo apt-add-repository non-free
     sudo apt-get update
     sudo apt-get install -y $PACKAGES
 fi
