@@ -64,6 +64,7 @@
 (use-package csv-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package lorem-ipsum :ensure t)
+(use-package devcontainer :ensure t)
 
 ;;
 ;; HTTP related tools
