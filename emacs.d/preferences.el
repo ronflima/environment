@@ -75,8 +75,7 @@
 ;;
 ;; SQL Indentation
 ;;
-(use-package sql-indent
-  :ensure t)
+(use-package sql-indent :ensure t)
 (setq sql-mode-hook 'sqlind-minor-mode)
 
 ;;
@@ -174,6 +173,7 @@
 (defun brazuca-go-prefs()
   (setq fill-column 132))
 (add-hook 'go-mode-hook 'brazuca-go-prefs)
+
 ;;
 ;; Modes
 ;;
@@ -239,6 +239,7 @@
 ;; Tramp mode
 ;;
 (setq tramp-default-method "ssh")
+(setq tramp-default-remote-shell "/bin/bash")
 
 ;;
 ;; SSH customizations
@@ -276,6 +277,7 @@
  '((dot . t)
    (mermaid . t)
    (scheme . t)))
+
 ;;
 ;; Useful functions
 ;;
