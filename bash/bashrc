@@ -93,6 +93,13 @@ if [ -v WSL_DISTRO_NAME ]
 then
     # Pulse audio in WSL2
     export PULSE_SERVER="/mnt/wslg/PulseServer"
+    # Define local WSL2 GPG socket location
+    export GPG_AGENT_SOCK="$HOME/.gnupg/S.gpg-agent"
+
+    # Remove the existing local socket if it exists so we can override it
+    if [ -S "$GPG_AGENT_SOCK" ]; then
+        rm -f "$GPG_AGENT_SOCK"
+    fi
 fi
 
 export GPG_TTY=$(tty)
@@ -100,3 +107,4 @@ export GPG_TTY=$(tty)
 if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
+export XKB_DEFAULT_LAYOUT="br"
