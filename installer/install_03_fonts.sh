@@ -28,5 +28,7 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
-sudo cp $INSTALLER_DIR/Monaco.ttf /usr/local/share/fonts
+FONT=SourceCodePro-Regular.ttf
+
+sudo cp $INSTALLER_DIR/$FONT /usr/local/share/fonts
 sudo fc-cache -fv
