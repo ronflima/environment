@@ -86,11 +86,11 @@
  ;; Windows
  ((string-equal system-type "windows-nt")
   (global-set-key [f2] 'powershell)
-  (set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'regular))
+  (set-face-attribute 'default nil :family "SourceCodePro" :height 140 :weight 'regular))
  
  ;; MacOS
  ((string-equal system-type "darwin")
-  (set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'normal)
+  (set-face-attribute 'default nil :family "SourceCodePro" :height 140 :weight 'normal)
   (setq mac-allow-anti-aliasing t)
   (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
   (use-package exec-path-from-shell :ensure t :config (exec-path-from-shell-initialize))
@@ -116,7 +116,7 @@
 
  ;; Linux
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :family "Monaco" :height 140 :weight 'regular)
+  (set-face-attribute 'default nil :family "SourceCodePro" :height 140 :weight 'regular)
   (setq dired-listing-switches "-aBhl --group-directories-first")
   ;; Support to inferior shell
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
