@@ -27,6 +27,7 @@ bookmarks
 eln-cache
 emacs.d/customizations.el
 emacs.d/projects
+emacs.d/transient
 emacs.d/url
 git-command
 ido.last
