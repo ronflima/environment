@@ -27,10 +27,36 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 read -r -d '' PACKAGES<<PKG
-make gcc g++ git gnupg2 curl
-wget zip unzip bzip2 graphviz openssl 
-libssl-dev libreadline-dev libsqlite3-dev sqlite3
-ca-certificates direnv
+build-essential 
+bzip2
+ca-certificates
+curl
+direnv
+g++
+gcc
+git
+gnupg2
+graphviz
+libbz2-dev 
+libdb5.3-dev 
+libexpat1-dev 
+libffi-dev 
+libgdbm-dev 
+liblzma-dev 
+libncurses-dev 
+libreadline-dev 
+libsqlite3-dev 
+libssl-dev 
+make
+openssl 
+pkg-config
+sqlite3
+tk-dev 
+unzip
+uuid-dev 
+wget
+zip
+zlib1g-dev 
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
