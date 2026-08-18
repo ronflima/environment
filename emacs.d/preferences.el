@@ -1,7 +1,7 @@
 ;; Emacs Customizations
 ;; MIT License
 ;;
-;; Copyright (c) 2019 Ronaldo F. Lima <ronaldo@brazuca.dev>
+;; Copyright (c) 2026 Ronaldo F. Lima <ronaldo@brazuca.dev>
 ;;
 ;; Permission is hereby granted, free of charge, to any person
 ;; obtaining a copy of this software and associated documentation
@@ -66,6 +66,8 @@
 (use-package lorem-ipsum :ensure t)
 (use-package devcontainer :ensure t)
 (use-package docker :ensure t)
+(use-package pyvenv-auto :ensure t
+  :hook ((python-mode . pyvenv-auto-run)))
 
 ;;
 ;; HTTP related tools
@@ -156,11 +158,41 @@
 (setq c-default-style "gnu")
 
 ;;
+;; Eglot setup
+;;
+(use-package eglot
+  :ensure t
+  :hook ((python-mode . eglot-ensure)
+         (go-mode . eglot-ensure))
+  :config
+  (add-to-list 'eglot-server-programs
+               '(python-mode . ("pyright-langserver" "--stdio"))))
+
+;;
+;; Python Preferences
+;;
+(use-package pyenv-mode
+  :ensure t
+  :after eglot
+  :init
+  (add-to-list 'exec-path "~/.pyenv/shims")
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
+  :config
+  (pyenv-mode))
+(use-package pyconf
+  :ensure t)
+(defalias 'workon 'pyvenv-workon)
+(use-package python-black
+  :ensure t
+  :demand t
+  :after python
+  :hook ((python-mode . python-black-on-save-mode)))
+
+;;
 ;; Golang preferences
 ;;
-(use-package lsp-go :after lsp-mode)
 (use-package go-mode
-  :after lsp-mode
+  :after eglot
   :ensure t)
 (use-package go-dlv
   :after go-mode
@@ -178,21 +210,20 @@
 ;;
 ;; Modes
 ;;
+(defun brazuca-text-mode-hook()
+  (setq fill-column 132))
 (add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'text-mode-hook 'brazuca-text-mode-hook)
 (auto-fill-mode 1)
 (display-time-mode 1)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (put 'erase-buffer 'disabled nil)
 (setq column-number-mode t)
 (setq display-time-default-load-average nil)
 (setq display-time-format "%H:%M %d/%m/%Y")
 (setq epg-pinentry-mode 'loopback)
-(setq line-number-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-
-(defun brazuca-text-mode-hook()
-  (setq fill-column 132))
-(add-hook 'text-mode-hook 'brazuca-text-mode-hook)
 
 ;;
 ;; Visuals
@@ -209,7 +240,7 @@
   (set-face-foreground 'default "black"))
 (brazuca-dark-mode) ;; Prefer the dark theme. But this can get
                     ;; customized at customizations.el
-(add-to-list 'default-frame-alist '(height . 40))
+(add-to-list 'default-frame-alist '(height . 30))
 (add-to-list 'default-frame-alist '(width . 120))
 (global-auto-revert-mode 1)
 (menu-bar-mode -1)
