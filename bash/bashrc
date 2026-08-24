@@ -101,3 +101,4 @@ if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
 export XKB_DEFAULT_LAYOUT="br"
+export PATH=$PATH:~/.local/bin
