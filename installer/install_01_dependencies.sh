@@ -55,8 +55,9 @@ tk-dev
 unzip
 uuid-dev 
 wget
+x11-xkb-utils
 zip
-zlib1g-dev 
+zlib1g-dev
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
