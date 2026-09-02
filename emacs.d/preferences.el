@@ -168,42 +168,6 @@
   (add-to-list 'eglot-server-programs
                '(python-mode . ("pyright-langserver" "--stdio"))))
 ;;
-;; Python Preferences
-;;
-(use-package pyenv-mode
-  :ensure t
-  :after eglot
-  :init
-  (add-to-list 'exec-path "~/.pyenv/shims")
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
-  :config
-  (pyenv-mode))
-(use-package pyconf
-  :ensure t)
-(defalias 'workon 'pyvenv-workon)
-(use-package python-black
-  :ensure t
-  :demand t
-  :after python
-  :hook ((python-mode . python-black-on-save-mode)))
-(use-package dape
-  :ensure t
-  :config
-  ;; Devcontainer configs
-  (add-to-list 'dape-configs
-               `(python-devcontainer
-                 modes (python-mode python-ts-mode)
-                 ensure (lambda (config)
-                          ;; Sobrescreve a porta/conexão do depurador
-                          dape-ensure-command-selected)
-                 command "devcontainer"
-                 command-args ("exec" "--workspace-folder" "." "python" "-m" "debugpy" "--listen" "5678" "--wait-for-client")
-                 host "localhost"
-                 port 5678
-                 :type "python"
-                 :request "attach"
-                 :pathMappings [(:localRoot dape-cwd :remoteRoot "/workspace")])))
-;;
 ;; Golang preferences
 ;;
 (use-package go-mode
