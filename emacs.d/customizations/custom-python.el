@@ -25,51 +25,83 @@
 ;;
 ;; Note: This requires emacs 29 or newer.
 
-
-(use-package lsp-mode :ensure t :config (setq warning-minimum-level ':error))
-(use-package lsp-pyright :after lsp-mode :ensure t)
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.venv\\'"))
-(use-package lsp-ui
+(use-package pyenv-mode
   :ensure t
-  :after lsp-mode)
-(use-package lsp-pyright
-  :after lsp-mode
+  :after eglot
+  :init
+  (add-to-list 'exec-path "~/.pyenv/shims")
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
+  :config
+  (pyenv-mode))
+(use-package pyconf
   :ensure t)
-(use-package flycheck
-  :after lsp-mode
+(defalias 'workon 'pyvenv-workon)
+(use-package python-black
   :ensure t
-  :config (global-flycheck-mode))
-(use-package company
-  :after lsp-pyright
+  :demand t
+  :after python
+  :hook ((python-mode . python-black-on-save-mode)))
+(use-package dape
   :ensure t
-  :hook (prog-mode . company-mode)
-  :bind
-  (:map company-active-map
-        ("<tab>" . company-complete-selection))
-  (:map lsp-mode-map
-        ("<tab>" . company-indent-or-complete-common))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
-(use-package company-jedi
-  :after company
-  :ensure t)
-(with-eval-after-load 'flycheck
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  :config
+  ;; Devcontainer configs
+  (add-to-list 'dape-configs
+               `(python-devcontainer
+                 modes (python-mode python-ts-mode)
+                 ensure (lambda (config)
+                          dape-ensure-command-selected)
+                 command "devcontainer"
+                 command-args ("exec" "--workspace-folder" "." "python" "-m" "debugpy" "--listen" "5678" "--wait-for-client")
+                 host "localhost"
+                 port 5678
+                 :type "python"
+                 :request "attach"
+                 :pathMappings [(:localRoot dape-cwd :remoteRoot "/workspace")])))
 
-(use-package py-isort :ensure t)
-(use-package pyvenv-auto :ensure t :hook ((python-mode . pyvenv-auto-run)))
+;; (use-package lsp-mode :ensure t :config (setq warning-minimum-level ':error))
+;; (use-package lsp-pyright :after lsp-mode :ensure t)
+;; (with-eval-after-load 'lsp-mode
+;;   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.venv\\'"))
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :after lsp-mode)
+;; (use-package lsp-pyright
+;;   :after lsp-mode
+;;   :ensure t)
+;; (use-package flycheck
+;;   :after lsp-mode
+;;   :ensure t
+;;   :config (global-flycheck-mode))
+;; (use-package company
+;;   :after lsp-pyright
+;;   :ensure t
+;;   :hook (prog-mode . company-mode)
+;;   :bind
+;;   (:map company-active-map
+;;         ("<tab>" . company-complete-selection))
+;;   (:map lsp-mode-map
+;;         ("<tab>" . company-indent-or-complete-common))
+;;   :custom
+;;   (company-minimum-prefix-length 1)
+;;   (company-idle-delay 0.0))
+;; (use-package company-jedi
+;;   :after company
+;;   :ensure t)
+;; (with-eval-after-load 'flycheck
+;;   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
-(add-hook 'python-mode-hook 'lsp)
-(add-hook 'python-mode-hook 'hs-minor-mode)
-(add-hook 'python-mode-hook 'display-line-numbers-mode)
-(add-hook 'before-save-hook 'py-isort-before-save)
+;; (use-package py-isort :ensure t)
+;; (use-package pyvenv-auto :ensure t :hook ((python-mode . pyvenv-auto-run)))
 
-(setq py-autopep8-options '("--max-line-length=132"))
-(setq python-fill-docstring-style 'django)
-(setq python-indent-offset 4)
-(setq dired-guess-shell-alist-user
-      '(("^manage.py$" "python * runserver")
-        ("\\.py$" "python")
-        ("^requirements.txt$" "pip install -r")))
+;; (add-hook 'python-mode-hook 'lsp)
+;; (add-hook 'python-mode-hook 'hs-minor-mode)
+;; (add-hook 'python-mode-hook 'display-line-numbers-mode)
+;; (add-hook 'before-save-hook 'py-isort-before-save)
+
+;; (setq py-autopep8-options '("--max-line-length=132"))
+;; (setq python-fill-docstring-style 'django)
+;; (setq python-indent-offset 4)
+;; (setq dired-guess-shell-alist-user
+;;       '(("^manage.py$" "python * runserver")
+;;         ("\\.py$" "python")
+;;         ("^requirements.txt$" "pip install -r")))
