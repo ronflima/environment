@@ -28,9 +28,14 @@
 ;;
 ;; MELPA support and package customizations
 ;;
-(require 'package)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(if (getenv "WSL_DISTRO_NAME")
+    ;; WSL has a lot of trouble about this
+    (setq package-check-signature nil))
+
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+
 (package-initialize)
 
 (require 'calendar)
@@ -127,7 +132,8 @@
   (setq shell-file-name "bash")
   (setenv "SHELL" shell-file-name)
   (setq exec-path (append exec-path '("/usr/local/bin")))
-  (setq explicit-bash-args '("--noediting" "--login" "-i"))))
+  (setq explicit-bash-args '("--noediting" "--login" "-i")))
+ )
 
 ;;
 ;; Skelletons
@@ -167,25 +173,6 @@
   :config
   (add-to-list 'eglot-server-programs
                '(python-mode . ("pyright-langserver" "--stdio"))))
-;;
-;; Golang preferences
-;;
-(use-package go-mode
-  :after eglot
-  :ensure t)
-(use-package go-dlv
-  :after go-mode
-  :ensure t)
-(add-hook 'go-mode-hook #'lsp-deferred)
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-(add-hook 'go-mode-hook 'display-line-numbers-mode)
-(defun brazuca-go-prefs()
-  (setq fill-column 132))
-(add-hook 'go-mode-hook 'brazuca-go-prefs)
-
 ;;
 ;; Modes
 ;;
@@ -371,8 +358,9 @@
   :type 'string
   :group 'brazuca-customizations)
 
+;;
 ;; Local Libraries
-
+;;
 (add-to-list 'load-path (expand-file-name "customizations" user-emacs-directory))
 (load-library (expand-file-name "init.el" (expand-file-name "customizations" user-emacs-directory)))
 
