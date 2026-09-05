@@ -1,7 +1,7 @@
 ;; Emacs Customizations
 ;; MIT License
 ;;
-;; Copyright (c) 2019 Ronaldo F. Lima <ronaldo@brazuca.dev>
+;; Copyright (c) 2026 Ronaldo F. Lima <ronaldo@brazuca.dev>
 ;;
 ;; Permission is hereby granted, free of charge, to any person
 ;; obtaining a copy of this software and associated documentation
@@ -23,9 +23,15 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(load-library (expand-file-name "preferences.el" user-emacs-directory))
-(setq custom-file (expand-file-name "customizations.el" user-emacs-directory))
+(if (getenv "WSL_DISTRO_NAME")
+    ;; WSL has a lot of trouble about this
+    (setq package-check-signature nil))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(package-initialize)
+(load (expand-file-name "init.el" (expand-file-name "customizations" user-emacs-directory)) nil nil)
+(setq custom-file (expand-file-name "custom-settings.el" user-emacs-directory))
 (when 
        (file-exists-p custom-file)
-       (load custom-file)
-)
+       (load custom-file))
+
