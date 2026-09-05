@@ -25,7 +25,7 @@ abbrevs.el
 ac-comphist.dat
 bookmarks
 eln-cache
-emacs.d/customizations.el
+emacs.d/custom-settings.el
 emacs.d/projects
 emacs.d/transient
 emacs.d/url
