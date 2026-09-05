@@ -1,18 +1,34 @@
+;; MIT License
+;;
+;; Copyright (c) 2026 Ronaldo F. Lima <ronaldo@brazuca.dev>
+;;
+;; Permission is hereby granted, free of charge, to any person
+;; obtaining a copy of this software and associated documentation
+;; files (the "Software"), to deal in the Software without
+;; restriction, including without limitation the rights to use, copy,
+;; modify, merge, publish, distribute, sublicense, and/or sell copies
+;; of the Software, and to permit persons to whom the Software is
+;; furnished to do so, subject to the following conditions:
+;;
+;; The above copyright notice and this permission notice shall be
+;; included in all copies or substantial portions of the Software.
+;;
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+;; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+;; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+;; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+;; BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+;; ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+;; SOFTWARE.
+;;
+
 ;;
 ;; Load all skelletons available. This file is used as a hub for skelletons
 ;; loading.
 ;; 
-(load-library "c-skel.el")
-(load-library "django-skel.el")
-(load-library "dockerfile.el")
-(load-library "dot-skel.el")
-(load-library "go-skel.el")
-(load-library "html-skel.el")
-(load-library "javascript-skel.el")
-(load-library "json-skel.el")
-(load-library "markdown.el")
-(load-library "org-skel.el")
-(load-library "python-skel.el")
-(load-library "sql-skel.el")
-(load-library "terraform.el")
-(load-library "yaml.el")
+
+(setq libraries (directory-files default-directory nil "^skel-"))
+(dolist (lib libraries)
+  (load-library lib))
+
