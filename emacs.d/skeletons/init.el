@@ -28,7 +28,7 @@
 ;; loading.
 ;; 
 
-(setq libraries (directory-files default-directory nil "^skel-"))
-(dolist (lib libraries)
-  (load-library lib))
+(setq brz-skeletons (directory-files (expand-file-name "skeletons" user-emacs-directory) t "^skel-"))
+(dolist (brz-skel brz-skeletons)
+  (load brz-skel nil nil))
 
