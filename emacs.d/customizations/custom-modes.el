@@ -24,12 +24,19 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; General modes customizations
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(defun brazuca-text-mode-hook()
+  (setq fill-column 132))
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'text-mode-hook 'brazuca-text-mode-hook)
+(auto-fill-mode 1)
+(display-time-mode 1)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(put 'erase-buffer 'disabled nil)
+(setq column-number-mode t)
+(setq display-time-default-load-average nil)
+(setq display-time-format "%H:%M %d/%m/%Y")
+(setq epg-pinentry-mode 'loopback)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)

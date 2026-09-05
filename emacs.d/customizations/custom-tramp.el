@@ -24,12 +24,7 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Tramp mode
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(setq tramp-default-method "ssh")
+(setq tramp-default-remote-shell "/bin/bash")

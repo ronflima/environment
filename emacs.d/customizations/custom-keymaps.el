@@ -24,12 +24,13 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Keymaps
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(global-set-key "%"  'match-paren)
+(global-set-key "\C-x\M-d" 'insdate-insert-current-date)
+(global-set-key [M-down] 'end-of-buffer)
+(global-set-key [M-left] 'beginning-of-line)
+(global-set-key [M-right] 'end-of-line)
+(global-set-key [M-up] 'beginning-of-buffer)
+(global-set-key [end] 'end-of-line)
+(global-set-key [home] 'beginning-of-line)

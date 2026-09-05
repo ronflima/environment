@@ -24,12 +24,8 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; VC Customizations
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(define-key vc-dir-mode-map (kbd "\C-cc") 'vc-find-conflicted-file)
+(setq smerge-command-prefix "\C-cm")
+(setq vc-suppress-confirm t)

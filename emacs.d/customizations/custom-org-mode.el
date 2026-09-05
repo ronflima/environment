@@ -24,12 +24,22 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; ORG Mode customizations
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(setq org-duration-format 'h:mm)
+(setq org-todo-keywords
+      '((sequence "TODO" "DOING" "|" "DONE")))
+(setq org-log-done 'time)
+(defun org-confirm-babel-evaluate-dot-code (lang body)
+  (not (string= lang "dot")))
+(setq org-confirm-babel-evaluate #'org-confirm-babel-evaluate-dot-code)
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(defun brazuca-org-mode-hook()
+  (setq fill-column 132))
+(add-hook 'org-mode-hook 'brazuca-org-mode-hook)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)
+   (mermaid . t)
+   (scheme . t)))

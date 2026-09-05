@@ -1,4 +1,3 @@
-;; Emacs Customizations for Python
 ;; MIT License
 ;;
 ;; Copyright (c) 2025 Ronaldo F. Lima <ronaldo@brazuca.dev>
@@ -23,8 +22,10 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 ;;
-;; Note: This requires emacs 29 or newer.
 
+;;
+;; Python customizations
+;;
 (use-package pyenv-mode
   :ensure t
   :after eglot
@@ -33,6 +34,8 @@
   (setenv "WORKON_HOME" "~/.pyenv/versions/")
   :config
   (pyenv-mode))
+(use-package pyvenv-auto :ensure t
+  :hook ((python-mode . pyvenv-auto-run)))
 (use-package pyconf
   :ensure t)
 (defalias 'workon 'pyvenv-workon)

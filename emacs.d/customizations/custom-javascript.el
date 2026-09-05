@@ -24,12 +24,6 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Javascript preferences
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(setq js-indent-level 4)

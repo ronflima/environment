@@ -24,12 +24,7 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Abbrevs
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(setq abbrev-file-name (expand-file-name "abbrevs.el" user-emacs-directory))
+(setq abbrev-mode t)

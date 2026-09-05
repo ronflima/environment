@@ -24,12 +24,18 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Customizable variables
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(defgroup brazuca-customizations nil "Brazuca customizations group")
+(defcustom user-full-name "Ronaldo Faria Lima"
+  "User full name, used in some skeletons"
+  :type 'string
+  :group 'brazuca-customizations)
+(defcustom user-company-name "Brazuca Studio"
+  "User company name"
+  :type 'string
+  :group 'brazuca-customizations)
+(defcustom user-mail-address "ronaldo@brazuca.dev"
+  "User main email address"
+  :type 'string
+  :group 'brazuca-customizations)

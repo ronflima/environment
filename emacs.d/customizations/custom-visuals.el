@@ -24,12 +24,28 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Visual customizations
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(defun brazuca-dark-mode()
+  "Sets emacs into a \"dark mode\""
+  (interactive)
+  (set-face-background 'default "black")
+  (set-face-foreground 'default "green"))
+(defun brazuca-light-mode()
+  "Sets emacs into a light mode"
+  (interactive)
+  (set-face-background 'default "white")
+  (set-face-foreground 'default "black"))
+(brazuca-dark-mode) ;; Prefer the dark theme. But this can get
+                    ;; customized at customizations.el
+(add-to-list 'default-frame-alist '(height . 30))
+(add-to-list 'default-frame-alist '(width . 120))
+(global-auto-revert-mode 1)
+(menu-bar-mode -1)
+(setq inhibit-startup-message t)
+(setq make-backup-files nil) 
+(setq ring-bell-function 'ignore)
+(setq visible-bell nil)
+(tool-bar-mode 0)
+(turn-on-font-lock)
+(set-scroll-bar-mode 'right)

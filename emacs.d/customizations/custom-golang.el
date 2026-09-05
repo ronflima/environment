@@ -1,4 +1,3 @@
-;; Emacs Customizations for Python
 ;; MIT License
 ;;
 ;; Copyright (c) 2026 Ronaldo F. Lima <ronaldo@brazuca.dev>
@@ -24,6 +23,9 @@
 ;; SOFTWARE.
 ;;
 
+;;
+;; GO Lang customizations
+;;
 (use-package go-mode
   :after eglot
   :ensure t)

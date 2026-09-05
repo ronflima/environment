@@ -24,12 +24,7 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; HTTP related tools
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(use-package verb :ensure t)
+(define-key org-mode-map (kbd "C-c C-r") verb-command-map)

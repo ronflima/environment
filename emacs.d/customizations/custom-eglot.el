@@ -24,12 +24,12 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Eglot setup
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(use-package eglot
+  :ensure t
+  :hook ((python-mode . eglot-ensure)
+         (go-mode . eglot-ensure))
+  :config
+  (add-to-list 'eglot-server-programs
+               '(python-mode . ("pyright-langserver" "--stdio"))))

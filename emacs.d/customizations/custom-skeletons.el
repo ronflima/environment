@@ -24,12 +24,19 @@
 ;;
 
 ;;
-;; Loads all customizations
+;; Skelletons
 ;;
-(message "Beginning Customizations...")
-(setq brz-customizations
-      (directory-files (expand-file-name "customizations" user-emacs-directory) t "^custom-"))
-(dolist (brz-lib brz-customizations)
-  (message "Loading %s..." brz-lib)
-  (load brz-lib nil nil))
-(message "Customizations completed!")
+(add-to-list 'load-path (expand-file-name "skeletons" user-emacs-directory))
+(load-library (expand-file-name "init.el" (expand-file-name "skeletons" user-emacs-directory)))
+(add-hook 'find-file-hook 'auto-insert)
+(setq auto-insert-alist '(("router.*\\.js$". node-router)
+                          ("\\.js$"        . node-new-file)
+			              ("\\.rb$"        . ruby-formaweb-file)
+                          ("\\.c$"         . c-mit-file)
+                          ("\\.h$"         . c-mit-file)
+                          ("\\.swift$"     . swift-mit-file)
+                          ("setup.py"      . python-mit-setup)
+                          ("\\.py$"        . brazuca-python-module)
+                          ("\\.sql$"       . skel-sql-file)
+                          ("\\.org$"       . brazuca-org-file)
+                          ("\\.go\\'"      . brazuca-golang-skeleton)))
