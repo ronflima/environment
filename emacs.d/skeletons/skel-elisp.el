@@ -25,7 +25,6 @@
   > ";; ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN" \n
   > ";; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE" \n
   > ";; SOFTWARE." \n
-  > ";; Created: " (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ " <" _ user-mail-address _ ">" _ \n
   > ";;" \n \n
   > ";;" \n
   > ";; " (skeleton-read "This file purpose: ") \n
