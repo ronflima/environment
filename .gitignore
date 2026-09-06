@@ -29,6 +29,7 @@ emacs.d/custom-settings.el
 emacs.d/projects
 emacs.d/transient
 emacs.d/url
+emacs.d/tree-sitter
 git-command
 ido.last
 network-security.data
