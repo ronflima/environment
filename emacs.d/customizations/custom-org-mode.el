@@ -38,8 +38,3 @@
 (defun brazuca-org-mode-hook()
   (setq fill-column 132))
 (add-hook 'org-mode-hook 'brazuca-org-mode-hook)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((dot . t)
-   (mermaid . t)
-   (scheme . t)))
