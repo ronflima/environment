@@ -103,3 +103,4 @@ fi
 export XKB_DEFAULT_LAYOUT="br"
 export PATH=$PATH:~/.local/bin
 setxkbmap -model abnt2 -layout br > /dev/null 2>&1
+export GRIM_DEFAULT_DIR="$HOME/screenshots"
