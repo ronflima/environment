@@ -30,17 +30,24 @@
 
 read -r -d '' SWAY_CONFIG<<'CFG'
 include /etc/sway/config
+
 set $menu fuzzel
 unbindsym $mod+d
 bindsym $mod+d exec $menu
+bindsym $mod+l swaylock -c 000000
+
 exec emacs
 exec swaybg -i ~/wallpapers/wallpaper1.jpg -m fill
+exec swayidle -w \
+          timeout 300 'swaylock -f -c 000000' \
+          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          before-sleep 'swaylock -f -c 000000'
 CFG
 
 if [ -z "$WSL_DISTRO_NAME" ]
 then
     sudo apt update
-    sudo apt install sway wmenu grim fuzzle wayland-protocols xwayland -y
+    sudo apt install sway wmenu grim fuzzle wayland-protocols xwayland swaylock swayidle -y
     sudo usermod -aG video,input,render $USER
     mkdir -p ~/.config/sway
     echo "$SWAY_CONFIG" > ~/.config/sway/config
