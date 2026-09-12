@@ -34,7 +34,7 @@ include /etc/sway/config
 set $menu fuzzel
 unbindsym $mod+d
 bindsym $mod+d exec $menu
-bindsym $mod+l swaylock -c 000000
+bindsym Control+Alt+Delete exec swaylock -c 000000
 
 exec emacs
 exec swaybg -i ~/wallpapers/wallpaper1.jpg -m fill
