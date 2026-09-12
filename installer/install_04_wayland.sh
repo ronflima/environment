@@ -28,9 +28,20 @@
 # Author: <Ronaldo Faria Lima> ronaldo.faria.lima@gmail.com
 #
 
+read -r -d '' SWAY_CONFIG<<'CFG'
+include /etc/sway/config
+set $menu fuzzel
+unbindsym $mod+d
+bindsym $mod+d exec $menu
+exec emacs
+exec swaybg -i ~/wallpapers/wallpaper1.jpg -m fill
+CFG
+
 if [ -z "$WSL_DISTRO_NAME" ]
 then
     sudo apt update
-    sudo apt install sway wmenu wayland-protocols xwayland -y
+    sudo apt install sway wmenu grim fuzzle wayland-protocols xwayland -y
     sudo usermod -aG video,input,render $USER
+    mkdir -p ~/.config/sway
+    echo "$SWAY_CONFIG" > ~/.config/sway/config
 fi
