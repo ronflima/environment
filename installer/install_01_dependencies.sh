@@ -58,6 +58,7 @@ wget
 x11-xkb-utils
 zip
 zlib1g-dev
+texlive-full
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
