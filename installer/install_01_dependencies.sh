@@ -46,11 +46,14 @@ liblzma-dev
 libncurses-dev 
 libreadline-dev 
 libsqlite3-dev 
-libssl-dev 
+libssl-dev
 make
 openssl 
+pinentry-curses
+pinentry-gtk2
 pkg-config
 sqlite3
+texlive-full
 tk-dev 
 unzip
 uuid-dev 
@@ -58,7 +61,6 @@ wget
 x11-xkb-utils
 zip
 zlib1g-dev
-texlive-full
 PKG
 
 if [ "$OSTYPE" == "linux-gnu" ]
