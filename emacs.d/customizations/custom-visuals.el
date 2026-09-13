@@ -49,3 +49,5 @@
 (tool-bar-mode 0)
 (turn-on-font-lock)
 (set-scroll-bar-mode 'right)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+(add-hook 'text-mode-hook #'display-fill-column-indicator-mode)
