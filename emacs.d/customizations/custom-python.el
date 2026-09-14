@@ -60,3 +60,5 @@
                  :request "attach"
                  :pathMappings [(:localRoot dape-cwd :remoteRoot "/workspace")])))
 
+(use-package isortify :ensure t)
+(add-hook 'python-mode-hook 'isortify-mode)
