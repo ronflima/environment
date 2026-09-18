@@ -43,6 +43,9 @@
   :demand t
   :after python
   :hook ((python-mode . python-black-on-save-mode)))
+(use-package py-isort
+  :ensure t
+  :hook ((before-save-hook . py-isort-before-save)))
 (use-package dape
   :ensure t
   :config
@@ -59,6 +62,6 @@
                  :type "python"
                  :request "attach"
                  :pathMappings [(:localRoot dape-cwd :remoteRoot "/workspace")])))
-
-(use-package isortify :ensure t)
-(add-hook 'python-mode-hook 'isortify-mode)
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(python-mode . ("bash" "-lc" "pyright-langserver --stdio"))))
