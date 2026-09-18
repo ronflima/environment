@@ -29,7 +29,4 @@
 (use-package eglot
   :ensure t
   :hook ((python-mode . eglot-ensure)
-         (go-mode . eglot-ensure))
-  :config
-  (add-to-list 'eglot-server-programs
-               '(python-mode . ("pyright-langserver" "--stdio"))))
+         (go-mode . eglot-ensure)))
