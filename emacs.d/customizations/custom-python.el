@@ -26,30 +26,20 @@
 ;;
 ;; Python customizations
 ;;
-(use-package pyenv-mode
-  :ensure t
-  :after eglot
-  :init
-  (add-to-list 'exec-path "~/.pyenv/shims")
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
-  :config
-  (pyenv-mode))
-(use-package pyvenv-auto :ensure t
-  :hook ((python-mode . pyvenv-auto-run)))
-(use-package pyconf
-  :ensure t)
-(use-package python-black
-  :ensure t
-  :demand t
-  :after python
-  :hook ((python-mode . python-black-on-save-mode)))
-(use-package py-isort
-  :ensure t
-  :hook ((before-save-hook . py-isort-before-save)))
+(use-package pyconf :ensure t)
+(defun my/python-format ()
+  "Executes isort and black using process-file to support TRAMP/Containers."
+  (interactive)
+  (when (derived-mode-p 'python-mode 'python-ts-mode)
+    (when (executable-find "isort" (file-remote-p default-directory))
+      (process-file "isort" nil nil nil (buffer-file-name)))
+    (when (executable-find "black" (file-remote-p default-directory))
+      (process-file "black" nil nil nil (buffer-file-name)))
+    (revert-buffer t t t)))
+(add-hook 'before-save-hook #'my/python-format)
 (use-package dape
   :ensure t
   :config
-  ;; Devcontainer configs
   (add-to-list 'dape-configs
                `(python-devcontainer
                  modes (python-mode python-ts-mode)
