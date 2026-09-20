@@ -27,16 +27,6 @@
 ;; Python customizations
 ;;
 (use-package pyconf :ensure t)
-(defun my/python-format ()
-  "Executes isort and black using process-file to support TRAMP/Containers."
-  (interactive)
-  (when (derived-mode-p 'python-mode 'python-ts-mode)
-    (when (executable-find "isort" (file-remote-p default-directory))
-      (process-file "isort" nil nil nil (buffer-file-name)))
-    (when (executable-find "black" (file-remote-p default-directory))
-      (process-file "black" nil nil nil (buffer-file-name)))
-    (revert-buffer t t t)))
-(add-hook 'before-save-hook #'my/python-format)
 (use-package dape
   :ensure t
   :config
@@ -55,3 +45,20 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(python-mode . ("bash" "-lc" "pyright-langserver --stdio"))))
+(use-package apheleia
+  :ensure t
+  :config
+  (with-eval-after-load 'tramp
+    (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+    (add-to-list 'tramp-remote-path 'tramp-default-remote-path)
+    (add-to-list 'tramp-remote-path "/usr/local/bin")
+    (add-to-list 'tramp-remote-path "~/.local/bin"))
+  (setf (alist-get 'isort apheleia-formatters)
+        '("isort" "-" "--quiet"))
+  (setf (alist-get 'black apheleia-formatters)
+        '("black" "-" "--quiet"))
+  (setq apheleia-remote-algorithm 'remote)
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(isort black)
+        (alist-get 'python-ts-mode apheleia-mode-alist) '(isort black))
+  (apheleia-global-mode +1))
+
