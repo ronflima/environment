@@ -61,7 +61,7 @@
  ;; Linux
  ((string-equal system-type "gnu/linux")
   (set-face-attribute 'default nil :family "SourceCodePro" :height 140 :weight 'regular)
-  (setq dired-listing-switches "-aBhl --group-directories-first")
+  (setq dired-listing-switches "-Bhl --group-directories-first")
   ;; Support to inferior shell
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
   (global-set-key [f2] 'shell)
