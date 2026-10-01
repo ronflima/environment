@@ -37,7 +37,8 @@
 	           (nnmail-expiry-wait immediate)))
 (setq smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587
+      smtpmail-stream-type 'starttls
       gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 (setq message-send-mail-function 'smtpmail-send-it
-      send-mail-function 'smtpmail-send-it
-      smtpmail-stream-type 'starttls)
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587)
