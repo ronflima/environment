@@ -4,7 +4,7 @@
   > "layout: post" \n
   > "title: \"YOUR TITLE HERE\"" \n
   > "subtitle: \"SUBTITLE HERE\"" \n
-  > "IMAGE: \"IMAGE URL HERE\"" \n
+  > "image: \"IMAGE URL HERE\"" \n
   > "author: ronaldo" \n
   > "categories: [LIST OF CATEGORIES]" \n
   > "---" \n \n
