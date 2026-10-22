@@ -38,3 +38,4 @@
 (defun brazuca-org-mode-hook()
   (setq fill-column 132))
 (add-hook 'org-mode-hook 'brazuca-org-mode-hook)
+(setq org-export-with-toc nil)
