@@ -1,4 +1,4 @@
-(define-skeleton brazuca-terraform
+(define-skeleton skel-terraform
   "Terraform template"
   \n
   "# -*-mode:terraform-*-" \n

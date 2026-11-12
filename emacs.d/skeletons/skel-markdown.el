@@ -1,4 +1,4 @@
-(define-skeleton front-matter
+(define-skeleton skel-jekyll-frontmatter
   "Front-matter for Jekyll blog"
   > "---" \n
   > "layout: post" \n

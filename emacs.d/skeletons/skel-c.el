@@ -1,4 +1,4 @@
-(define-skeleton c-mit-file
+(define-skeleton skel-c-mit-file
   "C MIT Licensed File"
   \n
   > "/* -*-c-*-" \n
@@ -28,6 +28,6 @@
   > \n
   > "This file purpose: " (skeleton-read "This file purpose: ") \n
   > "*/" \n \n
-)
+  )
 
 

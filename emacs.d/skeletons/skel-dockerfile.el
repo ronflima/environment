@@ -1,4 +1,4 @@
-(define-skeleton brazuca-dockerfile-skeleton
+(define-skeleton skel-dockerfile
   "Dockerfile template"
   \n
   "# -*-mode:dockerfile-mode-*-" \n

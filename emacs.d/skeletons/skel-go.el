@@ -25,7 +25,7 @@
 ;; SOFTWARE.
 ;;
 
-(define-skeleton brazuca-golang-skeleton
+(define-skeleton skel-golang
   "Golang skeleton"
   \n
   > "// -*-mode:go;encoding:utf-8-*-" \n
@@ -33,4 +33,4 @@
   > "// Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "// This file purpose: " (skeleton-read "This file purpose: ") \n \n
   > "package " _ (skeleton-read "Package: ") _ \n \n
- )
+  )

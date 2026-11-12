@@ -1,4 +1,4 @@
-(define-skeleton python-mit
+(define-skeleton skel-python-mit
   "Python MIT Licensed File"
   \n
   > "# -*-mode:python;encoding:utf-8-*-" \n
@@ -26,11 +26,11 @@
   > "# Created: " _ (format-time-string "%Y-%m-%d" (current-time))_ " by " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
   > "#" \n
   > "# This file purpose: " (skeleton-read "This file purpose: ") \n \n
- )
+  )
 
-(define-skeleton python-mit-setup
+(define-skeleton skel-python-mit-setup
   "Python MIT-licensed setup package"
-    \n
+  \n
   > "# -*-mode:python;encoding:utf-8-*-" \n
   > "# The MIT License (MIT)" \n
   > "# Copyright (c)" (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All Rights Reserved" \n 
@@ -76,14 +76,14 @@
   > "python_requires='>=3.6'," ?\n
   > ")" ?\n
   )
-(define-skeleton brazuca-python-module
-  "Copyrighted Brazuca python module"
-    \n
-    > "# -*-mode:python;encoding:utf-8-*-" \n
-    > "\"\"\"" \n
-    > "(c) " _ (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All rights reserved" \n
-    > "Created at " _ (format-time-string "%Y-%m-%d" (current-time)) \n
-    > "Author: " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
-    > "Purpose: " _ (skeleton-read "This file purpose: ") \n
-    > "\"\"\"" \n
- )
+(define-skeleton skel-python-module
+  "Copyrighted python module"
+  \n
+  > "# -*-mode:python;encoding:utf-8-*-" \n
+  > "\"\"\"" \n
+  > "(c) " _ (format-time-string "%Y" (current-time)) _ " - " _ user-company-name _ " - All rights reserved" \n
+  > "Created at " _ (format-time-string "%Y-%m-%d" (current-time)) \n
+  > "Author: " _ (user-full-name) _ "<" _ user-mail-address _ ">" _ \n
+  > "Purpose: " _ (skeleton-read "This file purpose: ") \n
+  > "\"\"\"" \n
+  )

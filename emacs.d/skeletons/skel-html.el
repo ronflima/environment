@@ -1,4 +1,4 @@
-(define-skeleton html-bootstrap-file
+(define-skeleton skel-html-bootstrap
   "HTML File with bootstrap support"
   \n
   > "<!doctype html>" \n
@@ -28,4 +28,4 @@
   > "crossorigin=\"anonymous\"></script>" \n
   > "</body>" \n
   > "</html>" \n
-)
+  )

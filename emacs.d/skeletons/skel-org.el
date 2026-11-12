@@ -1,4 +1,4 @@
-(define-skeleton brazuca-org-file
+(define-skeleton skel-org
   "Org File Brazuca way"
   \n
   > "# -*-mode:org-*-" \n
@@ -11,10 +11,10 @@
 (defun brazuca-workdays()
   "Outputs a list of working days in Org Mode format"
   (let ((weekday '("Monday" "Tuesday" "Wednesday" "Thursday" "Friday")))
-        (setq activity-plan (mapc (lambda (d) (insert (concat "** " d "\n\n*** Activity Plan\n\n\n"))) weekday))
-        (apply 'concat activity-plan)))
+    (setq activity-plan (mapc (lambda (d) (insert (concat "** " d "\n\n*** Activity Plan\n\n\n"))) weekday))
+    (apply 'concat activity-plan)))
 
-(define-skeleton brazuca-weekly-timesheet
+(define-skeleton skel-org-weekly-timesheet
   "Org file for weekly time sheet reports"
   \n
   "# -*-mode:org-*-" \n

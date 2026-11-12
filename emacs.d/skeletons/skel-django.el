@@ -1,4 +1,4 @@
-(define-skeleton django-html-template
+(define-skeleton skel-django-html-template
   "Django HTML template"
   \n
   "{% extends \"base.html\" %}" \n
@@ -10,8 +10,8 @@
   "*****" \n \n
   "{% endcomment %}" \n \n
   "{% load i18n %}" \n
- )
-(define-skeleton django-html-form
+  )
+(define-skeleton skel-django-html-form
   "Django HTML form for Django templates"
   \n
   > "<form method=\"post\" class=\"w-25 mx-auto border border-primary-subtle rounded p-4 shadow\">" \n

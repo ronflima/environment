@@ -1,4 +1,4 @@
-(define-skeleton brazuca-yaml
+(define-skeleton skel-yaml
   "Yaml template"
   \n
   "# -*-mode:yaml-*-" \n

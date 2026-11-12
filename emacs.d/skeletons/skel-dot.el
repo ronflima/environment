@@ -1,4 +1,4 @@
-(define-skeleton brazuca-dot-activity-diagram
+(define-skeleton skel-dot-activity-diagram
   "Graphviz DOT Activity Diagram"
   \n
   > "/* -*- mode:dot;coding:utf-8 -*-" \n
@@ -13,5 +13,5 @@
   > "end [shape=doublecircle, style=filled, fillcolor=black, label=\"\"];" _ \n
   > \n
   > "}" \n
- )
+  )
 

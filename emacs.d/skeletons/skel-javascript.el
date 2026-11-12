@@ -1,6 +1,6 @@
 ;; Javascript and Node related skeletons
 
-(define-skeleton node-new-file
+(define-skeleton skel-node
   "New node javascript file"
   > "/* -*-javascript-*- */" \n
   > "// Copyright (c) " (format-time-string "%Y") " - " _ user-company-name _ " - All rights Reserved" \n
@@ -20,7 +20,7 @@
   > "'use strict'" \n _ \n
   )
 
-(define-skeleton node-router
+(define-skeleton skel-node-router
   "Node controller"
   > "/* -*-javascript-*- */" \n
   > "// Copyright (c) " _ (format-time-string "%Y") _ " - " _ user-company_name _ " - All rights Reserved" \n
@@ -62,7 +62,7 @@
   > "module.exports = router"\n
   )
 
-(define-skeleton js-mit
+(define-skeleton skel-js-mit
   "Open-source javascript file"
   > "// -*-javascript-*-" \n
   > "// MIT License" \n

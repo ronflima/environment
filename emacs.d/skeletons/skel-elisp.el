@@ -1,4 +1,4 @@
-(define-skeleton elisp-mit-file
+(define-skeleton skel-mit-elisp
   "ELisp MIT Licensed File"
   \n
   > ";; MIT License" \n
@@ -29,5 +29,5 @@
   > ";;" \n
   > ";; " (skeleton-read "This file purpose: ") \n
   > ";;" \n \n
-)
+  )
 
