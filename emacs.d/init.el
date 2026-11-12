@@ -26,8 +26,8 @@
 (if (getenv "WSL_DISTRO_NAME")
     ;; WSL has a lot of trouble about this
     (setq package-check-signature nil))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (load (expand-file-name "init.el" (expand-file-name "customizations" user-emacs-directory)) nil nil)
 (setq custom-file (expand-file-name "custom-settings.el" user-emacs-directory))
 (when 
