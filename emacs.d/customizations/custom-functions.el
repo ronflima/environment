@@ -65,3 +65,46 @@
     See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" beg end))
+
+;;
+;; Generates a strong password
+;;
+(defun generate-strong-password (&optional length)
+  "Generate a random password of at least LENGTH characters (default 12).
+The password is guaranteed to contain:
+- At least 8 characters
+- At least one digit (0-9)
+- At least one uppercase letter (A-Z)
+- At least one lowercase letter (a-z)
+- At least one special character (@#%&'!_)"
+  (let* ((min-length 8)
+         (target-length (max min-length (or length 12)))
+         (uppercase-chars "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+         (lowercase-chars "abcdefghijklmnopqrstuvwxyz")
+         (digit-chars "0123456789")
+         (special-chars "@#%&'!_")
+         (all-chars (concat uppercase-chars lowercase-chars digit-chars special-chars))
+         (pick-random-char (lambda (charset)
+                             (aref charset (random (length charset)))))
+         ;; Guarantee at least one character from each required set
+         (password-chars (list (funcall pick-random-char uppercase-chars)
+                               (funcall pick-random-char lowercase-chars)
+                               (funcall pick-random-char digit-chars)
+                               (funcall pick-random-char special-chars))))
+
+    ;; Fill the remaining length with random characters from the combined pool
+    (dotimes (_ (- target-length (length password-chars)))
+      (push (funcall pick-random-char all-chars) password-chars))
+
+    ;; Shuffle the list using the Fisher-Yates algorithm
+    (let ((chars-vector (vconcat password-chars))
+          (len target-length))
+      (while (> len 1)
+        (let* ((rand-idx (random len))
+               (last-idx (1- len))
+               (temp (aref chars-vector last-idx)))
+          (aset chars-vector last-idx (aref chars-vector rand-idx))
+          (aset chars-vector rand-idx temp)
+          (setq len last-idx)))
+      ;; Convert the shuffled vector back to a string
+      (concat chars-vector))))
